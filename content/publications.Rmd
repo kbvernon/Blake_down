@@ -1,0 +1,88 @@
+---
+title: publications
+author: K.B. Vernon
+date: '2020-04-07'
+slug: publications
+categories: []
+tags: []
+description: ''
+---
+
+```{r setup, include = FALSE}
+
+knitr::opts_chunk$set(echo = FALSE, 
+                      warning = FALSE, 
+                      message = FALSE)
+
+library(here)
+library(kableExtra)
+library(knitr)
+library(RefManageR)
+library(tidyverse)
+
+options(knitr.kable.NA = "")
+
+```
+
+```{r}
+
+source(here("style/blake_cv_style.R"))
+
+```
+
+```{r}
+
+bib <- RefManageR::ReadBib(here("data/my_bibliography.bib"))
+bib <- cv_table(bib)
+
+```
+
+### Peer-reviewed journal articles
+
+```{r}
+
+bib %>% 
+  filter(groups == "article") %>% 
+  mutate(ref = glue::glue(
+    
+    "{author} ({date}). {title}. _{journaltitle}_ {volume} ({number}): {pages}. DOI: {doi} <br><br>"
+    
+    )) %>% 
+  select(date, ref) %>% 
+  cv_kable(bib = TRUE)
+
+```
+
+### Book reviews
+
+```{r}
+
+bib %>%
+  filter(groups == "review") %>%
+  mutate(ref = glue::glue(
+    
+    "{author} ({date}). {title}. _{journaltitle}_ {volume} ({number}): {pages}. DOI: {doi} <br><br>"
+    
+    )) %>% 
+  select(date, ref) %>% 
+  cv_kable(bib = TRUE)
+
+```
+
+<br>
+
+### Technical reports
+
+```{r}
+
+bib %>% 
+  filter(groups == "report") %>% 
+  mutate(ref = glue::glue(
+    
+    "{author} ({date}). {title}. {note}. <br><br>"
+    
+    )) %>% 
+  select(date, ref) %>% 
+  cv_kable(bib = TRUE)
+
+```

@@ -1,0 +1,15 @@
+---
+title: _index
+author: K.B. Vernon
+date: '2020-04-07'
+slug: _index
+categories: []
+tags: []
+description: ''
+---
+
+### __Kenneth Blake Vernon__
+
+![](/figures/Comb_Ridge.jpg)
+
+I'm a __behavioral ecologist__ with a peculiar interest in our own species, so I guess that makes me an __anthropologist__ too. And because the humans I study lived long ago - and because I have fondness for digging in the dirt - I suppose I'm also an __archaeologist__. I use geographic and spatial modeling techniques to investigate the nexus of climate, conflict, and human migration, focusing on the prehistory of the American Southwest. A lot of my time is spent developing methods to advance archaeological data management and data science both for research and preservation.  

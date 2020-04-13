@@ -38,7 +38,7 @@ bib <- cv_table(bib)
 ```
 
 
-<div style = "font-size: 12px;"> 
+<div style = "font-size: 14px;"> 
 _For a pdf of my curriculum vitae, click the CV button in the navbar._  
 </div>
 
@@ -177,7 +177,7 @@ read.csv(here("data/affiliations.csv"), stringsAsFactors = FALSE) %>%
 
 ### Base Code
 
-I'm told this is my base code in R:
+I'm told this is my base R code:
 
     blake <- function(){
     

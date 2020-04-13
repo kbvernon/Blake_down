@@ -1,0 +1,13 @@
+---
+title: research
+author: K.B. Vernon
+date: '2020-04-13'
+slug: research
+categories: []
+tags: []
+description: ''
+---
+
+<div style = "text-align: center;">
+_... this is a work in progress ..._
+</div>

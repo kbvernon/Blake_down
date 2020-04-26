@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>r on Kenneth Blake Vernon</title>
-    <link>/tags/r/</link>
-    <description>Recent content in r on Kenneth Blake Vernon</description>
+    <title>gdistance on Kenneth Blake Vernon</title>
+    <link>/tags/gdistance/</link>
+    <description>Recent content in gdistance on Kenneth Blake Vernon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 13 Apr 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/r/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/gdistance/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -19,15 +19,6 @@
       <guid>/post/estimating-hiking-velocity-with-rhike/</guid>
       <description>I wanted to learn how to write an R package and I had this recurrent use-case (estimating cost-distance on a grid), so I made rHike. It’s a super-lightweight package that builds on Jacob van Etten’s gdistance by implementing both Tobler’s (1993) and Campbell’s (2019) hiking functions, though others could be added. Mainly, it just simplifies the user interface.
 rHike is not currently on CRAN, but you can install from Github with the following code:</description>
-    </item>
-    
-    <item>
-      <title>Plotting fieldwork with mapview</title>
-      <link>/post/plotting-fieldwork-with-mapview/</link>
-      <pubDate>Tue, 07 Apr 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/post/plotting-fieldwork-with-mapview/</guid>
-      <description>While I’m learning how to build a Hugo website with the blogdown package in R, I thought I’d share this code for generating an interactive leaflet map. It has a choropleth overlay representing the number of weeks of archaeological fieldwork I’ve done in each US county. To make this map, I am relying on Tim Applehans’ incredibly helpful R package mapview.</description>
     </item>
     
   </channel>

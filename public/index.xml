@@ -12,6 +12,16 @@
     
     
     <item>
+      <title>Estimating hiking velocity with rHike</title>
+      <link>/post/estimating-hiking-velocity-with-rhike/</link>
+      <pubDate>Mon, 13 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/estimating-hiking-velocity-with-rhike/</guid>
+      <description>I wanted to learn how to write an R package and I had this recurrent use-case (estimating cost-distance on a grid), so I made rHike. It’s a super-lightweight package that builds on Jacob van Etten’s gdistance by implementing both Tobler’s (1993) and Campbell’s (2019) hiking functions, though others could be added. Mainly, it just simplifies the user interface.
+rHike is not currently on CRAN, but you can install from Github with the following code:</description>
+    </item>
+    
+    <item>
       <title>research</title>
       <link>/research/</link>
       <pubDate>Mon, 13 Apr 2020 00:00:00 +0000</pubDate>

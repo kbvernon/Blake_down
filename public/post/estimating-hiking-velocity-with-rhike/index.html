@@ -5,7 +5,7 @@
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>sf</title>
+        <title>Estimating hiking velocity with rHike</title>
         
         <style>
 
@@ -71,9 +71,6 @@
 <script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
  <meta name="generator" content="Hugo 0.63.1" />
         
-            <link href="/tags/sf/index.xml" rel="alternate" type="application/rss&#43;xml" title="Kenneth Blake Vernon" />
-            <link href="/tags/sf/index.xml" rel="feed" type="application/rss&#43;xml" title="Kenneth Blake Vernon" />
-        
 
         
 
@@ -133,23 +130,11 @@
 
 
 <main>
-  
-  <div class = "list-main">
 
-    <h2>sf</h2>
-
-     <div class="item">
-
-    
-    
-    
-
-    
-    
-
-    <h4><a href="/post/estimating-hiking-velocity-with-rhike/">Estimating hiking velocity with rHike</a></h4>
-    <h5>April 13, 2020</h5>
-    
+    <div>
+        <h2>Estimating hiking velocity with rHike</h2>
+        <h5>April 13, 2020</h5>
+        
 <a href="/tags/r"><kbd class="item-tag">r</kbd></a>
 
 <a href="/tags/sf"><kbd class="item-tag">sf</kbd></a>
@@ -159,9 +144,105 @@
 <a href="/tags/raster"><kbd class="item-tag">raster</kbd></a>
 
 
+    </div>
 
+    <div align="start" class="content">
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p>I wanted to learn how to write an R package and I had this recurrent use-case (estimating cost-distance on a grid), so I made <a href="https://github.com/kbvernon/rHike"><code>rHike</code></a>. It’s a super-lightweight package that builds on Jacob van Etten’s <a href="https://agrobioinfoservices.github.io/gdistance/"><code>gdistance</code></a> by implementing both Tobler’s (1993) and Campbell’s (2019) hiking functions, though others could be added. Mainly, it just simplifies the user interface.</p>
+<p><code>rHike</code> is not currently on CRAN, but you can install from Github with the following code:</p>
+<pre class="r"><code>
+# install.packages(&quot;devtools&quot;)
+devtools::install_github(&quot;kbvernon/rHike&quot;)
+</code></pre>
+<p><em>Where we are going</em></p>
+<p>Campbell’s Hiking Function is an amended version of the Laplace distribution:</p>
+<p><span class="math display">\[f(x) = \frac{c}{2b}\, exp\left(\frac{|x - a|}{b}\right) + d + e\, x\]</span></p>
+<p>where <span class="math inline">\(x\)</span> is the slope at a location measured in degrees. This equation reflects the intuitive notion that walking speed varies as a function of slope.</p>
+<pre class="r"><code>slope &lt;- seq(-50, 50, by = 1)
+
+velocity &lt;- hf_campbell(slope, decile = 10)
+
+ggplot(data = data.frame(x = slope, y = velocity), aes(x = x, y = y)) + 
+  geom_line() +
+  theme_bw() +
+  labs(x = &quot;Slope&quot;, y = &quot;Velocity&quot;)</code></pre>
+<p><img src="/post/2020-04-13-calculating-cost-distance-with-rhike_files/figure-html/unnamed-chunk-1-1.png" width="288" style="display: block; margin: auto;" /></p>
+<p><br></p>
+<hr />
+<div id="r-preamble" class="section level4">
+<h4>R Preamble</h4>
+<pre class="r"><code>library(gdistance)
+library(raster)
+library(rHike)
+library(sf)
+library(tidyverse)
+library(viridis)</code></pre>
+<p><br></p>
+<p>Coordinate Reference System (CRS):</p>
+<pre class="r"><code>crs_utm12 &lt;- &quot;+init=epsg:26912 +proj=utm +zone=12 +datum=NAD83 +units=m +no_defs&quot;</code></pre>
+<p><br></p>
+<p>It should really be emphasized that</p>
+<blockquote>
+<p>the unit of projection should match the unit of the stored values.</p>
+</blockquote>
+<p>In this case, elevation is in meters, so the projection should be in meters too.</p>
+<p><br></p>
 </div>
-  <div class="item">
+<div id="data-wrangling" class="section level4">
+<h4>Data Wrangling</h4>
+<p>First, we read in a DEM of the foothills in Salt Lake City, Utah:</p>
+<pre class="r"><code>dem &lt;- raster(system.file(&quot;extdata/slc.tif&quot;, package = &quot;rHike&quot;))
+
+dem &lt;- projectRaster(dem, crs = crs_utm12)</code></pre>
+<p><br></p>
+<p>Next we generate a random point pattern within it.</p>
+<pre class="r"><code>project_window &lt;- dem %&gt;% 
+  raster::extent() %&gt;% 
+  as(&quot;SpatialPolygons&quot;) %&gt;% 
+  st_as_sf() %&gt;% 
+  st_cast()
+
+random_points &lt;- st_sample(project_window, size = 5)</code></pre>
+<p><br></p>
+<p><img src="/post/2020-04-13-calculating-cost-distance-with-rhike_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><br></p>
+<p>Now we use the elevation data to generate a slope raster and calculate a velocity surface for the average hiker using Campbell’s Hiking Function.</p>
+<pre class="r"><code>slope &lt;- hf_slope(dem)
+
+velocity &lt;- hf_velocity(slope, fun = &quot;campbell&quot;, decile = 10)</code></pre>
+<p><br></p>
+<p><img src="/post/2020-04-13-calculating-cost-distance-with-rhike_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><br></p>
+</div>
+<div id="calculating-cost-distance" class="section level4">
+<h4>Calculating Cost-Distance</h4>
+<p>Accumulated cost-distance is the total time it takes to travel from one location to another; in this case, to <em>all</em> other locations in the landscape of interest.</p>
+<pre class="r"><code>cost &lt;- hf_costDistance(velocity, 
+                        fun = function(x) 1/mean(x), 
+                        points = random_points)
+
+# convert seconds to minutes
+cost &lt;- cost/60</code></pre>
+<p><br></p>
+<p><img src="/post/2020-04-13-calculating-cost-distance-with-rhike_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><br></p>
+</div>
+<div id="references" class="section level3">
+<h3><strong>References</strong></h3>
+<p>Tobler, Waldo R. (1993). “Three Presentations on Geographical Analysis and Modeling: Non-Isotropic Geographic Modeling, Speculations
+on the Geometry of Geography, and Global Spatial Analysis.”  93-1.</p>
+<p>Campbell, Michael J., Philip E. Dennison, Bret W. Butler, and Wesley G. Page (2019). "Using crowdsourced fitness tracker data
+to model the relationship between slope and travel rates.  106, 93-107.</p>
+</div>
+</div>
+
+    
+    
+    
+        <h4 class="page-header">Related</h4>
+         <div class="item">
 
     
     
@@ -185,12 +266,12 @@
 
 </div>
  
+    
 
-  </div>
+    
+    
 
 </main>
-
-
 
         <footer>
             <p class="copyright text-muted">© 2020 Kenneth B. Vernon. Powered by <a href="https://gohugo.io">Hugo</a> and <a href="https://github.com/calintat/minimal">Minimal</a>.</p>

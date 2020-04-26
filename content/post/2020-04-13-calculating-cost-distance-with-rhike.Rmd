@@ -1,0 +1,220 @@
+---
+title: Estimating hiking velocity with rHike
+author: K.B. Vernon
+date: '2020-04-13'
+slug: estimating-hiking-velocity-with-rhike
+categories: []
+tags:
+  - r
+  - sf
+  - gdistance
+  - raster
+---
+
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE,
+                      warning = FALSE,
+                      message = FALSE)
+
+
+library(rHike)
+library(tidyverse)
+
+```
+
+I wanted to learn how to write an R package and I had this recurrent use-case (estimating cost-distance on a grid), so I made [`rHike`](https://github.com/kbvernon/rHike). It's a super-lightweight package that builds on Jacob van Etten's [`gdistance`](https://agrobioinfoservices.github.io/gdistance/) by implementing both Tobler's (1993) and Campbell's (2019) hiking functions, though others could be added. Mainly, it just simplifies the user interface.
+
+`rHike` is not currently on CRAN, but you can install from Github with the following code:
+
+```r
+
+# install.packages("devtools")
+devtools::install_github("kbvernon/rHike")
+
+```
+
+_Where we are going_  
+
+Campbell's Hiking Function is an amended version of the Laplace distribution:
+
+$$f(x) = \frac{c}{2b}\, exp\left(\frac{|x - a|}{b}\right) + d + e\, x$$
+
+where $x$ is the slope at a location measured in degrees. This equation reflects the intuitive notion that walking speed varies as a function of slope.  
+
+```{r, fig.align = 'center', fig.width = 3, fig.height = 3}
+
+slope <- seq(-50, 50, by = 1)
+
+velocity <- hf_campbell(slope, decile = 10)
+
+ggplot(data = data.frame(x = slope, y = velocity), aes(x = x, y = y)) + 
+  geom_line() +
+  theme_bw() +
+  labs(x = "Slope", y = "Velocity")
+
+```
+
+<br>
+
+***
+
+#### R Preamble
+
+```{r}
+
+library(gdistance)
+library(raster)
+library(rHike)
+library(sf)
+library(tidyverse)
+library(viridis)
+
+```
+
+```{r, echo = FALSE}
+
+tidy_raster <- function(x, n.pixels = 10000, ...)  {
+  
+  x <- sampleRegular(x, n.pixels, asRaster = TRUE)
+  
+  coords <- xyFromCell(x, seq_len(ncell(x)))
+  
+  dat <- stack(as.data.frame(getValues(x)))
+  
+  names(dat) <- c('value', 'variable')
+  
+  cbind(coords, dat)
+  
+}
+
+```
+
+<br>
+
+Coordinate Reference System (CRS):  
+
+```{r}
+
+crs_utm12 <- "+init=epsg:26912 +proj=utm +zone=12 +datum=NAD83 +units=m +no_defs"
+
+```
+
+<br>
+
+It should really be emphasized that 
+
+> the unit of projection should match the unit of the stored values.
+
+In this case, elevation is in meters, so the projection should be in meters too.  
+
+<br>
+
+#### Data Wrangling
+
+First, we read in a DEM of the foothills in Salt Lake City, Utah:
+
+```{r}
+
+dem <- raster(system.file("extdata/slc.tif", package = "rHike"))
+
+dem <- projectRaster(dem, crs = crs_utm12)
+
+```
+
+<br>
+
+Next we generate a random point pattern within it.  
+
+```{r}
+
+project_window <- dem %>% 
+  raster::extent() %>% 
+  as("SpatialPolygons") %>% 
+  st_as_sf() %>% 
+  st_cast()
+
+random_points <- st_sample(project_window, size = 5)
+
+```
+
+<br>
+
+```{r, fig.align = 'center', echo = FALSE}
+
+tidy_raster(dem, n.pixels = 5000) %>% 
+  ggplot() +
+  geom_tile(aes(x = x, y = y, fill = value)) + 
+  scale_fill_viridis(name = "Elevation (m)", option = "viridis", na.value = "transparent") +
+  geom_sf(inherit.aes = FALSE, data = random_points, shape = 19, color = "darkred", size = 3) +
+  theme_bw() +
+  labs(x = "Easting (m)", y = "Northing (m)")
+
+```
+
+<br>
+
+Now we use the elevation data to generate a slope raster and calculate a velocity surface for the average hiker using Campbell's Hiking Function.  
+
+```{r}
+
+slope <- hf_slope(dem)
+
+velocity <- hf_velocity(slope, fun = "campbell", decile = 10)
+
+```
+
+<br>
+
+```{r, fig.align = 'center', echo = FALSE}
+
+tidy_raster(velocity, n.pixels = 5000) %>% 
+  ggplot() +
+  geom_tile(aes(x = x, y = y, fill = value)) + 
+  scale_fill_viridis(name = "Velocity (m/s)", option = "viridis", na.value = "transparent") +
+  theme_bw() +
+  labs(x = "Easting (m)", y = "Northing (m)")
+
+```
+
+<br>
+
+#### Calculating Cost-Distance
+
+Accumulated cost-distance is the total time it takes to travel from one location to another; in this case, to _all_ other locations in the landscape of interest.  
+
+```{r}
+
+cost <- hf_costDistance(velocity, 
+                        fun = function(x) 1/mean(x), 
+                        points = random_points)
+
+# convert seconds to minutes
+cost <- cost/60
+
+```
+
+<br>
+
+```{r, fig.align = 'center', echo = FALSE}
+
+tidy_raster(cost) %>% 
+  ggplot() +
+  geom_tile(aes(x = x, y = y, fill = value)) + 
+  scale_fill_viridis(name = "Time (min)", option = "viridis", na.value = "transparent") +
+  geom_sf(inherit.aes = FALSE, data = random_points, shape = 19, color = "darkred", size = 3) +
+  theme_bw() +
+  labs(x = "Easting (m)", y = "Northing (m)")
+
+```
+
+<br>
+
+### __References__
+
+Tobler, Waldo R. (1993). "Three Presentations on Geographical Analysis and Modeling: Non-Isotropic Geographic Modeling, Speculations
+on the Geometry of Geography, and Global Spatial Analysis." \emph{National Center for Geographic Information and Analysis, Technical
+Report} 93-1.
+
+Campbell, Michael J., Philip E. Dennison, Bret W. Butler, and Wesley G. Page (2019). "Using crowdsourced fitness tracker data
+to model the relationship between slope and travel rates. \emph{Applied Geography} 106, 93-107.

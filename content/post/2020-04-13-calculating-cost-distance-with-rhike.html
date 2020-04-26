@@ -14,11 +14,7 @@ tags:
 <script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 
-<p>I wanted to learn how to write an R package and I had this recurrent use-case (estimating cost-distance on a grid), so I made <a href="https://github.com/kbvernon/rHike"><code>rHike</code></a>. It’s a super-lightweight package that builds on Jacob van Etten’s <a href="https://agrobioinfoservices.github.io/gdistance/"><code>gdistance</code></a> by implementing both Tobler’s (1993) and Campbell’s (2019) hiking functions, though others could be added. Mainly, it just simplifies the user interface.</p>
-<p>Development mostly followed the workflow suggested by Hadley Wickham and Jenny Bryan in their <a href="https://r-pkgs.org/">R Packages</a> book. Mostly…</p>
-<p><code>rHike</code> is not currently on CRAN, but you can install from Github with the following code:</p>
-<pre class="r"><code># install.packages(&quot;devtools&quot;)
-devtools::install_github(&quot;kbvernon/rHike&quot;)</code></pre>
+<p>I wanted to learn how to write an R package and I had this recurrent use-case (estimating cost-distance on a grid), so I made <a href="https://github.com/kbvernon/rHike"><code>rHike</code></a>. It’s a super-lightweight package that builds on Jacob van Etten’s <a href="https://agrobioinfoservices.github.io/gdistance/"><code>gdistance</code></a> by implementing both Tobler’s (1993) and Campbell’s (2019) hiking functions, though others could be added. Mainly, it just simplifies the user interface. Development mostly followed the workflow suggested by Hadley Wickham and Jenny Bryan in their <a href="https://r-pkgs.org/">R Packages</a> book. Mostly…</p>
 <p><br></p>
 <p><em>Where we are going</em></p>
 <p>Campbell’s Hiking Function is an amended version of the Laplace distribution:</p>
@@ -28,7 +24,7 @@ devtools::install_github(&quot;kbvernon/rHike&quot;)</code></pre>
 
 velocity &lt;- hf_campbell(slope, decile = 10)</code></pre>
 <p><img src="/post/2020-04-13-calculating-cost-distance-with-rhike_files/figure-html/unnamed-chunk-2-1.png" width="384" style="display: block; margin: auto;" /></p>
-<p><br></p>
+<p><br><br></p>
 <hr />
 <div id="r-preamble" class="section level4">
 <h4>R Preamble</h4>
@@ -47,7 +43,7 @@ library(viridis)</code></pre>
 <p>the unit of projection should match the unit of the stored values.</p>
 </blockquote>
 <p>In this case, elevation is in meters, so the projection should be in meters too.</p>
-<p><br></p>
+<p><br><br></p>
 </div>
 <div id="data-wrangling" class="section level4">
 <h4>Data Wrangling</h4>
@@ -87,13 +83,13 @@ cost &lt;- cost/60</code></pre>
 <p><br></p>
 <p><img src="/post/2020-04-13-calculating-cost-distance-with-rhike_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p><br></p>
-<p>That looks about right, twenty or so minutes for the average hiker to walk a half-mile or so around the SLC foothills.</p>
-<p><br></p>
+<p>That looks about right, twenty’ish minutes for the average hiker to walk a half-mile or so around the SLC foothills.</p>
+<p><br><br></p>
 </div>
 <div id="future-work" class="section level4">
 <h4>Future Work</h4>
 <p>In this post, conversion between different units was done on the fly. It would be nice to introduce methods to do that in a more rigorous way, so I might look into integrating the <a href="https://r-quantities.github.io/units/"><code>units</code></a> package at some point.</p>
-<p><br></p>
+<p><br><br></p>
 </div>
 <div id="references" class="section level4">
 <h4><strong>References</strong></h4>

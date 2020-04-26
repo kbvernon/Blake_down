@@ -55,16 +55,7 @@ ggplot2::theme_set(theme_base2())
 
 ```
 
-I wanted to learn how to write an R package and I had this recurrent use-case (estimating cost-distance on a grid), so I made [`rHike`](https://github.com/kbvernon/rHike). It's a super-lightweight package that builds on Jacob van Etten's [`gdistance`](https://agrobioinfoservices.github.io/gdistance/) by implementing both Tobler's (1993) and Campbell's (2019) hiking functions, though others could be added. Mainly, it just simplifies the user interface.
-
-Development mostly followed the workflow suggested by Hadley Wickham and Jenny Bryan in their [R Packages](https://r-pkgs.org/) book. Mostly...  
-
-`rHike` is not currently on CRAN, but you can install from Github with the following code:
-
-```r
-# install.packages("devtools")
-devtools::install_github("kbvernon/rHike")
-```
+I wanted to learn how to write an R package and I had this recurrent use-case (estimating cost-distance on a grid), so I made [`rHike`](https://github.com/kbvernon/rHike). It's a super-lightweight package that builds on Jacob van Etten's [`gdistance`](https://agrobioinfoservices.github.io/gdistance/) by implementing both Tobler's (1993) and Campbell's (2019) hiking functions, though others could be added. Mainly, it just simplifies the user interface. Development mostly followed the workflow suggested by Hadley Wickham and Jenny Bryan in their [R Packages](https://r-pkgs.org/) book. Mostly...  
 
 <br>
 
@@ -92,7 +83,7 @@ ggplot(data = data.frame(x = slope, y = velocity), aes(x = x, y = y)) +
 
 ```
 
-<br>
+<br><br>
 
 ***
 
@@ -145,7 +136,7 @@ It should really be emphasized that
 
 In this case, elevation is in meters, so the projection should be in meters too.  
 
-<br>
+<br><br>
 
 #### Data Wrangling
 
@@ -183,7 +174,7 @@ tidy_raster(dem, n.pixels = 5000) %>%
   ggplot() +
   geom_tile(aes(x = x, y = y, fill = value)) + 
   scale_fill_viridis(name = "Elevation (m)", option = "viridis", na.value = "transparent") +
-  geom_sf(inherit.aes = FALSE, data = random_points, shape = 19, color = "darkred", size = 3) +
+  geom_sf(inherit.aes = FALSE, data = random_points, shape = 19, color = "red", size = 3) +
   coord_sf(datum = crs_utm12) +
   labs(x = "Easting (m)", y = "Northing (m)")
 
@@ -239,7 +230,7 @@ tidy_raster(cost) %>%
   ggplot() +
   geom_tile(aes(x = x, y = y, fill = value)) + 
   scale_fill_viridis(name = "Time (min)", option = "viridis", na.value = "transparent") +
-  geom_sf(inherit.aes = FALSE, data = random_points, shape = 19, color = "darkred", size = 3) +
+  geom_sf(inherit.aes = FALSE, data = random_points, shape = 19, color = "red", size = 3) +
   coord_sf(datum = crs_utm12) +
   labs(x = "Easting (m)", y = "Northing (m)")
 
@@ -247,15 +238,15 @@ tidy_raster(cost) %>%
 
 <br>
 
-That looks about right, twenty or so minutes for the average hiker to walk a half-mile or so around the SLC foothills.
+That looks about right, twenty'ish minutes for the average hiker to walk a half-mile or so around the SLC foothills.
 
-<br>
+<br><br>
 
 #### Future Work
 
 In this post, conversion between different units was done on the fly. It would be nice to introduce methods to do that in a more rigorous way, so I might look into integrating the [`units`](https://r-quantities.github.io/units/) package at some point.  
 
-<br>
+<br><br>
 
 #### __References__
 

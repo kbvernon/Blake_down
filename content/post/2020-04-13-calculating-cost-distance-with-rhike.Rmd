@@ -17,22 +17,56 @@ knitr::opts_chunk$set(echo = TRUE,
                       warning = FALSE,
                       message = FALSE)
 
-
 library(rHike)
 library(tidyverse)
+
+
+rm_grids <- function() {  
+  
+  theme(panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(), 
+        panel.background = element_blank()) 
+  
+}
+
+theme_base2 <- function (base_size = 11, base_family = "", base_line_size = base_size/22, base_rect_size = base_size/22) {
+  
+  theme_grey(base_size = base_size, base_family = base_family, base_line_size = base_line_size, base_rect_size = base_rect_size) %+replace% 
+    
+    theme(panel.border = element_rect(fill = NA, color = "grey20"), 
+          plot.title = element_text(size = 15, hjust = 0, margin = margin(b = 6)),
+          axis.title.x = element_text(size = 13, margin = margin(t = 6, r = 0, b = 0, l = 0)),
+          axis.title.y = element_text(size = 13, margin = margin(t = 0, r = 6, b = 0, l = 0), angle = 90),
+          axis.text.x = element_text(size = 11),
+          axis.text.y = element_text(size = 11),
+          axis.title.y.right = element_text(margin = margin(l = 6), angle = 270),
+          strip.text = element_text(size = 13, margin = margin(t = 4, b = 4)),
+          strip.background = element_rect(fill = "grey85", color = "grey20"), 
+          legend.key = element_rect(fill = "white", color = NA), 
+          legend.title = element_text(size = 13),
+          legend.text = element_text(size = 11),
+          complete = TRUE) %+replace% 
+    
+    rm_grids()
+  
+}
+
+ggplot2::theme_set(theme_base2())
 
 ```
 
 I wanted to learn how to write an R package and I had this recurrent use-case (estimating cost-distance on a grid), so I made [`rHike`](https://github.com/kbvernon/rHike). It's a super-lightweight package that builds on Jacob van Etten's [`gdistance`](https://agrobioinfoservices.github.io/gdistance/) by implementing both Tobler's (1993) and Campbell's (2019) hiking functions, though others could be added. Mainly, it just simplifies the user interface.
 
+Development mostly followed the workflow suggested by Hadley Wickham and Jenny Bryan in their [R Packages](https://r-pkgs.org/) book. Mostly...  
+
 `rHike` is not currently on CRAN, but you can install from Github with the following code:
 
 ```r
-
 # install.packages("devtools")
 devtools::install_github("kbvernon/rHike")
-
 ```
+
+<br>
 
 _Where we are going_  
 
@@ -42,15 +76,18 @@ $$f(x) = \frac{c}{2b}\, exp\left(\frac{|x - a|}{b}\right) + d + e\, x$$
 
 where $x$ is the slope at a location measured in degrees. This equation reflects the intuitive notion that walking speed varies as a function of slope.  
 
-```{r, fig.align = 'center', fig.width = 3, fig.height = 3}
+```{r}
 
 slope <- seq(-50, 50, by = 1)
 
 velocity <- hf_campbell(slope, decile = 10)
 
+```
+
+```{r, echo = FALSE, fig.align = 'center', fig.width = 4, fig.height = 3}
+
 ggplot(data = data.frame(x = slope, y = velocity), aes(x = x, y = y)) + 
   geom_line() +
-  theme_bw() +
   labs(x = "Slope", y = "Velocity")
 
 ```
@@ -147,7 +184,7 @@ tidy_raster(dem, n.pixels = 5000) %>%
   geom_tile(aes(x = x, y = y, fill = value)) + 
   scale_fill_viridis(name = "Elevation (m)", option = "viridis", na.value = "transparent") +
   geom_sf(inherit.aes = FALSE, data = random_points, shape = 19, color = "darkred", size = 3) +
-  theme_bw() +
+  coord_sf(datum = crs_utm12) +
   labs(x = "Easting (m)", y = "Northing (m)")
 
 ```
@@ -172,7 +209,7 @@ tidy_raster(velocity, n.pixels = 5000) %>%
   ggplot() +
   geom_tile(aes(x = x, y = y, fill = value)) + 
   scale_fill_viridis(name = "Velocity (m/s)", option = "viridis", na.value = "transparent") +
-  theme_bw() +
+  coord_sf(datum = crs_utm12) +
   labs(x = "Easting (m)", y = "Northing (m)")
 
 ```
@@ -203,14 +240,24 @@ tidy_raster(cost) %>%
   geom_tile(aes(x = x, y = y, fill = value)) + 
   scale_fill_viridis(name = "Time (min)", option = "viridis", na.value = "transparent") +
   geom_sf(inherit.aes = FALSE, data = random_points, shape = 19, color = "darkred", size = 3) +
-  theme_bw() +
+  coord_sf(datum = crs_utm12) +
   labs(x = "Easting (m)", y = "Northing (m)")
 
 ```
 
 <br>
 
-### __References__
+That looks about right, twenty or so minutes for the average hiker to walk a half-mile or so around the SLC foothills.
+
+<br>
+
+#### Future Work
+
+In this post, conversion between different units was done on the fly. It would be nice to introduce methods to do that in a more rigorous way, so I might look into integrating the [`units`](https://r-quantities.github.io/units/) package at some point.  
+
+<br>
+
+#### __References__
 
 Tobler, Waldo R. (1993). "Three Presentations on Geographical Analysis and Modeling: Non-Isotropic Geographic Modeling, Speculations
 on the Geometry of Geography, and Global Spatial Analysis." \emph{National Center for Geographic Information and Analysis, Technical

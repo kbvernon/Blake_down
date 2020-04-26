@@ -59,13 +59,11 @@ I wanted to learn how to write an R package and I had this recurrent use-case (e
 
 <br>
 
-_Where we are going_  
-
-Campbell's Hiking Function is an amended version of the Laplace distribution:
+_Where are we going?_ Intuitively, walking speed should vary as a function of slope. Campbell's Hiking Function reflects this using an empirically derived version of the Laplace distribution:
 
 $$f(x) = \frac{c}{2b}\, exp\left(\frac{|x - a|}{b}\right) + d + e\, x$$
 
-where $x$ is the slope at a location measured in degrees. This equation reflects the intuitive notion that walking speed varies as a function of slope.  
+where $x$ is the slope at a location measured in degrees. The idea here is first to get an estimate of slope, then use a hiking function like Campbell's to calculate velocity, and finally to use velocity to estimate travel time (among other cost-distances).   
 
 ```{r}
 
@@ -248,7 +246,7 @@ In this post, conversion between different units was done on the fly. It would b
 
 <br><br>
 
-#### __References__
+#### References
 
 Tobler, Waldo R. (1993). "Three Presentations on Geographical Analysis and Modeling: Non-Isotropic Geographic Modeling, Speculations
 on the Geometry of Geography, and Global Spatial Analysis." \emph{National Center for Geographic Information and Analysis, Technical

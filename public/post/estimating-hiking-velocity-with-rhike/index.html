@@ -152,10 +152,9 @@
 
 <p>I wanted to learn how to write an R package and I had this recurrent use-case (estimating cost-distance on a grid), so I made <a href="https://github.com/kbvernon/rHike"><code>rHike</code></a>. It’s a super-lightweight package that builds on Jacob van Etten’s <a href="https://agrobioinfoservices.github.io/gdistance/"><code>gdistance</code></a> by implementing both Tobler’s (1993) and Campbell’s (2019) hiking functions, though others could be added. Mainly, it just simplifies the user interface. Development mostly followed the workflow suggested by Hadley Wickham and Jenny Bryan in their <a href="https://r-pkgs.org/">R Packages</a> book. Mostly…</p>
 <p><br></p>
-<p><em>Where we are going</em></p>
-<p>Campbell’s Hiking Function is an amended version of the Laplace distribution:</p>
+<p><em>Where are we going?</em> Intuitively, walking speed should vary as a function of slope. Campbell’s Hiking Function reflects this using an empirically derived version of the Laplace distribution:</p>
 <p><span class="math display">\[f(x) = \frac{c}{2b}\, exp\left(\frac{|x - a|}{b}\right) + d + e\, x\]</span></p>
-<p>where <span class="math inline">\(x\)</span> is the slope at a location measured in degrees. This equation reflects the intuitive notion that walking speed varies as a function of slope.</p>
+<p>where <span class="math inline">\(x\)</span> is the slope at a location measured in degrees. The idea here is first to get an estimate of slope, then use a hiking function like Campbell’s to calculate velocity, and finally to use velocity to estimate travel time (among other cost-distances).</p>
 <pre class="r"><code>slope &lt;- seq(-50, 50, by = 1)
 
 velocity &lt;- hf_campbell(slope, decile = 10)</code></pre>
@@ -228,7 +227,7 @@ cost &lt;- cost/60</code></pre>
 <p><br><br></p>
 </div>
 <div id="references" class="section level4">
-<h4><strong>References</strong></h4>
+<h4>References</h4>
 <p>Tobler, Waldo R. (1993). “Three Presentations on Geographical Analysis and Modeling: Non-Isotropic Geographic Modeling, Speculations
 on the Geometry of Geography, and Global Spatial Analysis.”  93-1.</p>
 <p>Campbell, Michael J., Philip E. Dennison, Bret W. Butler, and Wesley G. Page (2019). "Using crowdsourced fitness tracker data

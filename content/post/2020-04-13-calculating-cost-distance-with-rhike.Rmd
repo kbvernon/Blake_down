@@ -8,7 +8,7 @@ tags:
   - r
   - sf
   - gdistance
-  - raster
+  - rHike
 ---
 
 ```{r setup, include=FALSE}

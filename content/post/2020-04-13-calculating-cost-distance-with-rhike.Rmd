@@ -162,7 +162,7 @@ project_window <- dem %>%
   st_as_sf() %>% 
   st_cast()
 
-random_points <- st_sample(project_window, size = 5)
+random_points <- st_sample(project_window, size = 3)
 
 ```
 

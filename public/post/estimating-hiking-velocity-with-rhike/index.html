@@ -150,6 +150,7 @@
 <script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 
+<p>updated: 05 May 2020</p>
 <p>I wanted to learn how to write an R package and I had this recurrent use-case (estimating cost-distance on a grid), so I made <a href="https://github.com/kbvernon/rHike"><code>rHike</code></a>. It’s a super-lightweight package that builds on Jacob van Etten’s <a href="https://agrobioinfoservices.github.io/gdistance/"><code>gdistance</code></a> by implementing both Tobler’s (1993) and Campbell’s (2019) hiking functions, though others could be added. Mainly, it just simplifies the user interface. Development mostly followed the workflow suggested by Hadley Wickham and Jenny Bryan in their <a href="https://r-pkgs.org/">R Packages</a> book. Mostly…</p>
 <p><br></p>
 <p><em>Where are we going?</em> Intuitively, walking speed should vary as a function of slope. Campbell’s Hiking Function reflects this using an empirically derived version of the Laplace distribution:</p>
@@ -163,7 +164,8 @@ velocity &lt;- hf_campbell(slope, decile = 10)</code></pre>
 <hr />
 <div id="r-preamble" class="section level4">
 <h4>R Preamble</h4>
-<pre class="r"><code>library(gdistance)
+<pre class="r"><code>library(data.table)
+library(gdistance)
 library(raster)
 library(rHike)
 library(sf)
@@ -187,31 +189,36 @@ library(viridis)</code></pre>
 
 dem &lt;- projectRaster(dem, crs = crs_utm12)</code></pre>
 <p><br></p>
-<p>Next we generate a random point pattern within it.</p>
-<pre class="r"><code>project_window &lt;- dem %&gt;% 
-  raster::extent() %&gt;% 
-  as(&quot;SpatialPolygons&quot;) %&gt;% 
-  st_as_sf() %&gt;% 
-  st_cast()
+<p>Next we generate an arbitrary point pattern.</p>
+<pre class="r"><code>start_points &lt;- st_sf(id = 1:3,
+                      typ = &quot;start&quot;,
+                      geometry = st_sfc(st_point(c(424350, 4514200)),
+                                        st_point(c(426000, 4515000)),
+                                        st_point(c(429000, 4516500)),
+                                        crs = 26912))
 
-random_points &lt;- st_sample(project_window, size = 3)</code></pre>
+end_points &lt;- st_sf(id = 1:2,
+                    typ = &quot;end&quot;,
+                    geometry = st_sfc(st_point(c(426200, 4516400)),
+                                      st_point(c(427600, 4515600)),
+                                      crs = 26912))</code></pre>
 <p><br></p>
 <p><img src="/post/2020-04-13-calculating-cost-distance-with-rhike_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p><br></p>
 <p>Now we use the elevation data to generate a slope raster and calculate a velocity surface for the average hiker using Campbell’s Hiking Function.</p>
 <pre class="r"><code>slope &lt;- hf_slope(dem)
 
-velocity &lt;- hf_velocity(slope, fun = &quot;campbell&quot;, decile = 10)</code></pre>
+velocity &lt;- hf_velocity(slope, hf = &quot;campbell&quot;, decile = 10)</code></pre>
 <p><br></p>
 <p><img src="/post/2020-04-13-calculating-cost-distance-with-rhike_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p><br></p>
 </div>
-<div id="calculating-cost-distance" class="section level4">
-<h4>Calculating Cost-Distance</h4>
+<div id="calculating-accumulated-cost" class="section level4">
+<h4>Calculating Accumulated Cost</h4>
 <p>Accumulated cost-distance is the total time it takes to travel from one location to another; in this case, to <em>all</em> other locations in the landscape of interest.</p>
-<pre class="r"><code>cost &lt;- hf_costDistance(velocity, 
-                        fun = function(x) 1/mean(x), 
-                        points = random_points)
+<pre class="r"><code>cost &lt;- hf_accCost(velocity, 
+                   fun = function(x) 1/mean(x), 
+                   points = start_points)
 
 # convert seconds to minutes
 cost &lt;- cost/60</code></pre>
@@ -219,6 +226,13 @@ cost &lt;- cost/60</code></pre>
 <p><img src="/post/2020-04-13-calculating-cost-distance-with-rhike_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p><br></p>
 <p>That looks about right, twenty’ish minutes for the average hiker to walk a half-mile or so around the SLC foothills.</p>
+<p><br></p>
+</div>
+<div id="calculating-least-cost-path" class="section level4">
+<h4>Calculating Least-Cost Path</h4>
+<pre class="r"><code>short_paths &lt;- hf_shortPath(velocity, start_points, end_points)</code></pre>
+<p><br></p>
+<p><img src="/post/2020-04-13-calculating-cost-distance-with-rhike_files/figure-html/unnamed-chunk-14-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p><br><br></p>
 </div>
 <div id="future-work" class="section level4">

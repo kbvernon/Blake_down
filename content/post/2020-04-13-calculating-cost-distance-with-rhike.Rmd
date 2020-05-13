@@ -15,55 +15,26 @@ tags:
 
 knitr::opts_chunk$set(echo = TRUE,
                       warning = FALSE,
-                      message = FALSE)
+                      message = FALSE, 
+                      fig.align = 'center')
 
+library(deseRt)
 library(rHike)
 library(tidyverse)
 
-
-rm_grids <- function() {  
-  
-  theme(panel.grid.major = element_blank(), 
-        panel.grid.minor = element_blank(), 
-        panel.background = element_blank()) 
-  
-}
-
-theme_base2 <- function (base_size = 11, base_family = "", base_line_size = base_size/22, base_rect_size = base_size/22) {
-  
-  theme_grey(base_size = base_size, base_family = base_family, base_line_size = base_line_size, base_rect_size = base_rect_size) %+replace% 
-    
-    theme(panel.border = element_rect(fill = NA, color = "grey20"), 
-          plot.title = element_text(size = 15, hjust = 0, margin = margin(b = 6)),
-          axis.title.x = element_text(size = 13, margin = margin(t = 6, r = 0, b = 0, l = 0)),
-          axis.title.y = element_text(size = 13, margin = margin(t = 0, r = 6, b = 0, l = 0), angle = 90),
-          axis.text.x = element_text(size = 11),
-          axis.text.y = element_text(size = 11),
-          axis.title.y.right = element_text(margin = margin(l = 6), angle = 270),
-          strip.text = element_text(size = 13, margin = margin(t = 4, b = 4)),
-          strip.background = element_rect(fill = "grey85", color = "grey20"), 
-          legend.key = element_rect(fill = "white", color = NA), 
-          legend.title = element_text(size = 13),
-          legend.text = element_text(size = 11),
-          complete = TRUE) %+replace% 
-    
-    rm_grids()
-  
-}
-
-ggplot2::theme_set(theme_base2())
+ggplot2::theme_set(theme_desert())
 
 ```
 
-updated: `r format(Sys.time(), '%d %B %Y')`  
+updated: `r format(Sys.time(), '%B %d, %Y')` (_replaced Laplace with Lorentz distribution at Campbell's suggestion_)  
 
 I wanted to learn how to write an R package and I had this recurrent use-case (estimating cost-distance on a grid), so I made [`rHike`](https://github.com/kbvernon/rHike). It's a super-lightweight package that builds on Jacob van Etten's [`gdistance`](https://agrobioinfoservices.github.io/gdistance/) by implementing both Tobler's (1993) and Campbell's (2019) hiking functions, though others could be added. Mainly, it just simplifies the user interface. Development mostly followed the workflow suggested by Hadley Wickham and Jenny Bryan in their [R Packages](https://r-pkgs.org/) book. Mostly...  
 
 <br>
 
-_Where are we going?_ Intuitively, walking speed should vary as a function of slope. Campbell's Hiking Function reflects this using an empirically derived version of the Laplace distribution:
+_Where are we going?_ Intuitively, walking speed should vary as a function of slope. Campbell's Hiking Function reflects this using an empirically derived version of the Lorentz distribution:
 
-$$f(x) = \frac{c}{2b}\, exp\left(\frac{|x - a|}{b}\right) + d + e\, x$$
+$$ f(x) = \frac{c}{\pi\, b\left(1+\left[\frac{x-a}{b}\right]^{2}\right)} + d + e\, x $$
 
 where $x$ is the slope at a location measured in degrees. The idea here is first to get an estimate of slope, then use a hiking function like Campbell's to calculate velocity, and finally to use velocity to estimate travel time (among other cost-distances).   
 
@@ -75,7 +46,7 @@ velocity <- hf_campbell(slope, decile = 10)
 
 ```
 
-```{r, echo = FALSE, fig.align = 'center', fig.width = 4, fig.height = 3}
+```{r, echo = FALSE, fig.width = 4, fig.height = 3}
 
 ggplot(data = data.frame(x = slope, y = velocity), aes(x = x, y = y)) + 
   geom_line() +
@@ -101,31 +72,13 @@ library(viridis)
 
 ```
 
-```{r, echo = FALSE}
-
-tidy_raster <- function(x, n.pixels = 10000, ...)  {
-  
-  x <- sampleRegular(x, n.pixels, asRaster = TRUE)
-  
-  coords <- xyFromCell(x, seq_len(ncell(x)))
-  
-  dat <- stack(as.data.frame(getValues(x)))
-  
-  names(dat) <- c('value', 'variable')
-  
-  cbind(coords, dat)
-  
-}
-
-```
-
 <br>
 
 Coordinate Reference System (CRS):  
 
 ```{r}
 
-crs_utm12 <- "+init=epsg:26912 +proj=utm +zone=12 +datum=NAD83 +units=m +no_defs"
+utm12 <- st_crs(26912)
 
 ```
 
@@ -147,7 +100,7 @@ First, we read in a DEM of the foothills in Salt Lake City, Utah:
 
 dem <- raster(system.file("extdata/slc.tif", package = "rHike"))
 
-dem <- projectRaster(dem, crs = crs_utm12)
+dem <- projectRaster(dem, crs = utm12$proj4string)
 
 ```
 
@@ -162,29 +115,29 @@ start_points <- st_sf(id = 1:3,
                       geometry = st_sfc(st_point(c(424350, 4514200)),
                                         st_point(c(426000, 4515000)),
                                         st_point(c(429000, 4516500)),
-                                        crs = 26912))
+                                        crs = utm12))
 
 end_points <- st_sf(id = 1:2,
                     typ = "end",
                     geometry = st_sfc(st_point(c(426200, 4516400)),
                                       st_point(c(427600, 4515600)),
-                                      crs = 26912))
+                                      crs = utm12))
 
 ```
 
 <br>
 
-```{r, fig.align = 'center', echo = FALSE}
+```{r, echo = FALSE}
 
 pts <- rbind(start_points, end_points)
 
-tidy_raster(dem, n.pixels = 5000) %>% 
+tidy_raster(dem, n_pixels = 5000) %>% 
   ggplot() +
   geom_tile(aes(x = x, y = y, fill = value)) + 
   scale_fill_viridis(name = "Elevation (m)", option = "viridis", na.value = "transparent") +
   geom_sf(inherit.aes = FALSE, data = pts, aes(color = typ), shape = 19, size = 3) +
   scale_discrete_manual("color", values = c("start" = "red", "end" = "black"), guide = NULL) +
-  coord_sf(datum = crs_utm12) +
+  coord_sf(datum = utm12) +
   labs(x = "Easting (m)", y = "Northing (m)")
 
 ```
@@ -203,13 +156,13 @@ velocity <- hf_velocity(slope, hf = "campbell", decile = 10)
 
 <br>
 
-```{r, fig.align = 'center', echo = FALSE}
+```{r, echo = FALSE}
 
-tidy_raster(velocity, n.pixels = 5000) %>% 
+tidy_raster(velocity, n_pixels = 5000) %>% 
   ggplot() +
   geom_tile(aes(x = x, y = y, fill = value)) + 
   scale_fill_viridis(name = "Velocity (m/s)", option = "viridis", na.value = "transparent") +
-  coord_sf(datum = crs_utm12) +
+  coord_sf(datum = utm12) +
   labs(x = "Easting (m)", y = "Northing (m)")
 
 ```
@@ -233,14 +186,14 @@ cost <- cost/60
 
 <br>
 
-```{r, fig.align = 'center', echo = FALSE}
+```{r, echo = FALSE}
 
-tidy_raster(cost) %>% 
+tidy_raster(cost, n_pixels = 5000) %>% 
   ggplot() +
   geom_tile(aes(x = x, y = y, fill = value)) + 
   scale_fill_viridis(name = "Time (min)", option = "viridis", na.value = "transparent") +
   geom_sf(inherit.aes = FALSE, data = start_points, shape = 19, color = "red", size = 3) +
-  coord_sf(datum = crs_utm12) +
+  coord_sf(datum = utm12) +
   labs(x = "Easting (m)", y = "Northing (m)")
 
 ```
@@ -261,16 +214,16 @@ short_paths <- hf_shortPath(velocity, start_points, end_points)
 
 <br>
 
-```{r, fig.align = 'center', echo = FALSE}
+```{r, echo = FALSE}
 
-tidy_raster(dem) %>% 
+tidy_raster(dem, n_pixels = 5000) %>% 
   ggplot() +
   geom_tile(aes(x = x, y = y, fill = value)) + 
   scale_fill_viridis(name = "Elevation (m)", option = "viridis", na.value = "transparent") +
   geom_sf(inherit.aes = FALSE, data = short_paths, linetype = "dashed") +
   geom_sf(inherit.aes = FALSE, data = pts, aes(color = typ), shape = 19, size = 3) +
   scale_discrete_manual("color", values = c("start" = "red", "end" = "black"), guide = NULL) +
-  coord_sf(datum = crs_utm12) +
+  coord_sf(datum = utm12) +
   labs(x = "Easting (m)", y = "Northing (m)")
 
 ```

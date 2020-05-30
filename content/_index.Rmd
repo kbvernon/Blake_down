@@ -12,8 +12,4 @@ description: ''
 
 ![](/figures/Comb_Ridge.jpg)
 
-I'm a __behavioral ecologist__ with a peculiar interest in our own species; how we find so many different ways to be human, yet being human is something we all share.* I want to understand that, how we can be one and many at the same time, so I guess I'm an __anthropologist__ too. And because the humans I study lived long ago - and because I have a fondness for digging in the dirt - I suppose I'm an __archaeologist__ as well. I use geographic and spatial modeling techniques to investigate the nexus of climate, conflict, and human migration, focusing on the prehistory of the American Southwest. A lot of my time is spent developing methods to advance archaeological data management and data science both for research and preservation.  
-
-<br>
-
-\* _even when it's hard to see it these days..._   
+I'm a __behavioral ecologist__ with a peculiar interest in our own species - how we find so many different ways to be human, yet being human is something we all share - so that would, I guess, make me an __anthropologist__ too. And because the humans I study lived long ago - and because I have a fondness for digging in the dirt - I suppose I'm an __archaeologist__ as well. I use geographic and spatial modeling techniques to investigate the nexus of climate, conflict, and human migration, focusing on the prehistory of the American Southwest. A lot of my time is spent developing methods to advance archaeological data management and data science both for research and preservation.  

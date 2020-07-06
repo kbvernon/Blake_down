@@ -13,3 +13,25 @@ description: ''
 ![](/figures/Comb_Ridge.jpg)
 
 I'm a __behavioral ecologist__ with a peculiar interest in our own species - how we find so many different ways to be human, yet being human is something we all share - so that would, I guess, make me an __anthropologist__ too. And because the humans I study lived long ago - and because I have a fondness for digging in the dirt - I suppose I'm an __archaeologist__ as well. I use geographic and spatial modeling techniques to investigate the nexus of climate, conflict, and human migration, focusing on the prehistory of the American Southwest. A lot of my time is spent developing methods to advance archaeological data management and data science both for research and preservation.  
+
+<br>
+
+```{r, echo = FALSE}
+
+dir <- here::here("content/post")
+
+fn <- list.files(dir, full.names = TRUE)
+
+df <- file.info(fn)
+
+recent <- rownames(df)[which.max(df$mtime)]
+
+yaml <- rmarkdown::yaml_front_matter(recent)
+
+title <- yaml[["title"]]
+
+slug <- yaml[["slug"]]
+
+```
+
+Recent Post: <a href=`r paste0('post/', slug, '/')`>`r title`</a>

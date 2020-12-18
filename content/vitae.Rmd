@@ -174,27 +174,3 @@ read.csv(here("data/affiliations.csv"), stringsAsFactors = FALSE) %>%
   cv_kable()
 
 ```
-
-<br>
-
-***
-
-<br>
-
-### Base Code
-
-I'm told this is my base R code:
-
-    blake <- function(){
-    
-        my_nature <- c("eat", "sleep", "whiskey", "star trek", "dig", "laugh", "run", "R")
-        
-        my_normal_day <- sample(my_nature, size = 24, replace = TRUE)
-        
-        return(my_normal_day)
-    
-    }
-
-I think this means I have no agency...  
-
-<br><br>

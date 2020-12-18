@@ -5,7 +5,7 @@ theme = "minimal"
 # disqusShortname = "" # delete this to disable disqus comments
 googleAnalytics = ""
 
-ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$", "^blake_"]
+ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_cache$", "^blake_", "\\.knit\\.md$", "\\.utf8\\.md$"]
 
 [params]
     author = "KB Vernon"

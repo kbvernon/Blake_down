@@ -1,0 +1,134 @@
+---
+title: "Curriculum Vitae"
+---
+
+<!-- To embed Academicicons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+```{r, include = FALSE}
+source("setup.R")
+source("cv_tables.R")
+```
+
+```{r}
+
+collection <- here("data", "collections") %>% jsonlite::read_json(simplifyVector = TRUE)
+
+zotero <- here("data", "zotero") %>% jsonlite::read_json(simplifyVector = TRUE)
+
+bib <- cv_get_bib(zotero, collection)
+
+```
+
+
+<div style = "font-size: 14px;"> 
+_For a pdf of my curriculum vitae, click the CV button in the navbar._  
+</div>
+
+
+<br>
+
+### Contact information  
+
+Department of Anthropology  
+University of Utah  
+260 Central Campus Drive  
+Salt Lake City, UT 84112  
+(801) 581-6252  
+[faculty.utah.edu/~kbvernon](https://faculty.utah.edu/~kbvernon)
+
+<br>
+
+### Appointments
+
+```{r}
+
+here("data", "appointments.csv") %>% 
+  read.csv() %>% 
+  mutate(x = glue::glue("{title}, {organization}"), 
+         y = case_when(is.na(end) ~ glue::glue("{start}-present"),
+                       TRUE ~ glue::glue("{start}-{end}"))) %>% 
+  select(x, y) %>% 
+  cv_kable()
+
+```
+
+<br>
+
+### Education 
+
+```{r}
+
+here("data", "education.csv") %>% 
+  read.csv() %>% 
+  mutate(x = glue::glue("<b>{university}</b><br>{degree} in {major}"), 
+         y = glue::glue("{location}<br>{end}")) %>% 
+  select(x, y) %>% 
+  cv_kable()
+
+```
+
+<br>
+
+### Grants, Fellowships, and Awards
+
+```{r}
+
+here("data", "funding.csv") %>% 
+  read.csv() %>% 
+  filter(result == "Awarded") %>% 
+  arrange(desc(year)) %>% 
+  mutate(y = glue::glue("{FOT}, {organization}. \"{title}\". PI: {PI}.<br><br>")) %>% 
+  select(year, y) %>% 
+  cv_bibble()
+
+```
+
+<br>
+
+### Presentations
+
+```{r}
+
+bib %>% 
+  filter(groups == "Presentation") %>% 
+  mutate(ref = glue::glue("{author} ({year}). {title}. _{type} at the {shorttitle}, {address}_.<br><br>")) %>% 
+  select(year, ref) %>% 
+  cv_bibble()
+
+```
+
+<br>
+
+### Teaching
+
+_Teaching interests_:  
+
+<div style = "text-align: justify; text-justify: inter-word;">
+Behavioral Ecology, Human Ecology, Human Prehistory, Hunter-Gatherers, Conservation \& Sustainability, Ethnoarchaeology, GIS/Spatial Analysis, Quantitative Data Analysis, Archaeological Method \& Theory, North American Prehistory  
+</div>
+
+_University of Utah, Department of Anthropology_:  
+
+```{r, results = "asis"}
+
+here("data", "teaching.csv") %>% 
+  read.csv() %>% 
+  glue_data("* {x}  ", x = unique(course))
+
+```
+
+<br>
+
+### Professional Affiliations
+
+```{r}
+
+here("data", "affiliations.csv") %>% 
+  read.csv() %>% 
+  mutate(x = glue("<a href='{url}' target='_blank'>{organization}</a>"), 
+         y = glue("{start}-{end}")) %>% 
+  select(x, y) %>% 
+  cv_kable()
+
+```

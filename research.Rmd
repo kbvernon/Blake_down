@@ -1,0 +1,15 @@
+---
+title: "Research"
+---
+
+<!-- To embed Academicicons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+
+
+
+
+### Public Lands Data
+Decades of cultural resource work on public lands have generated a deep and still largely untapped reservoir of potential data. The painstaking effort of organizing that data and making it more accessible is not particularly flashy, not in the way that a publication is anyway, but I have found that it bears fruit beyond the obvious contributions to research. In particular, it promotes a constructive feedback loop between research and education, offering students tons of opportunities to transform their own curiosity into well-formed questions that they can then explore with the data they are already gathering.  
+
+Data science remains a largely untapped reservoir of research potential in archaeology. For instance, it promotes greater collaboration, which is increasingly important for investigating very complex issues in our discipline. In my experience, I have also found that this feature of data science, when done carefully, serves to promote a more inclusive community of science,    I am very passionate about this, so I devote a lot of my time and energy to developing tools and methods that will advance archaeological data management and data science. 

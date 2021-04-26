@@ -1,3 +1,33 @@
 ---
-site: blogdown:::blogdown_site
+title: "Kenneth B. Vernon"
+site: distill::distill_website
+image: "derp.jpg"
+links:
+  - label: University of Utah Faculty Page
+    url: "https://faculty.utah.edu/~kbvernon"
+output: postcards::trestles
 ---
+
+```{r, include = FALSE}
+source("setup.R")
+```
+
+<!-- To embed Academicicons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+<!-- hide title on this page only -->
+```{css}
+d-title, d-byline {
+  display: none
+}
+```
+
+##### Anthropology
+My research draws on theory and methods from behavioral ecology to understand the social and environmental factors driving variation in human behavior, specifically the roles that climate and conflict play in structuring subsistence-settlement trade-offs, or trade-offs between _how_ to make a living and _where_ to make a living. My research also explores how individuals navigating those trade-offs affect their local ecology, as well as their community's resilience and sustainability.  
+
+##### Archaeology
+My particular focus is on how individuals in the past chose to confront those trade-offs, specifically in western North America. I rely heavily on geographic and spatial modeling techniques to situate the material residues of past behavior in both a local and a regional environmental context, thus providing for comparative analyses of differing subsistence economies.  
+
+##### Data Science
+I devote considerable time and energy to developing methods that advance archaeological data management and data science, especially collaborative efforts to organize data collected on public lands and make it more accessible to archaeologists and public land managers. I am also passionate about using the tools of data science for education, whether I am teaching in the classroom, mentoring student researchers, or interacting with the public. In that way, I work to expand the archaeological neighborhood within the wider community of science, making it a more diverse and more representative institution.  
+

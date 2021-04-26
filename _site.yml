@@ -3,7 +3,9 @@ title: "Kenneth Blake Vernon"
 theme: "theme.css"
 base_url: "/"
 output_dir: "public"
+exclude: ["data", "data/*.csv", "data/zotero", "data/collections"]
 navbar:
+  search: FALSE 
   left:
     - text: "Publications"
       href: publications.html

@@ -23,10 +23,10 @@ d-title, d-byline {
 ```
 
 ##### Anthropology
-My research draws on behavioral ecology to understand the social and environmental factors driving variation in human behavior, specifically the roles that climate and conflict play in structuring subsistence-settlement trade-offs, or trade-offs between _how_ to make a living and _where_ to make a living. My research also explores how individuals navigating those trade-offs affect their local ecology, as well as their community's resilience and sustainability.  
+My research draws on behavioral ecology to understand the social and environmental factors driving variation in human behavior. In particular, I study how individuals navigate the difficult challenges posed by conflict and climate change, and how their decisions affect their local ecology, as well as their own community's resilience and sustainability.  
 
 ##### Archaeology
-Most of my work focuses on how past individuals chose to confront those trade-offs, particularly in marginal environments like the arid American West. I rely heavily on geographic and spatial modeling techniques to understand the social and environmental context in which those choices were made, both at a local and a regional scale.  
+Mostly, I focus on individuals in the past. I rely on geographic and spatial modeling techniques to understand not only how, but why they chose to confront the challenges of climate and conflict as they did, particularly in marginal environments like the arid American West. 
 
 ##### Data Science
-I devote considerable time and energy to developing methods that advance archaeological data management, especially collaborative efforts to organize data collected on public lands and make it more accessible to archaeologists and public land managers. I am also passionate about using data science for education, whether I am teaching in the classroom, mentoring student researchers, or interacting with the public. In that way, I work to expand the archaeological neighborhood within the wider community of science, making it a more diverse and equitable institution.  
+I devote considerable time and energy to organizing data collected on public lands and making it more accessible for research and preservation. I am also passionate about using data science for education. Whether I am teaching in the classroom, mentoring student researchers, or interacting with the public, I want to expand the archaeological neighborhood within the wider community of science, making it a more diverse and equitable institution.  

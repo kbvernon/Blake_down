@@ -84,3 +84,7 @@ d-article a {
   color: #0F2E3D;
   font-weight: 600;
 }
+
+.mh-100 {
+  overflow-y: hidden!important;
+}

@@ -26,7 +26,7 @@ d-title, d-byline {
 My research draws on behavioral ecology to understand the social and environmental factors driving variation in human behavior. In particular, I study how individuals navigate the difficult challenges posed by conflict and climate change, and how their decisions affect their local ecology, as well as their own community's resilience and sustainability.  
 
 ##### Archaeology
-Mostly, I focus on individuals in the past. I rely on geographic and spatial modeling techniques to understand not only how, but why they chose to confront the challenges of climate and conflict as they did, particularly in marginal environments like the arid American West. 
+Mostly, my work focuses on past behavior. I rely on geographic and spatial modeling techniques to understand not only how but _why_ individuals chose to confront the challenges of climate and conflict as they did, particularly in marginal environments like the arid American West. 
 
 ##### Data Science
 I devote considerable time and energy to organizing data collected on public lands and making it more accessible for research and preservation. I am also passionate about using data science for education. Whether I am teaching in the classroom, mentoring student researchers, or interacting with the public, I want to expand the archaeological neighborhood within the wider community of science, making it a more diverse and equitable institution.  

@@ -70,6 +70,12 @@ here("data", "education.csv") %>%
 
 <br>
 
+### Publications
+
+See the [publications](./publications.html) page.
+
+<br>
+
 ### Grants, Fellowships, and Awards
 
 ```{r}

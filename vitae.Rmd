@@ -7,7 +7,7 @@ title: "Curriculum Vitae"
 
 ```{r, include = FALSE}
 source("setup.R")
-source("cv_tables.R")
+source("https://raw.githubusercontent.com/kbvernon/Blake_vitae/master/cv_tables.R")
 ```
 
 ```{r}

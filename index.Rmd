@@ -1,7 +1,7 @@
 ---
 title: "Kenneth B. Vernon"
 site: distill::distill_website
-image: "derp.jpg"
+image: derp.jpg
 links:
   - label: University of Utah Faculty Page
     url: "https://faculty.utah.edu/~kbvernon"

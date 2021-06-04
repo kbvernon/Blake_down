@@ -1,5 +1,6 @@
 name: "blake_down_distill"
 title: "Kenneth Blake Vernon"
+favicon: favicon.ico
 theme: "theme.css"
 base_url: "/"
 output_dir: "public"

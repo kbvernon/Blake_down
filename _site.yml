@@ -24,5 +24,9 @@ navbar:
     - icon: ai ai-google-scholar ai-lg
       href: https://scholar.google.com/citations?user=2PE4za4AAAAJ&hl=en
     - icon: ai ai-cv ai-lg
-      href: https://raw.githubusercontent.com/kbvernon/Blake_vitae/master/blake_vitae.pdf
-output: distill::distill_article
+      href: https://docs.google.com/viewer?url=https://raw.githubusercontent.com/kbvernon/Blake_vitae/master/blake_vitae.pdf
+output:
+  distill::distill_article:
+    includes:
+      in_header:
+      - header.html

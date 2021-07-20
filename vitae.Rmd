@@ -2,9 +2,6 @@
 title: "Curriculum Vitae"
 ---
 
-<!-- To embed Academicicons -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-
 ```{r, include = FALSE}
 source("setup.R")
 source("https://raw.githubusercontent.com/kbvernon/Blake_vitae/master/cv_tables.R")

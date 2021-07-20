@@ -1,7 +1,7 @@
 
 library(glue)
 library(here)
-library(icon) # github only (ropenscilabs)
+library(icons)
 library(jsonlite)
 library(kableExtra)
 library(knitr)

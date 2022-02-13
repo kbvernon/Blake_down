@@ -1,0 +1,56 @@
+/*
+Hierarchy: 
+blocks 
+  |--> block-year
+          |--> block-row = {date + details}
+          |--> block-row
+  |--> block-year
+          |--> block-row
+          |--> block-row
+          
+This makes it easier to handle page breaks and CSS styling.
+*/
+
+.blocks {
+  margin-top: 1em;
+  margin-bottom: 0.75rem;
+}
+
+/* hide all dates in block year except the first one */
+.block-year .block-row:not(:first-child) .date p {
+  display: none;
+}
+
+.block-row {
+  display: flex;
+  flex-flow: row nowrap;
+  break-inside: avoid;
+  padding-bottom: 0.75rem;
+  vertical-align: top;
+  align-items: start;
+}
+
+.blocks p {
+  margin: 0;
+  padding: 0;
+  vertical-align: top;
+  line-height: 1.4;
+}
+
+.date{
+  flex: 0 0 var(--date-block-width);
+  padding-top: var(--row-blocks-padding-top) !important;
+  padding-right: var(--decorator-horizontal-margin);
+  text-align: left;
+  line-height: 1;
+  max-width: var(--date-block-width);
+  vertical-align: top;
+  top: 0;
+}
+
+.details{
+  text-align: justify;
+  text-justify: inter-word;
+  vertical-align: top;
+  top: 0;
+}

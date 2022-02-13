@@ -358,7 +358,7 @@
 
           </style>
 
-          <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+          <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
           <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
           <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
           <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
@@ -515,33 +515,68 @@
 
           .distill-site-header {
             --title-size:       18px;
-            --text-color:       rgba(255, 255, 255, 0.8);
+            --text-color:       rgba(255, 255, 255, 0.9);
             --text-size:        15px;
             --hover-color:      white;
-            --bkgd-color:       #0F2E3D;
+            --bkgd-color:       #741D07;
           }
 
           .distill-site-footer {
-            --text-color:       rgba(255, 255, 255, 0.8);
+            --text-color:       rgba(255, 255, 255, 0.9);
             --text-size:        15px;
             --hover-color:      white;
-            --bkgd-color:       #0F2E3D;
+            --bkgd-color:       #741D07;
           }
 
           /*-- Additional custom styles --*/
           /* Add any additional CSS rules below                      */
-          d-article table {
-            border-bottom: 0;  
-          }
-
           d-article a {
             border-bottom: 0;
-            color: #0F2E3D;
+            color: #741D07;
             font-weight: 600;
+          }
+
+          b {
+            color: #741D07;
           }
 
           .mh-100 {
             overflow-y: hidden!important;
+          }
+
+          ol.cv-list {
+            padding-left: 2.8em;
+            margin-bottom: 0.85em;
+          }
+
+          ol.cv-list li {
+            text-align: justify !important;
+            margin-bottom: 0.85em;
+          }
+
+          ol.cv-list li:not(:first-child)::marker {
+            content: none;
+          }
+
+          .cv-table {
+            width: 100%;
+            border-bottom: 0;
+          }
+
+          .cv-table tr {
+            border-top: 0;
+            border-bottom: 0;
+          }
+
+          .cv-table td {
+            padding: 0;
+            border-top: 0;
+            border-bottom: 0;
+            padding-bottom: 0.7em;
+          }
+
+          .cv-teaching li {
+            margin-bottom: 0.33em;
           }</style>
           <style type="text/css">
           /* base style */
@@ -709,7 +744,6 @@
           <div class="nav-left">
           <a href="index.html" class="title">Kenneth Blake Vernon</a>
           <a href="publications.html">Publications</a>
-          <a href="research.html">Research</a>
           <a href="vitae.html">Vitae</a>
           </div>
           <div class="nav-right">
@@ -725,7 +759,7 @@
           <a href="https://scholar.google.com/citations?user=2PE4za4AAAAJ&amp;hl=en">
           <i class="fa ai ai-google-scholar ai-lg" aria-hidden="true"></i>
           </a>
-          <a href="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/kbvernon/Blake_vitae/master/blake_vitae.pdf">
+          <a href="blake_vitae.pdf">
           <i class="fa ai ai-cv ai-lg" aria-hidden="true"></i>
           </a>
           <a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
@@ -741,7 +775,7 @@
         <div class="d-flex flex-column col-5 align-items-center text-center align-self-center">
           <div class="mx-auto text-center">
             <div class="p-3">
-              <img src=derp.jpg style="height:15rem" class="rounded">
+              <img src="derp.jpg" style="height:15rem" class="rounded">
             </div>
             <div class="p-2">
               <h1>Kenneth B. Vernon</h1>
@@ -787,7 +821,7 @@
         <div class="d-flex flex-col">
           <div class="mx-auto">
             <div class="p-3 mt-3 text-center">
-              <img src=derp.jpg style="height:15rem" class="rounded">
+              <img src="derp.jpg" style="height:15rem" class="rounded">
             </div>
             <div class="p-2 text-center">
               <h1>Kenneth B. Vernon</h1>

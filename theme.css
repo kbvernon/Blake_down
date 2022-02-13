@@ -60,31 +60,66 @@ d-appendix {
 
 .distill-site-header {
   --title-size:       18px;
-  --text-color:       rgba(255, 255, 255, 0.8);
+  --text-color:       rgba(255, 255, 255, 0.9);
   --text-size:        15px;
   --hover-color:      white;
-  --bkgd-color:       #0F2E3D;
+  --bkgd-color:       #741D07;
 }
 
 .distill-site-footer {
-  --text-color:       rgba(255, 255, 255, 0.8);
+  --text-color:       rgba(255, 255, 255, 0.9);
   --text-size:        15px;
   --hover-color:      white;
-  --bkgd-color:       #0F2E3D;
+  --bkgd-color:       #741D07;
 }
 
 /*-- Additional custom styles --*/
 /* Add any additional CSS rules below                      */
-d-article table {
-  border-bottom: 0;  
-}
-
 d-article a {
   border-bottom: 0;
-  color: #0F2E3D;
+  color: #741D07;
   font-weight: 600;
+}
+
+b {
+  color: #741D07;
 }
 
 .mh-100 {
   overflow-y: hidden!important;
+}
+
+ol.cv-list {
+  padding-left: 2.8em;
+  margin-bottom: 0.85em;
+}
+
+ol.cv-list li {
+  text-align: justify !important;
+  margin-bottom: 0.85em;
+}
+
+ol.cv-list li:not(:first-child)::marker {
+  content: none;
+}
+
+.cv-table {
+  width: 100%;
+  border-bottom: 0;
+}
+
+.cv-table tr {
+  border-top: 0;
+  border-bottom: 0;
+}
+
+.cv-table td {
+  padding: 0;
+  border-top: 0;
+  border-bottom: 0;
+  padding-bottom: 0.7em;
+}
+
+.cv-teaching li {
+  margin-bottom: 0.33em;
 }

@@ -4,14 +4,12 @@ favicon: favicon.ico
 theme: "theme.css"
 base_url: "/"
 output_dir: "public"
-exclude: ["data", "data/*.csv", "data/zotero", "data/collections"]
+exclude: ["cv_blocks.R", "setup.R"]
 navbar:
   search: FALSE 
   left:
     - text: "Publications"
       href: publications.html
-    - text: "Research"
-      href: research.html
     - text: "Vitae"
       href: vitae.html
   right:
@@ -24,7 +22,7 @@ navbar:
     - icon: ai ai-google-scholar ai-lg
       href: https://scholar.google.com/citations?user=2PE4za4AAAAJ&hl=en
     - icon: ai ai-cv ai-lg
-      href: https://docs.google.com/viewer?url=https://raw.githubusercontent.com/kbvernon/Blake_vitae/master/blake_vitae.pdf
+      href: blake_vitae.pdf
 output:
   distill::distill_article:
     includes:

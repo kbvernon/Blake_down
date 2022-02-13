@@ -56,7 +56,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #20794d; } /* Attribute */
+code span.at { } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
 code span.cf { color: #007ba5; } /* ControlFlow */
@@ -77,13 +77,14 @@ code span.kw { color: #007ba5; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
 code span.ot { color: #007ba5; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #20794d; } /* SpecialChar */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
 code span.st { color: #20794d; } /* String */
 code span.va { color: #111111; } /* Variable */
 code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
+
 
   <!--radix_placeholder_meta_tags-->
   <title>Kenneth Blake Vernon: Publications</title>
@@ -453,7 +454,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   </style>
 
-  <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
   <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
   <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
@@ -1601,7 +1602,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+        var refs = $(this).attr('data-cites').split(" ");
+        var refHtml = refs.map(function(ref) {
+          return "<p>" + $('#ref-' + ref).html() + "</p>";
+        }).join("\n");
         window.tippy(this, {
           allowHTML: true,
           content: refHtml,
@@ -1911,33 +1915,68 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   .distill-site-header {
     --title-size:       18px;
-    --text-color:       rgba(255, 255, 255, 0.8);
+    --text-color:       rgba(255, 255, 255, 0.9);
     --text-size:        15px;
     --hover-color:      white;
-    --bkgd-color:       #0F2E3D;
+    --bkgd-color:       #741D07;
   }
 
   .distill-site-footer {
-    --text-color:       rgba(255, 255, 255, 0.8);
+    --text-color:       rgba(255, 255, 255, 0.9);
     --text-size:        15px;
     --hover-color:      white;
-    --bkgd-color:       #0F2E3D;
+    --bkgd-color:       #741D07;
   }
 
   /*-- Additional custom styles --*/
   /* Add any additional CSS rules below                      */
-  d-article table {
-    border-bottom: 0;  
-  }
-
   d-article a {
     border-bottom: 0;
-    color: #0F2E3D;
+    color: #741D07;
     font-weight: 600;
+  }
+
+  b {
+    color: #741D07;
   }
 
   .mh-100 {
     overflow-y: hidden!important;
+  }
+
+  ol.cv-list {
+    padding-left: 2.8em;
+    margin-bottom: 0.85em;
+  }
+
+  ol.cv-list li {
+    text-align: justify !important;
+    margin-bottom: 0.85em;
+  }
+
+  ol.cv-list li:not(:first-child)::marker {
+    content: none;
+  }
+
+  .cv-table {
+    width: 100%;
+    border-bottom: 0;
+  }
+
+  .cv-table tr {
+    border-top: 0;
+    border-bottom: 0;
+  }
+
+  .cv-table td {
+    padding: 0;
+    border-top: 0;
+    border-bottom: 0;
+    padding-bottom: 0.7em;
+  }
+
+  .cv-teaching li {
+    margin-bottom: 0.33em;
   }</style>
   <style type="text/css">
   /* base style */
@@ -2094,11 +2133,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
-  <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
-  <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-  <link href="site_libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
-  <script src="site_libs/bsTable-3.3.7/bootstrapTable.js"></script>
+  <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2132,7 +2167,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="nav-left">
 <a href="index.html" class="title">Kenneth Blake Vernon</a>
 <a href="publications.html">Publications</a>
-<a href="research.html">Research</a>
 <a href="vitae.html">Vitae</a>
 </div>
 <div class="nav-right">
@@ -2148,7 +2182,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <a href="https://scholar.google.com/citations?user=2PE4za4AAAAJ&amp;hl=en">
 <i class="fa ai ai-google-scholar ai-lg" aria-hidden="true"></i>
 </a>
-<a href="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/kbvernon/Blake_vitae/master/blake_vitae.pdf">
+<a href="blake_vitae.pdf">
 <i class="fa ai ai-cv ai-lg" aria-hidden="true"></i>
 </a>
 <a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
@@ -2170,110 +2204,63 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="d-article">
 <!-- To embed Academicicons -->
 <p><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css"></p>
-<div class="layout-chunk" data-layout="l-body">
-
-</div>
-<div class="layout-chunk" data-layout="l-body">
-
-</div>
 <h3 id="peer-reviewed-journal-articles">Peer-reviewed journal articles</h3>
 <div class="layout-chunk" data-layout="l-body">
-<table class="table" style="margin-left: auto; margin-right: auto;">
-<tbody>
-<tr>
-<td style="text-align:left;border: 0; padding: 0; vertical-align: top; vertical-align: top !important;" rowspan="3">
-2021
-</td>
-<td style="text-align:left;border: 0; padding: 0 0 0 12px; text-align: justify; text-justify: inter-word;">
-Brian F. Codding, Joan Brenner Coltrain, Lisbeth Louderback, Kenneth Blake Vernon, Kate E. Magargal, Peter M. Yaworsky, Erick Robinson, Simon C. Brewer, Jerry D. Spangler (2021). <a href="https://doi.org/10.1080/14614103.2021.1927480" target="_blank">Socioecological Dynamics Structuring the Spread of Farming in the North American Basin-Plateau Region</a>. <em>Environmental Archaeology</em> NA (NA): 1–13. DOI: 10.1080/14614103.2021.1927480 <br><br>
-</td>
-</tr>
-<tr>
-<td style="text-align:left;border: 0; padding: 0 0 0 12px; text-align: justify; text-justify: inter-word;">
-Bruce M. Pavlik, Lisbeth A. Louderback, Kenneth B. Vernon, Peter M. Yaworsky, Cynthia Wilson, Arnold Clifford, Brian F. Codding (2021). <a href="http://www.pnas.org/content/118/21/e2025047118.abstract" target="_blank">Plant species richness at archaeological sites suggests ecological legacy of Indigenous subsistence on the Colorado Plateau</a>. <em>Proceedings of the National Academy of Sciences</em> 118 (21): e2025047118. DOI: 10.1073/pnas.2025047118 <br><br>
-</td>
-</tr>
-<tr>
-<td style="text-align:left;border: 0; padding: 0 0 0 12px; text-align: justify; text-justify: inter-word;">
-Kenneth B. Vernon, Peter M. Yaworsky, Jerry D. Spangler, Simon Brewer, Brian F. Codding (2021). <a href="https://doi.org/10.1080/14614103.2020.1746880" target="_blank">Decomposing habitat suitability across the forager to farmer transition</a>. <em>Environmental Archaeology</em> NA (NA): NA. DOI: 10.1080/14614103.2020.1746880 <br><br>
-</td>
-</tr>
-<tr>
-<td style="text-align:left;border: 0; padding: 0; vertical-align: top; vertical-align: top !important;" rowspan="2">
-2020
-</td>
-<td style="text-align:left;border: 0; padding: 0 0 0 12px; text-align: justify; text-justify: inter-word;">
-Peter M. Yaworsky, Kenneth B. Vernon, Jerry D. Spangler, Simon C. Brewer, Brian F. Codding (2020). <a href="https://doi.org/10.1371/journal.pone.0239424" target="_blank">Advancing predictive modeling in archaeology: An evaluation of regression and machine learning methods on the Grand Staircase-Escalante National Monument</a>. <em>PLOS ONE</em> 15 (10): e0239424. DOI: 10.1371/journal.pone.0239424 <br><br>
-</td>
-</tr>
-<tr>
-<td style="text-align:left;border: 0; padding: 0 0 0 12px; text-align: justify; text-justify: inter-word;">
-Shane J. Macfarlan, Ryan Schacht, Caroline Foley, Sydney Cahoon, Grace Osusky, Kenneth B. Vernon, Evan Tayler, Celeste Henrickson, Eric Schniter (2020). <a href="https://doi.org/10.1080/19485565.2020.1728685" target="_blank">Marriage dynamics in old Lower California: Ecological constraints and reproductive value in an arid peninsular frontier</a>. <em>Biodemography and Social Biology</em> 65 (2): 156–171. DOI: 10.1080/19485565.2020.1728685 <br><br>
-</td>
-</tr>
-<tr>
-<td style="text-align:left;border: 0; padding: 0; vertical-align: top; border-bottom: 0;">
-2017
-</td>
-<td style="text-align:left;border: 0; padding: 0 0 0 12px; text-align: justify; text-justify: inter-word;border-bottom: 0;">
-Kate E. Magargal, Ashley K. Parker, Kenneth B. Vernon, Will Rath, Brian F. Codding (2017). <a href="http://dx.doi.org/10.1002/ajhb.23000" target="_blank">The ecology of population dispersal: Modeling alternative basin-plateau foraging strategies to explain the Numic expansion</a>. <em>American Journal of Human Biology</em> 29 (4): e23000–n/a. DOI: 10.1002/ajhb.23000 <br><br>
-</td>
-</tr>
-</tbody>
-</table>
+<ol class="cv-list" start="2021">
+<li>
+Brian F. Codding, Joan Brenner Coltrain, Lisbeth Louderback, Kenneth Blake Vernon, Kate E. Magargal, Peter M. Yaworsky, Erick Robinson, Simon C. Brewer, Jerry D. Spangler (2021). <a href="https://doi.org/10.1080/14614103.2021.1927480">Socioecological Dynamics Structuring the Spread of Farming in the North American Basin-Plateau Region</a>. <em>Environmental Archaeology</em> NA (NA): 1–13. DOI: 10.1080/14614103.2021.1927480
+</li>
+<li>
+Bruce M. Pavlik, Lisbeth A. Louderback, Kenneth B. Vernon, Peter M. Yaworsky, Cynthia Wilson, Arnold Clifford, Brian F. Codding (2021). <a href="http://www.pnas.org/content/118/21/e2025047118.abstract">Plant species richness at archaeological sites suggests ecological legacy of Indigenous subsistence on the Colorado Plateau</a>. <em>Proceedings of the National Academy of Sciences</em> 118 (21): e2025047118. DOI: 10.1073/pnas.2025047118
+</li>
+<li>
+Kenneth B. Vernon, Peter M. Yaworsky, Jerry D. Spangler, Simon Brewer, Brian F. Codding (2021). <a href="https://doi.org/10.1080/14614103.2020.1746880">Decomposing habitat suitability across the forager to farmer transition</a>. <em>Environmental Archaeology</em> NA (NA): NA. DOI: 10.1080/14614103.2020.1746880
+</li>
+</ol>
+<ol class="cv-list" start="2020">
+<li>
+Peter M. Yaworsky, Kenneth B. Vernon, Jerry D. Spangler, Simon C. Brewer, Brian F. Codding (2020). <a href="https://doi.org/10.1371/journal.pone.0239424">Advancing predictive modeling in archaeology: An evaluation of regression and machine learning methods on the Grand Staircase-Escalante National Monument</a>. <em>PLOS ONE</em> 15 (10): e0239424. DOI: 10.1371/journal.pone.0239424
+</li>
+<li>
+Shane J. Macfarlan, Ryan Schacht, Caroline Foley, Sydney Cahoon, Grace Osusky, Kenneth B. Vernon, Evan Tayler, Celeste Henrickson, Eric Schniter (2020). <a href="https://doi.org/10.1080/19485565.2020.1728685">Marriage dynamics in old Lower California: Ecological constraints and reproductive value in an arid peninsular frontier</a>. <em>Biodemography and Social Biology</em> 65 (2): 156–171. DOI: 10.1080/19485565.2020.1728685
+</li>
+</ol>
+<ol class="cv-list" start="2017">
+<li>
+Kate E. Magargal, Ashley K. Parker, Kenneth B. Vernon, Will Rath, Brian F. Codding (2017). <a href="http://dx.doi.org/10.1002/ajhb.23000">The ecology of population dispersal: Modeling alternative basin-plateau foraging strategies to explain the Numic expansion</a>. <em>American Journal of Human Biology</em> 29 (4): e23000–n/a. DOI: 10.1002/ajhb.23000
+</li>
+</ol>
 </div>
 <p><br></p>
 <h3 id="book-reviews">Book reviews</h3>
 <div class="layout-chunk" data-layout="l-body">
-<table class="table" style="margin-left: auto; margin-right: auto;">
-<tbody>
-<tr>
-<td style="text-align:left;border: 0; padding: 0; vertical-align: top; border-bottom: 0;">
-2020
-</td>
-<td style="text-align:left;border: 0; padding: 0 0 0 12px; text-align: justify; text-justify: inter-word;border-bottom: 0;">
-Kenneth B. Vernon, Brian F. Codding (2020). <a href="https://doi.org/10.1086/706946" target="_blank">Review of Oshara Revisited: The Archaic Period in Northern New Mexico by Nicholas Chapin</a>. <em>Journal of Anthropological Research</em> 76 (1): 138–140. DOI: 10.1086/706946 <br><br>
-</td>
-</tr>
-</tbody>
-</table>
+<ol class="cv-list" start="2020">
+<li>
+Kenneth B. Vernon, Brian F. Codding (2020). <a href="https://doi.org/10.1086/706946">Review of Oshara Revisited: The Archaic Period in Northern New Mexico by Nicholas Chapin</a>. <em>Journal of Anthropological Research</em> 76 (1): 138–140. DOI: 10.1086/706946
+</li>
+</ol>
 </div>
 <p><br></p>
 <h3 id="technical-reports">Technical reports</h3>
 <div class="layout-chunk" data-layout="l-body">
-<table class="table" style="margin-left: auto; margin-right: auto;">
-<tbody>
-<tr>
-<td style="text-align:left;border: 0; padding: 0; vertical-align: top; ">
-2021
-</td>
-<td style="text-align:left;border: 0; padding: 0 0 0 12px; text-align: justify; text-justify: inter-word;">
-Jerry D. Spangler, Matthew Zweifel, Heidi Roberts, Kenneth B. Vernon, Isaac Hart, Brian F. Codding, Anne Lawlor (2021). Limited Test Excavations at Red Reef Shelter (42WS519), Red Cliffs National Conservation Area, Washington County, Utah. Report submitted to the Bureau of Land Management, St. George, UT. <br><br>
-</td>
-</tr>
-<tr>
-<td style="text-align:left;border: 0; padding: 0; vertical-align: top; ">
-2019
-</td>
-<td style="text-align:left;border: 0; padding: 0 0 0 12px; text-align: justify; text-justify: inter-word;">
-Jerry D. Spangler, Peter M. Yaworsky, Kenneth B. Vernon, Brian F. Codding (2019). Hisatsinom of the High Plateaus: A Class I Overview of Prehistoric Cultural Resources in Grand Staircase-Escalante National Monument. Report submitted to the Bureau of Land Management, Salt Lake City, UT. <br><br>
-</td>
-</tr>
-<tr>
-<td style="text-align:left;border: 0; padding: 0; vertical-align: top; vertical-align: top !important;" rowspan="2">
-2018
-</td>
-<td style="text-align:left;border: 0; padding: 0 0 0 12px; text-align: justify; text-justify: inter-word;">
-Kenneth B. Vernon, Peter M. Yaworsky, Jerry D. Spangler (2018). The Archaeology of Molen Reef, Emery County, Utah. Report submitted to the Southern Utah Wilderness Alliance, Salt Lake City, UT. <br><br>
-</td>
-</tr>
-<tr>
-<td style="text-align:left;border: 0; padding: 0 0 0 12px; text-align: justify; text-justify: inter-word;border-bottom: 0;">
-Brian F. Codding, Kate E. Magargal, Kenneth B. Vernon, Paul E. Allgaier, Jess Valdez, Ron Goode (2018). Preliminary Archaeological Investigations at the Jack Kirk Site, Mariposa Creek, California. Report submitted to the North Fork Mono Tribe, Mariposa Creek, CA. <br><br>
-</td>
-</tr>
-</tbody>
-</table>
+<ol class="cv-list" start="2021">
+<li>
+Jerry D. Spangler, Matthew Zweifel, Heidi Roberts, Kenneth B. Vernon, Isaac Hart, Brian F. Codding, Anne Lawlor (2021). <b>Limited Test Excavations at Red Reef Shelter (42WS519), Red Cliffs National Conservation Area, Washington County, Utah</b>. Report submitted to the Bureau of Land Management, St. George, UT.
+</li>
+</ol>
+<ol class="cv-list" start="2019">
+<li>
+Jerry D. Spangler, Peter M. Yaworsky, Kenneth B. Vernon, Brian F. Codding (2019). <b>Hisatsinom of the High Plateaus: A Class I Overview of Prehistoric Cultural Resources in Grand Staircase-Escalante National Monument</b>. Report submitted to the Bureau of Land Management, Salt Lake City, UT.
+</li>
+</ol>
+<ol class="cv-list" start="2018">
+<li>
+Kenneth B. Vernon, Peter M. Yaworsky, Jerry D. Spangler (2018). <b>The Archaeology of Molen Reef, Emery County, Utah</b>. Report submitted to the Southern Utah Wilderness Alliance, Salt Lake City, UT.
+</li>
+<li>
+Brian F. Codding, Kate E. Magargal, Kenneth B. Vernon, Paul E. Allgaier, Jess Valdez, Ron Goode (2018). <b>Preliminary Archaeological Investigations at the Jack Kirk Site, Mariposa Creek, California</b>. Report submitted to the North Fork Mono Tribe, Mariposa Creek, CA.
+</li>
+</ol>
 </div>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->

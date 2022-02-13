@@ -56,7 +56,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #20794d; } /* Attribute */
+code span.at { } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
 code span.cf { color: #007ba5; } /* ControlFlow */
@@ -77,13 +77,14 @@ code span.kw { color: #007ba5; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
 code span.ot { color: #007ba5; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #20794d; } /* SpecialChar */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
 code span.st { color: #20794d; } /* String */
 code span.va { color: #111111; } /* Variable */
 code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
+
 
   <!--radix_placeholder_meta_tags-->
   <title>Kenneth Blake Vernon: Curriculum Vitae</title>
@@ -453,7 +454,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   </style>
 
-  <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
   <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
   <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
@@ -1601,7 +1602,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+        var refs = $(this).attr('data-cites').split(" ");
+        var refHtml = refs.map(function(ref) {
+          return "<p>" + $('#ref-' + ref).html() + "</p>";
+        }).join("\n");
         window.tippy(this, {
           allowHTML: true,
           content: refHtml,
@@ -1911,33 +1915,68 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   .distill-site-header {
     --title-size:       18px;
-    --text-color:       rgba(255, 255, 255, 0.8);
+    --text-color:       rgba(255, 255, 255, 0.9);
     --text-size:        15px;
     --hover-color:      white;
-    --bkgd-color:       #0F2E3D;
+    --bkgd-color:       #741D07;
   }
 
   .distill-site-footer {
-    --text-color:       rgba(255, 255, 255, 0.8);
+    --text-color:       rgba(255, 255, 255, 0.9);
     --text-size:        15px;
     --hover-color:      white;
-    --bkgd-color:       #0F2E3D;
+    --bkgd-color:       #741D07;
   }
 
   /*-- Additional custom styles --*/
   /* Add any additional CSS rules below                      */
-  d-article table {
-    border-bottom: 0;  
-  }
-
   d-article a {
     border-bottom: 0;
-    color: #0F2E3D;
+    color: #741D07;
     font-weight: 600;
+  }
+
+  b {
+    color: #741D07;
   }
 
   .mh-100 {
     overflow-y: hidden!important;
+  }
+
+  ol.cv-list {
+    padding-left: 2.8em;
+    margin-bottom: 0.85em;
+  }
+
+  ol.cv-list li {
+    text-align: justify !important;
+    margin-bottom: 0.85em;
+  }
+
+  ol.cv-list li:not(:first-child)::marker {
+    content: none;
+  }
+
+  .cv-table {
+    width: 100%;
+    border-bottom: 0;
+  }
+
+  .cv-table tr {
+    border-top: 0;
+    border-bottom: 0;
+  }
+
+  .cv-table td {
+    padding: 0;
+    border-top: 0;
+    border-bottom: 0;
+    padding-bottom: 0.7em;
+  }
+
+  .cv-teaching li {
+    margin-bottom: 0.33em;
   }</style>
   <style type="text/css">
   /* base style */
@@ -2094,11 +2133,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
   <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
   <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-  <link href="site_libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
-  <script src="site_libs/bsTable-3.3.7/bootstrapTable.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2132,7 +2169,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="nav-left">
 <a href="index.html" class="title">Kenneth Blake Vernon</a>
 <a href="publications.html">Publications</a>
-<a href="research.html">Research</a>
 <a href="vitae.html">Vitae</a>
 </div>
 <div class="nav-right">
@@ -2148,7 +2184,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <a href="https://scholar.google.com/citations?user=2PE4za4AAAAJ&amp;hl=en">
 <i class="fa ai ai-google-scholar ai-lg" aria-hidden="true"></i>
 </a>
-<a href="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/kbvernon/Blake_vitae/master/blake_vitae.pdf">
+<a href="blake_vitae.pdf">
 <i class="fa ai ai-cv ai-lg" aria-hidden="true"></i>
 </a>
 <a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
@@ -2168,215 +2204,165 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
 <div class="d-article">
-<div class="layout-chunk" data-layout="l-body">
-
-</div>
 <div style="font-size: 14px;">
-<p><em>For a pdf of my curriculum vitae, click the CV button in the navbar.</em></p>
+<p><em>To download a PDF of my curriculum vitae, click the CV button in the navbar.</em></p>
 </div>
-<p><br></p>
-<h3 id="contact-information">Contact information</h3>
+<h3 id="contact-information"><svg viewBox="0 0 576 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"> <path d="M528 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h480c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm0 400H48V80h480v352zM208 256c35.3 0 64-28.7 64-64s-28.7-64-64-64-64 28.7-64 64 28.7 64 64 64zm-89.6 128h179.2c12.4 0 22.4-8.6 22.4-19.2v-19.2c0-31.8-30.1-57.6-67.2-57.6-10.8 0-18.7 8-44.8 8-26.9 0-33.4-8-44.8-8-37.1 0-67.2 25.8-67.2 57.6v19.2c0 10.6 10 19.2 22.4 19.2zM360 320h112c4.4 0 8-3.6 8-8v-16c0-4.4-3.6-8-8-8H360c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8zm0-64h112c4.4 0 8-3.6 8-8v-16c0-4.4-3.6-8-8-8H360c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8zm0-64h112c4.4 0 8-3.6 8-8v-16c0-4.4-3.6-8-8-8H360c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8z"></path></svg> Contact information</h3>
 <p>Department of Anthropology<br />
 University of Utah<br />
 260 Central Campus Drive<br />
 Salt Lake City, UT 84112<br />
 (801) 581-6252<br />
 <a href="https://faculty.utah.edu/~kbvernon">faculty.utah.edu/~kbvernon</a></p>
-<p><br></p>
-<h3 id="appointments">Appointments</h3>
+<h3 id="appointments"><svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"> <path d="M320 336c0 8.84-7.16 16-16 16h-96c-8.84 0-16-7.16-16-16v-48H0v144c0 25.6 22.4 48 48 48h416c25.6 0 48-22.4 48-48V288H320v48zm144-208h-80V80c0-25.6-22.4-48-48-48H176c-25.6 0-48 22.4-48 48v48H48c-25.6 0-48 22.4-48 48v80h512v-80c0-25.6-22.4-48-48-48zm-144 0H192V96h128v32z"></path></svg> Appointments</h3>
 <div class="layout-chunk" data-layout="l-body">
-<table class="table" style="margin-left: auto; margin-right: auto;">
+<table class="cv-table table" style="margin-left: auto; margin-right: auto;">
 <tbody>
 <tr>
-<td style="text-align:left;border: 0; padding: 8px 0; border-bottom: 0;">
+<td style="text-align:left;">
 Assistant Director, University of Utah Archaeological Center
 </td>
-<td style="text-align:right;border: 0; padding: 8px 0; border-bottom: 0;">
+<td style="text-align:right;">
 2018-present
 </td>
 </tr>
 </tbody>
 </table>
 </div>
-<p><br></p>
-<h3 id="education">Education</h3>
+<h3 id="education"><svg viewBox="0 0 640 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"> <path d="M622.34 153.2L343.4 67.5c-15.2-4.67-31.6-4.67-46.79 0L17.66 153.2c-23.54 7.23-23.54 38.36 0 45.59l48.63 14.94c-10.67 13.19-17.23 29.28-17.88 46.9C38.78 266.15 32 276.11 32 288c0 10.78 5.68 19.85 13.86 25.65L20.33 428.53C18.11 438.52 25.71 448 35.94 448h56.11c10.24 0 17.84-9.48 15.62-19.47L82.14 313.65C90.32 307.85 96 298.78 96 288c0-11.57-6.47-21.25-15.66-26.87.76-15.02 8.44-28.3 20.69-36.72L296.6 284.5c9.06 2.78 26.44 6.25 46.79 0l278.95-85.7c23.55-7.24 23.55-38.36 0-45.6zM352.79 315.09c-28.53 8.76-52.84 3.92-65.59 0l-145.02-44.55L128 384c0 35.35 85.96 64 192 64s192-28.65 192-64l-14.18-113.47-145.03 44.56z"></path></svg> Education</h3>
 <div class="layout-chunk" data-layout="l-body">
-<table class="table" style="margin-left: auto; margin-right: auto;">
+<table class="cv-table table" style="margin-left: auto; margin-right: auto;">
 <tbody>
 <tr>
-<td style="text-align:left;border: 0; padding: 8px 0; ">
-<b>University of Central Arkansas</b><br>B.A. in History and Philosophy
+<td style="text-align:left;">
+<strong>University of Central Arkansas</strong><br>B.A. in History and Philosophy
 </td>
-<td style="text-align:right;border: 0; padding: 8px 0; ">
+<td style="text-align:right;">
 Conway, AR<br>2006
 </td>
 </tr>
 <tr>
-<td style="text-align:left;border: 0; padding: 8px 0; ">
-<b>Northern Illinois University</b><br>M.A. in Philosophy
+<td style="text-align:left;">
+<strong>Northern Illinois University</strong><br>M.A. in Philosophy
 </td>
-<td style="text-align:right;border: 0; padding: 8px 0; ">
+<td style="text-align:right;">
 DeKalb, IL<br>2009
 </td>
 </tr>
 <tr>
-<td style="text-align:left;border: 0; padding: 8px 0; border-bottom: 0;">
-<b>University of Utah</b><br>Ph.D. in Anthropology
+<td style="text-align:left;">
+<strong>University of Utah</strong><br>Ph.D. in Anthropology
 </td>
-<td style="text-align:right;border: 0; padding: 8px 0; border-bottom: 0;">
+<td style="text-align:right;">
 Salt Lake City, UT<br>2022
 </td>
 </tr>
 </tbody>
 </table>
 </div>
-<p><br></p>
-<h3 id="publications">Publications</h3>
+<h3 id="publications"><svg viewBox="0 0 448 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"> <path d="M448 360V24c0-13.3-10.7-24-24-24H96C43 0 0 43 0 96v320c0 53 43 96 96 96h328c13.3 0 24-10.7 24-24v-16c0-7.5-3.5-14.3-8.9-18.7-4.2-15.4-4.2-59.3 0-74.7 5.4-4.3 8.9-11.1 8.9-18.6zM128 134c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm0 64c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm253.4 250H96c-17.7 0-32-14.3-32-32 0-17.6 14.4-32 32-32h285.4c-1.9 17.1-1.9 46.9 0 64z"></path></svg> Publications</h3>
 <p>See the <a href="./publications.html">publications</a> page.</p>
-<p><br></p>
-<h3 id="grants-fellowships-and-awards">Grants, Fellowships, and Awards</h3>
+<h3 id="funding"><svg viewBox="0 0 576 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"> <path d="M271.06,144.3l54.27,14.3a8.59,8.59,0,0,1,6.63,8.1c0,4.6-4.09,8.4-9.12,8.4h-35.6a30,30,0,0,1-11.19-2.2c-5.24-2.2-11.28-1.7-15.3,2l-19,17.5a11.68,11.68,0,0,0-2.25,2.66,11.42,11.42,0,0,0,3.88,15.74,83.77,83.77,0,0,0,34.51,11.5V240c0,8.8,7.83,16,17.37,16h17.37c9.55,0,17.38-7.2,17.38-16V222.4c32.93-3.6,57.84-31,53.5-63-3.15-23-22.46-41.3-46.56-47.7L282.68,97.4a8.59,8.59,0,0,1-6.63-8.1c0-4.6,4.09-8.4,9.12-8.4h35.6A30,30,0,0,1,332,83.1c5.23,2.2,11.28,1.7,15.3-2l19-17.5A11.31,11.31,0,0,0,368.47,61a11.43,11.43,0,0,0-3.84-15.78,83.82,83.82,0,0,0-34.52-11.5V16c0-8.8-7.82-16-17.37-16H295.37C285.82,0,278,7.2,278,16V33.6c-32.89,3.6-57.85,31-53.51,63C227.63,119.6,247,137.9,271.06,144.3ZM565.27,328.1c-11.8-10.7-30.2-10-42.6,0L430.27,402a63.64,63.64,0,0,1-40,14H272a16,16,0,0,1,0-32h78.29c15.9,0,30.71-10.9,33.25-26.6a31.2,31.2,0,0,0,.46-5.46A32,32,0,0,0,352,320H192a117.66,117.66,0,0,0-74.1,26.29L71.4,384H16A16,16,0,0,0,0,400v96a16,16,0,0,0,16,16H372.77a64,64,0,0,0,40-14L564,377a32,32,0,0,0,1.28-48.9Z"></path></svg> Grants, Fellowships, and Awards</h3>
 <div class="layout-chunk" data-layout="l-body">
-<table class="table" style="margin-left: auto; margin-right: auto;">
-<tbody>
-<tr>
-<td style="text-align:left;border: 0; padding: 0; vertical-align: top; vertical-align: top !important;" rowspan="2">
-2020
-</td>
-<td style="text-align:left;border: 0; padding: 0 0 0 12px; text-align: justify; text-justify: inter-word;">
-David C. Williams Memorial Graduate Fellowship, University of Utah College of Social and Behavioral Sciences. “Advancing Stewardship with Theory and Models”. PI: Kenneth B. Vernon.<br><br>
-</td>
-</tr>
-<tr>
-<td style="text-align:left;border: 0; padding: 0 0 0 12px; text-align: justify; text-justify: inter-word;">
-Cross-College Training Grant, University of Utah College of Social and Behavioral Sciences. “Developing a Modular Online Introduction to the R Environment”. PI: Simon Brewer, Brian F. Codding, Kenneth B. Vernon.<br><br>
-</td>
-</tr>
-<tr>
-<td style="text-align:left;border: 0; padding: 0; vertical-align: top; vertical-align: top !important;" rowspan="2">
-2019
-</td>
-<td style="text-align:left;border: 0; padding: 0 0 0 12px; text-align: justify; text-justify: inter-word;">
-David C. Williams Memorial Graduate Fellowship, University of Utah College of Social and Behavioral Sciences. “Advancing Stewardship with Theory and Models”. PI: Kenneth B. Vernon.<br><br>
-</td>
-</tr>
-<tr>
-<td style="text-align:left;border: 0; padding: 0 0 0 12px; text-align: justify; text-justify: inter-word;">
-Earl and Elies Skidmore Endowed Graduate Fellowship, University of Utah College of Social and Behavioral Sciences. “Graduate Research”. PI: Kenneth B. Vernon.<br><br>
-</td>
-</tr>
-<tr>
-<td style="text-align:left;border: 0; padding: 0; vertical-align: top; vertical-align: top !important;" rowspan="2">
-2018
-</td>
-<td style="text-align:left;border: 0; padding: 0 0 0 12px; text-align: justify; text-justify: inter-word;">
-David C. Williams Memorial Graduate Fellowship, University of Utah College of Social and Behavioral Sciences. “Advancing Stewardship with Theory and Models”. PI: Kenneth B. Vernon.<br><br>
-</td>
-</tr>
-<tr>
-<td style="text-align:left;border: 0; padding: 0 0 0 12px; text-align: justify; text-justify: inter-word;">
-Interdisciplinary Faculty Research Seed Grant, University of Utah Global Change and Sustainability Center. “Why Were Prehistoric Agricultural Societies in Utah Unable to Adapt to the Medieval Megadroughts?”. PI: Brian F. Codding, Simon Brewer.<br><br>
-</td>
-</tr>
-<tr>
-<td style="text-align:left;border: 0; padding: 0; vertical-align: top; vertical-align: top !important;" rowspan="3">
-2017
-</td>
-<td style="text-align:left;border: 0; padding: 0 0 0 12px; text-align: justify; text-justify: inter-word;">
-Grand Staircase-Escalante National Monument Cooperative Agreement, Bureau of Land Management. “Archaeological Sites as Endangered Species: Using Next Generation Models to Predict and Protect Cultural Properties on the Grand Staircase-Escalante National Monument”. PI: Brian F. Codding.<br><br>
-</td>
-</tr>
-<tr>
-<td style="text-align:left;border: 0; padding: 0 0 0 12px; text-align: justify; text-justify: inter-word;">
-Research Grant, University of Utah Global Change and Sustainability Center. “Human Plant Use in Red Butte Canyon”. PI: Kenneth B. Vernon.<br><br>
-</td>
-</tr>
-<tr>
-<td style="text-align:left;border: 0; padding: 0 0 0 12px; text-align: justify; text-justify: inter-word;border-bottom: 0;">
-Research Grant, Friends of Red Butte. “Human Plant Use in Red Butte Canyon”. PI: Kenneth B. Vernon.<br><br>
-</td>
-</tr>
-</tbody>
-</table>
+<ol class="cv-list" start="2020">
+<li>
+David C. Williams Memorial Graduate Fellowship, University of Utah College of Social and Behavioral Sciences. <b>Advancing Stewardship with Theory and Models</b>. PI: Kenneth B. Vernon.
+</li>
+<li>
+Cross-College Training Grant, University of Utah College of Social and Behavioral Sciences. <b>Developing a Modular Online Introduction to the R Environment</b>. PI: Simon Brewer, Brian F. Codding, Kenneth B. Vernon.
+</li>
+</ol>
+<ol class="cv-list" start="2019">
+<li>
+David C. Williams Memorial Graduate Fellowship, University of Utah College of Social and Behavioral Sciences. <b>Advancing Stewardship with Theory and Models</b>. PI: Kenneth B. Vernon.
+</li>
+<li>
+Earl and Elies Skidmore Endowed Graduate Fellowship, University of Utah College of Social and Behavioral Sciences. <b>Graduate Research</b>. PI: Kenneth B. Vernon.
+</li>
+</ol>
+<ol class="cv-list" start="2018">
+<li>
+David C. Williams Memorial Graduate Fellowship, University of Utah College of Social and Behavioral Sciences. <b>Advancing Stewardship with Theory and Models</b>. PI: Kenneth B. Vernon.
+</li>
+<li>
+Interdisciplinary Faculty Research Seed Grant, University of Utah Global Change and Sustainability Center. <b>Why Were Prehistoric Agricultural Societies in Utah Unable to Adapt to the Medieval Megadroughts?</b>. PI: Brian F. Codding, Simon Brewer.
+</li>
+</ol>
+<ol class="cv-list" start="2017">
+<li>
+Grand Staircase-Escalante National Monument Cooperative Agreement, Bureau of Land Management. <b>Archaeological Sites as Endangered Species: Using Next Generation Models to Predict and Protect Cultural Properties on the Grand Staircase-Escalante National Monument</b>. PI: Brian F. Codding.
+</li>
+<li>
+Research Grant, University of Utah Global Change and Sustainability Center. <b>Human Plant Use in Red Butte Canyon</b>. PI: Kenneth B. Vernon.
+</li>
+<li>
+Research Grant, Friends of Red Butte. <b>Human Plant Use in Red Butte Canyon</b>. PI: Kenneth B. Vernon.
+</li>
+</ol>
 </div>
-<p><br></p>
-<h3 id="presentations">Presentations</h3>
+<h3 id="presentations"><svg viewBox="0 0 576 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"> <path d="M528 0H48C21.5 0 0 21.5 0 48v320c0 26.5 21.5 48 48 48h192l-16 48h-72c-13.3 0-24 10.7-24 24s10.7 24 24 24h272c13.3 0 24-10.7 24-24s-10.7-24-24-24h-72l-16-48h192c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zm-16 352H64V64h448v288z"></path></svg> Presentations</h3>
 <div class="layout-chunk" data-layout="l-body">
-<table class="table" style="margin-left: auto; margin-right: auto;">
-<tbody>
-<tr>
-<td style="text-align:left;border: 0; padding: 0; vertical-align: top; ">
-2021
-</td>
-<td style="text-align:left;border: 0; padding: 0 0 0 12px; text-align: justify; text-justify: inter-word;">
-Kenneth B. Vernon, David Zeanah, D. Craig Young, Robert G. Elston, Brian F. Codding (2021). <a href="https://github.com/kbvernon/2021_SAA-Grass_Valley" target="_blank">Explaining Paleoindian Settlement in the Intermountain West: A Regression Adjustment Approach</a>. <em>Talk at the 86th Annual Meeting of the Society for American Archaeology, San Francisco, CA</em>.<br><br>
-</td>
-</tr>
-<tr>
-<td style="text-align:left;border: 0; padding: 0; vertical-align: top; ">
-2019
-</td>
-<td style="text-align:left;border: 0; padding: 0 0 0 12px; text-align: justify; text-justify: inter-word;">
-Kenneth B. Vernon, Peter M. Yaworsky, Brian F. Codding (2019). <a href="https://core.tdar.org/document/452093/decomposing-habitat-suitability-with-theory-driven-machine-learning" target="_blank">Decomposing habitat suitability with theory-driven machine-learning</a>. <em>Talk at the 84th Annual Meeting of the Society for American Archaeology, Albuquerque, NM</em>.<br><br>
-</td>
-</tr>
-<tr>
-<td style="text-align:left;border: 0; padding: 0; vertical-align: top; vertical-align: top !important;" rowspan="2">
-2018
-</td>
-<td style="text-align:left;border: 0; padding: 0 0 0 12px; text-align: justify; text-justify: inter-word;">
-Kenneth B. Vernon, Peter M. Yaworsky, Kate E. Magargal, D. Craig Young, David Zeanah, Brian F. Codding (2018). Prearchaic Land Use in Grass Valley, Nevada: This time with Bayes. <em>Poster at the Bi-annual Great Basin Anthropological Conference, Salt Lake City, UT</em>.<br><br>
-</td>
-</tr>
-<tr>
-<td style="text-align:left;border: 0; padding: 0 0 0 12px; text-align: justify; text-justify: inter-word;">
-Kenneth B. Vernon, Peter M. Yaworsky, Kate E. Magargal, D. Craig Young, David Zeanah, Brian F. Codding (2018). <a href="https://collections.lib.utah.edu/details?id=1322523" target="_blank">Prearchaic land use in Grass Valley, Nevada: A novel statistical implementation of optimal distribution modeling</a>. <em>Poster at the 83th Annual Meeting of the Society for American Archaeology, Washington D.C.</em>.<br><br>
-</td>
-</tr>
-<tr>
-<td style="text-align:left;border: 0; padding: 0; vertical-align: top; border-bottom: 0;">
-2015
-</td>
-<td style="text-align:left;border: 0; padding: 0 0 0 12px; text-align: justify; text-justify: inter-word;border-bottom: 0;">
-Kenneth B. Vernon, Kate E. Magargal, Ashley K. Parker, Will Rath, Brian F. Codding (2015). <a href="https://collections.lib.utah.edu/ark:/87278/s6sr2x3h" target="_blank">Numic fires: modeling the effects of anthropogenic fire on foraging decisions in the Great Basin</a>. <em>Poster at the 80th Annual Meeting of the Society for American Archaeology, San Francisco, CA</em>.<br><br>
-</td>
-</tr>
-</tbody>
-</table>
+<ol class="cv-list" start="2021">
+<li>
+Kenneth B. Vernon, David Zeanah, D. Craig Young, Robert G. Elston, Brian F. Codding (2021). <a href="https://github.com/kbvernon/2021_SAA-Grass_Valley">Explaining Paleoindian Settlement in the Intermountain West: A Regression Adjustment Approach</a>. <em>Talk at the 86th Annual Meeting of the Society for American Archaeology, San Francisco, CA</em>.
+</li>
+</ol>
+<ol class="cv-list" start="2019">
+<li>
+Kenneth B. Vernon, Peter M. Yaworsky, Brian F. Codding (2019). <a href="https://core.tdar.org/document/452093/decomposing-habitat-suitability-with-theory-driven-machine-learning">Decomposing habitat suitability with theory-driven machine-learning</a>. <em>Talk at the 84th Annual Meeting of the Society for American Archaeology, Albuquerque, NM</em>.
+</li>
+</ol>
+<ol class="cv-list" start="2018">
+<li>
+Kenneth B. Vernon, Peter M. Yaworsky, Kate E. Magargal, D. Craig Young, David Zeanah, Brian F. Codding (2018). Prearchaic Land Use in Grass Valley, Nevada: This time with Bayes. <em>Poster at the Bi-annual Great Basin Anthropological Conference, Salt Lake City, UT</em>.
+</li>
+<li>
+Kenneth B. Vernon, Peter M. Yaworsky, Kate E. Magargal, D. Craig Young, David Zeanah, Brian F. Codding (2018). <a href="https://collections.lib.utah.edu/details?id=1322523">Prearchaic land use in Grass Valley, Nevada: A novel statistical implementation of optimal distribution modeling</a>. <em>Poster at the 83th Annual Meeting of the Society for American Archaeology, Washington D.C.</em>.
+</li>
+</ol>
+<ol class="cv-list" start="2015">
+<li>
+Kenneth B. Vernon, Kate E. Magargal, Ashley K. Parker, Will Rath, Brian F. Codding (2015). <a href="https://collections.lib.utah.edu/ark:/87278/s6sr2x3h">Numic fires: modeling the effects of anthropogenic fire on foraging decisions in the Great Basin</a>. <em>Poster at the 80th Annual Meeting of the Society for American Archaeology, San Francisco, CA</em>.
+</li>
+</ol>
 </div>
-<p><br></p>
-<h3 id="teaching">Teaching</h3>
-<p><em>Teaching interests</em>:</p>
-<div style="text-align: justify; text-justify: inter-word;">
-<p>Behavioral Ecology, Human Ecology, Human Prehistory, Hunter-Gatherers, Conservation &amp; Sustainability, Ethnoarchaeology, GIS/Spatial Analysis, Quantitative Data Analysis, Archaeological Method &amp; Theory, North American Prehistory</p>
-</div>
-<p><em>University of Utah, Department of Anthropology</em>:</p>
+<h3 id="teaching"><svg viewBox="0 0 640 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"> <path d="M208 352c-2.39 0-4.78.35-7.06 1.09C187.98 357.3 174.35 360 160 360c-14.35 0-27.98-2.7-40.95-6.91-2.28-.74-4.66-1.09-7.05-1.09C49.94 352-.33 402.48 0 464.62.14 490.88 21.73 512 48 512h224c26.27 0 47.86-21.12 48-47.38.33-62.14-49.94-112.62-112-112.62zm-48-32c53.02 0 96-42.98 96-96s-42.98-96-96-96-96 42.98-96 96 42.98 96 96 96zM592 0H208c-26.47 0-48 22.25-48 49.59V96c23.42 0 45.1 6.78 64 17.8V64h352v288h-64v-64H384v64h-76.24c19.1 16.69 33.12 38.73 39.69 64H592c26.47 0 48-22.25 48-49.59V49.59C640 22.25 618.47 0 592 0z"></path></svg> Teaching</h3>
+<p><strong>Teaching interests</strong>. Behavioral Ecology, Human Ecology, Human Prehistory, Hunter-Gatherers, Conservation &amp; Sustainability, Ethnoarchaeology, GIS/Spatial Analysis, Quantitative Data Analysis, Archaeological Method &amp; Theory, North American Prehistory</p>
 <div class="layout-chunk" data-layout="l-body">
+<div class="cv-teaching">
+<p>
+University of Utah, Department of Anthropology
+</p>
 <ul>
-<li>ANTH 1030: Introduction to World Prehistory<br />
+<li>
+ANTH 1030: Introduction to World Prehistory
 </li>
-<li>ANTH 1010: Culture and the Human Experience<br />
+<li>
+ANTH 1010: Culture and the Human Experience
 </li>
-<li>ANTH 5850: Quantitative Analysis of Archaeological Data</li>
+<li>
+ANTH 5850: Quantitative Analysis of Archaeological Data
+</li>
 </ul>
 </div>
-<p><br></p>
-<h3 id="professional-affiliations">Professional Affiliations</h3>
+</div>
+<h3 id="affiliations"><svg viewBox="0 0 576 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"> <path d="M96,128A64,64,0,1,0,32,64,64,64,0,0,0,96,128Zm0,176.08a44.11,44.11,0,0,1,13.64-32L181.77,204c1.65-1.55,3.77-2.31,5.61-3.57A63.91,63.91,0,0,0,128,160H64A64,64,0,0,0,0,224v96a32,32,0,0,0,32,32V480a32,32,0,0,0,32,32h64a32,32,0,0,0,32-32V383.61l-50.36-47.53A44.08,44.08,0,0,1,96,304.08ZM480,128a64,64,0,1,0-64-64A64,64,0,0,0,480,128Zm32,32H448a63.91,63.91,0,0,0-59.38,40.42c1.84,1.27,4,2,5.62,3.59l72.12,68.06a44.37,44.37,0,0,1,0,64L416,383.62V480a32,32,0,0,0,32,32h64a32,32,0,0,0,32-32V352a32,32,0,0,0,32-32V224A64,64,0,0,0,512,160ZM444.4,295.34l-72.12-68.06A12,12,0,0,0,352,236v36H224V236a12,12,0,0,0-20.28-8.73L131.6,295.34a12.4,12.4,0,0,0,0,17.47l72.12,68.07A12,12,0,0,0,224,372.14V336H352v36.14a12,12,0,0,0,20.28,8.74l72.12-68.07A12.4,12.4,0,0,0,444.4,295.34Z"></path></svg> Professional Affiliations</h3>
 <div class="layout-chunk" data-layout="l-body">
-<table class="table" style="margin-left: auto; margin-right: auto;">
+<table class="cv-table table" style="margin-left: auto; margin-right: auto;">
 <tbody>
 <tr>
-<td style="text-align:left;border: 0; padding: 8px 0; ">
-<a href="https://greatbasinanthropologicalassociation.org/" target="_blank">Great Basin Anthropological Association</a>
+<td style="text-align:left;">
+<a href="https://greatbasinanthropologicalassociation.org/">Great Basin Anthropological Association</a>
 </td>
-<td style="text-align:right;border: 0; padding: 8px 0; ">
+<td style="text-align:right;">
 2016-Present
 </td>
 </tr>
 <tr>
-<td style="text-align:left;border: 0; padding: 8px 0; border-bottom: 0;">
-<a href="https://www.saa.org/" target="_blank">Society for American Archaeology</a>
+<td style="text-align:left;">
+<a href="https://www.saa.org/">Society for American Archaeology</a>
 </td>
-<td style="text-align:right;border: 0; padding: 8px 0; border-bottom: 0;">
+<td style="text-align:right;">
 2014-Present
 </td>
 </tr>

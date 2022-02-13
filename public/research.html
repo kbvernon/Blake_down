@@ -56,7 +56,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #20794d; } /* Attribute */
+code span.at { } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
 code span.cf { color: #007ba5; } /* ControlFlow */
@@ -77,13 +77,14 @@ code span.kw { color: #007ba5; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
 code span.ot { color: #007ba5; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #20794d; } /* SpecialChar */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
 code span.st { color: #20794d; } /* String */
 code span.va { color: #111111; } /* Variable */
 code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
+
 
   <!--radix_placeholder_meta_tags-->
   <title>Kenneth Blake Vernon: Research</title>
@@ -453,7 +454,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   </style>
 
-  <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
   <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
   <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
@@ -1601,7 +1602,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+        var refs = $(this).attr('data-cites').split(" ");
+        var refHtml = refs.map(function(ref) {
+          return "<p>" + $('#ref-' + ref).html() + "</p>";
+        }).join("\n");
         window.tippy(this, {
           allowHTML: true,
           content: refHtml,
@@ -1911,33 +1915,68 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   .distill-site-header {
     --title-size:       18px;
-    --text-color:       rgba(255, 255, 255, 0.8);
+    --text-color:       rgba(255, 255, 255, 0.9);
     --text-size:        15px;
     --hover-color:      white;
-    --bkgd-color:       #0F2E3D;
+    --bkgd-color:       #741D07;
   }
 
   .distill-site-footer {
-    --text-color:       rgba(255, 255, 255, 0.8);
+    --text-color:       rgba(255, 255, 255, 0.9);
     --text-size:        15px;
     --hover-color:      white;
-    --bkgd-color:       #0F2E3D;
+    --bkgd-color:       #741D07;
   }
 
   /*-- Additional custom styles --*/
   /* Add any additional CSS rules below                      */
-  d-article table {
-    border-bottom: 0;  
-  }
-
   d-article a {
     border-bottom: 0;
-    color: #0F2E3D;
+    color: #741D07;
     font-weight: 600;
+  }
+
+  b {
+    color: #741D07;
   }
 
   .mh-100 {
     overflow-y: hidden!important;
+  }
+
+  ol.cv-list {
+    padding-left: 2.8em;
+    margin-bottom: 0.85em;
+  }
+
+  ol.cv-list li {
+    text-align: justify !important;
+    margin-bottom: 0.85em;
+  }
+
+  ol.cv-list li:not(:first-child)::marker {
+    content: none;
+  }
+
+  .cv-table {
+    width: 100%;
+    border-bottom: 0;
+  }
+
+  .cv-table tr {
+    border-top: 0;
+    border-bottom: 0;
+  }
+
+  .cv-table td {
+    padding: 0;
+    border-top: 0;
+    border-bottom: 0;
+    padding-bottom: 0.7em;
+  }
+
+  .cv-teaching li {
+    margin-bottom: 0.33em;
   }</style>
   <style type="text/css">
   /* base style */
@@ -2094,7 +2133,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2128,7 +2167,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="nav-left">
 <a href="index.html" class="title">Kenneth Blake Vernon</a>
 <a href="publications.html">Publications</a>
-<a href="research.html">Research</a>
 <a href="vitae.html">Vitae</a>
 </div>
 <div class="nav-right">
@@ -2144,7 +2182,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <a href="https://scholar.google.com/citations?user=2PE4za4AAAAJ&amp;hl=en">
 <i class="fa ai ai-google-scholar ai-lg" aria-hidden="true"></i>
 </a>
-<a href="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/kbvernon/Blake_vitae/master/blake_vitae.pdf">
+<a href="blake_vitae.pdf">
 <i class="fa ai ai-cv ai-lg" aria-hidden="true"></i>
 </a>
 <a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
@@ -2170,15 +2208,14 @@ This page provides a broad overview of my current research. For details about th
 
 <br>
 
-### Data science
+### Data Stewardship
 
-While I dabble in some of the more glamorous elements of the digital revolution in archaeology, like adapting new analytical methods to archaeological data, the vast majority of my time and energy revolves around data stewardship, specifically
+Preserving the actual physical artifacts making up the _archaeological_ record is probably what most people think of when they think about stewardship in archaeology, but that, while critically important (and probably the highest priority, too), is not _all_ that stewardship entails. It's also about preserving, if you will, our _record_ of the record, or our _knowledge_ of it. In the digitial world we live in today, where data grows at a rate impossible for any one person to manage, stewardship is also about making archaeological data __F__indable, __A__ccessible, __I__nteroperable, and __R__eusable, in a word, to make it [FAIR](https://www.nature.com/articles/sdata201618). This is something I am passionate about contributing to, especially for our record of western North America.  
 
-1. Digitizing paper site records. This is not just about scanning them to PDF, but translating them into machine-readable and rectangular data structures. My efforts here are mostly focused in the Grand Staircase-Escalante and Bears Ears National Monuments, but I would like to see the entire record of Utah be digitized in this manner.  
-2. Building online storage systems. The goal here is to make it easier for researchers and land managers to access that information while also meeting state and federal requirements for protecting archaeological resources.
 
-While archaeologists have gone to heroic lengths to address these issues, a lot - and I mean A LOT - of work remains to be done. And, that's not a bad thing! In fact, it's an opportunity. I have found that working with archaeological site records provides an excellent educational opportunity for students, introducing them to archaeological data and methods, as well as a region's prehistory, and even the history of archaeology itself.  
+### Climate, Conflict, and Human Migration
 
+Looking at the intersection between climate, environment, demography, and conflict through the lens of behavioral ecology, our goal is to understand what socioenvironmental conditions consistently promote conflict over cooperation. We do this be evaluating the relative costs and benefits of organizing and participating in violent conflict across various physical and social contexts. 
 
 
 ### Paleoindian settlement of the Great Basin
@@ -2186,10 +2223,8 @@ While archaeologists have gone to heroic lengths to address these issues, a lot 
 _Excerpt from NSF abstract_: Explaining how humans adapt to climate change and population growth remain central research questions in anthropology and are relevant to contemporary issues. About fourteen thousand years ago, ancestral Native Americans first entered the Great Basin of North America, where they encountered a landscape dominated by large inland lakes and marshes. Although the climate was generally cooler and wetter than today, it was highly variable and experienced dramatic shifts associated with the transition from the Pleistocene to Holocene epochs. Nonetheless, early Native Americans developed a stable adaptation, characterized by a flexible technology and subsistence base, and high mobility that persevered over the ensuing six millennia, but dramatically reorganized with the onset of extreme aridity about 8,000 years ago. Understanding how these first Americans made a living, interacted with one another, and adapted to climatic change is critical to explaining the colonization of the Americas, and how humans adapt to changing environments more generally. ([Award Abstract #1632522](https://www.nsf.gov/awardsearch/showAward?AWD_ID=1632522&HistoricalAwards=false))
 
 
+### The Fremont
 
-### Climate, Conflict, and Human Migration
-
-Trade-off between security and foraging efficiency. 
 
 
 -->

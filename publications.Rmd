@@ -5,18 +5,9 @@ title: "Publications"
 <!-- To embed Academicicons -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
 
-```{r, echo = FALSE}
+```{r, include = FALSE}
+
 source("setup.R")
-source("https://raw.githubusercontent.com/kbvernon/Blake_vitae/master/cv_tables.R")
-```
-
-```{r}
-
-collection <- here("data", "collections") %>% jsonlite::read_json(simplifyVector = TRUE)
-
-zotero <- here("data", "zotero") %>% jsonlite::read_json(simplifyVector = TRUE)
-
-bib <- cv_get_bib(zotero, collection)
 
 ```
 
@@ -25,14 +16,14 @@ bib <- cv_get_bib(zotero, collection)
 ```{r}
 
 bib %>% 
-  filter(groups == "Article") %>% 
-  mutate(ref = glue::glue(
-    
-    "{author} ({year}). {title}. _{journal}_ {volume} ({number}): {pages}. DOI: {doi} <br><br>"
-    
+  filter(groups == "Article") %>%
+  mutate(
+    item = glue::glue(
+      
+      "{author} ({year}). {title}. _{journal}_ {volume} ({number}): {pages}. DOI: {doi}"
+      
     )) %>% 
-  select(year, ref) %>% 
-  cv_bibble()
+  make_ordered_list()
 
 ```
 
@@ -44,13 +35,13 @@ bib %>%
 
 bib %>%
   filter(groups == "Review") %>%
-  mutate(ref = glue::glue(
-    
-    "{author} ({year}). {title}. _{journal}_ {volume} ({number}): {pages}. DOI: {doi} <br><br>"
-    
+  mutate(
+    item = glue::glue(
+      
+      "{author} ({year}). {title}. _{journal}_ {volume} ({number}): {pages}. DOI: {doi}"
+      
     )) %>% 
-  select(year, ref) %>% 
-  cv_bibble()
+  make_ordered_list()
 
 ```
 
@@ -62,13 +53,13 @@ bib %>%
 
 bib %>% 
   filter(groups == "Report") %>% 
-  mutate(ref = glue::glue(
-    
-    "{author} ({year}). {title}. Report submitted to the {institution}, {address}. <br><br>"
-    
+  mutate(
+    item = glue::glue(
+      
+      "{author} ({year}). <b>{title}</b>. Report submitted to the {institution}, {address}."
+      
     )) %>% 
-  select(year, ref) %>% 
-  cv_bibble()
+  make_ordered_list()
 
 ```
 

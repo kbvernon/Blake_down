@@ -3,29 +3,16 @@ title: "Curriculum Vitae"
 ---
 
 ```{r, include = FALSE}
+
 source("setup.R")
-source("https://raw.githubusercontent.com/kbvernon/Blake_vitae/master/cv_tables.R")
-```
-
-```{r}
-
-collection <- here("data", "collections") %>% jsonlite::read_json(simplifyVector = TRUE)
-
-zotero <- here("data", "zotero") %>% jsonlite::read_json(simplifyVector = TRUE)
-
-bib <- cv_get_bib(zotero, collection)
 
 ```
-
 
 <div style = "font-size: 14px;"> 
-_For a pdf of my curriculum vitae, click the CV button in the navbar._  
+_To download a PDF of my curriculum vitae, click the CV button in the navbar._  
 </div>
 
-
-<br>
-
-### Contact information  
+### `r fa("address-card")` Contact information  
 
 Department of Anthropology  
 University of Utah  
@@ -34,104 +21,130 @@ Salt Lake City, UT 84112
 (801) 581-6252  
 [faculty.utah.edu/~kbvernon](https://faculty.utah.edu/~kbvernon)
 
-<br>
-
-### Appointments
+### `r fa("briefcase")` Appointments
 
 ```{r}
 
-here("data", "appointments.csv") %>% 
-  read.csv() %>% 
-  mutate(x = glue::glue("{title}, {organization}"), 
-         y = case_when(is.na(end) ~ glue::glue("{start}-present"),
-                       TRUE ~ glue::glue("{start}-{end}"))) %>% 
+read_sheet(google_page_id, sheet = "appointments")  %>%
+  mutate(
+    x = glue::glue("{title}, {organization}"),
+    y = ifelse(
+      is.na(end), 
+      glue::glue("{start}-present"),
+      glue::glue("{start}-{end}")
+    )
+  ) %>% 
   select(x, y) %>% 
-  cv_kable()
+  kbl(
+    escape = FALSE,
+    col.names = NULL,
+    align = c('l', 'r'),
+    table.attr = "class='cv-table'"
+  ) %>%
+  kable_styling(full_width = TRUE) %>%
+  collapse_rows(columns = 1, valign = "top")
 
 ```
 
-<br>
-
-### Education 
+### `r fa("graduation-cap")` Education
 
 ```{r}
 
-here("data", "education.csv") %>% 
-  read.csv() %>% 
-  mutate(x = glue::glue("<b>{university}</b><br>{degree} in {major}"), 
-         y = glue::glue("{location}<br>{end}")) %>% 
+read_sheet(google_page_id, sheet = "education") %>% 
+  mutate(
+    x = glue::glue("__{university}__<br>{degree} in {major}"), 
+    y = glue::glue("{location}<br>{end}")
+  ) %>% 
   select(x, y) %>% 
-  cv_kable()
+  kbl(
+    escape = FALSE,
+    col.names = NULL,
+    align = c('l', 'r'),
+    table.attr = "class='cv-table'"
+  ) %>%
+  kable_styling(full_width = TRUE) %>%
+  collapse_rows(columns = 1, valign = "top")
 
 ```
 
-<br>
-
-### Publications
+### `r fa("book")` Publications
 
 See the [publications](./publications.html) page.
 
-<br>
-
-### Grants, Fellowships, and Awards
+### `r fa("hand-holding-usd")` Grants, Fellowships, and Awards {#funding}
 
 ```{r}
 
-here("data", "funding.csv") %>% 
-  read.csv() %>% 
+read_sheet(google_page_id, sheet = "funding") %>% 
   filter(result == "Awarded") %>% 
-  arrange(desc(year)) %>% 
-  mutate(y = glue::glue("{FOT}, {organization}. \"{title}\". PI: {PI}.<br><br>")) %>% 
-  select(year, y) %>% 
-  cv_bibble()
+  mutate(
+    item = glue::glue(
+      
+      "{FOT}, {organization}. <b>{title}</b>. PI: {PI}."
+  
+    )) %>% 
+  make_ordered_list()
 
 ```
 
-<br>
-
-### Presentations
+### `r fa("desktop")` Presentations
 
 ```{r}
 
 bib %>% 
   filter(groups == "Presentation") %>% 
-  mutate(ref = glue::glue("{author} ({year}). {title}. _{type} at the {shorttitle}, {address}_.<br><br>")) %>% 
-  select(year, ref) %>% 
-  cv_bibble()
+  mutate(
+    item = glue::glue(
+      
+      "{author} ({year}). {title}. _{type} at the {shorttitle}, {address}_."
+      
+    )) %>% 
+  make_ordered_list()
 
 ```
 
-<br>
+### `r fa("chalkboard-teacher")` Teaching {#teaching}
 
-### Teaching
-
-_Teaching interests_:  
-
-<div style = "text-align: justify; text-justify: inter-word;">
-Behavioral Ecology, Human Ecology, Human Prehistory, Hunter-Gatherers, Conservation \& Sustainability, Ethnoarchaeology, GIS/Spatial Analysis, Quantitative Data Analysis, Archaeological Method \& Theory, North American Prehistory  
-</div>
-
-_University of Utah, Department of Anthropology_:  
-
-```{r, results = "asis"}
-
-here("data", "teaching.csv") %>% 
-  read.csv() %>% 
-  glue_data("* {x}  ", x = unique(course))
-
-```
-
-<br>
-
-### Professional Affiliations
+__Teaching interests__. Behavioral Ecology, Human Ecology, Human Prehistory, Hunter-Gatherers, Conservation \& Sustainability, Ethnoarchaeology, GIS/Spatial Analysis, Quantitative Data Analysis, Archaeological Method \& Theory, North American Prehistory  
 
 ```{r}
 
-here("data", "affiliations.csv") %>% 
-  read.csv() %>% 
-  mutate(x = glue("<a href='{url}' target='_blank'>{organization}</a>"), 
-         y = glue("{start}-{end}")) %>% 
+read_sheet(google_page_id, sheet = "teaching") %>% 
+  group_by(university, department) %>% 
+  summarize(
+    courses = paste0("<li>", unique(course), "</li>", collapse = "\n")
+  ) %>% 
+  rowwise() %>% 
+  mutate(
+    teaching = glue::glue(
+      
+      "<p>{university}, Department of {department}</p><ul>{courses}</ul>"
+      
+    ),
+  ) %>% 
+  pull(teaching) %>% 
+  paste("<div class = 'cv-teaching'>", ., "</div>") %>% 
+  cat()
+
+```
+
+### `r fa("people-arrows")` Professional Affiliations {#affiliations}
+
+```{r}
+
+read_sheet(google_page_id, sheet = "affiliations") %>% 
+  mutate(
+    x = glue::glue("<a href='{url}'>{organization}</a>"), 
+    y = glue::glue("{start}-{end}")
+  ) %>% 
   select(x, y) %>% 
-  cv_kable()
+  kbl(
+    escape = FALSE,
+    col.names = NULL,
+    align = c('l', 'r'),
+    table.attr = "class='cv-table'"
+  ) %>%
+  kable_styling(full_width = TRUE) %>%
+  collapse_rows(columns = 1, valign = "top")
 
 ```

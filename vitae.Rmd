@@ -27,12 +27,9 @@ Salt Lake City, UT 84112
 
 read_sheet(google_page_id, sheet = "appointments")  %>%
   mutate(
+    end = ifelse(is.na(end), "present", end),
     x = glue::glue("{title}, {organization}"),
-    y = ifelse(
-      is.na(end), 
-      glue::glue("{start}-present"),
-      glue::glue("{start}-{end}")
-    )
+    y = glue::glue("{start}-{end}")
   ) %>% 
   select(x, y) %>% 
   kbl(
@@ -71,7 +68,7 @@ read_sheet(google_page_id, sheet = "education") %>%
 
 See the [publications](./publications.html) page.
 
-### `r fa("hand-holding-usd")` Grants, Fellowships, and Awards {#funding}
+### `r fa("hand-holding-dollar")` Grants, Fellowships, and Awards {#funding}
 
 ```{r}
 
@@ -103,7 +100,7 @@ bib %>%
 
 ```
 
-### `r fa("chalkboard-teacher")` Teaching {#teaching}
+### `r fa("chalkboard-user")` Teaching {#teaching}
 
 __Teaching interests__. Behavioral Ecology, Human Ecology, Human Prehistory, Hunter-Gatherers, Conservation \& Sustainability, Ethnoarchaeology, GIS/Spatial Analysis, Quantitative Data Analysis, Archaeological Method \& Theory, North American Prehistory  
 
@@ -111,14 +108,19 @@ __Teaching interests__. Behavioral Ecology, Human Ecology, Human Prehistory, Hun
 
 read_sheet(google_page_id, sheet = "teaching") %>% 
   group_by(university, department) %>% 
+  arrange(year, .by_group = TRUE) %>% 
   summarize(
-    courses = paste0("<li>", unique(course), "</li>", collapse = "\n")
+    courses = paste0(glue::glue(
+      
+      "<li>{year} {semester} __{position}__. {course} </li>"
+      
+    ), collapse = "\n")
   ) %>% 
   rowwise() %>% 
   mutate(
     teaching = glue::glue(
       
-      "<p>{university}, Department of {department}</p><ul>{courses}</ul>"
+      "{university}, Department of {department}\n<ul>\n{courses}\n</ul>"
       
     ),
   ) %>% 
@@ -128,12 +130,13 @@ read_sheet(google_page_id, sheet = "teaching") %>%
 
 ```
 
-### `r fa("people-arrows")` Professional Affiliations {#affiliations}
+### `r fa("people-arrows-left-right")` Professional Affiliations {#affiliations}
 
 ```{r}
 
 read_sheet(google_page_id, sheet = "affiliations") %>% 
   mutate(
+    end = ifelse(is.na(end), "present", end),
     x = glue::glue("<a href='{url}'>{organization}</a>"), 
     y = glue::glue("{start}-{end}")
   ) %>% 
@@ -147,4 +150,53 @@ read_sheet(google_page_id, sheet = "affiliations") %>%
   kable_styling(full_width = TRUE) %>%
   collapse_rows(columns = 1, valign = "top")
 
+```
+
+### `r fa("handshake-angle")` Service, Outreach, and Other Activities
+
+#### _University of Utah_
+
+```{r}
+
+read_sheet(google_page_id, sheet = "synergy") %>% 
+  filter(
+    type == "university service", 
+    organization == "University of Utah"
+  ) %>% 
+  mutate(
+    status = ifelse(
+      status == "active",
+      paste0("<span style='color: #2B8A12; font-weight: bold;'>", status, "</span>"),
+      paste0("__", status, "__")
+    ),
+    item = glue::glue(
+      
+      "__{position}__. {description}. Status: {status}."
+      
+    )) %>% 
+  make_ordered_list()
+  
+```
+
+#### _Outreach_
+
+```{r}
+
+read_sheet(google_page_id, sheet = "synergy") %>% 
+  filter(
+    type == "outreach"
+  ) %>% 
+  mutate(
+    status = ifelse(
+      status == "active",
+      paste0("<span style='color: #2B8A12; font-weight: bold;'>", status, "</span>"),
+      paste0("__", status, "__")
+    ),
+    item = glue::glue(
+      
+      "__{position}__. {description}. Status: {status}."
+      
+    )) %>% 
+  make_ordered_list()
+  
 ```

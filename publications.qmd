@@ -1,0 +1,81 @@
+---
+format:
+  html:
+    toc: true
+    page-layout: article
+---
+
+```{r}
+
+library(dplyr)
+library(glue)
+library(here)
+
+load(here("_credentials.RData"))
+source(here("_bibliography.R"))
+source(here("_blocks.R"))
+
+bib <- bibliography(zotero, collection, c("Article", "Review", "Report"))
+
+```
+
+## Peer-reviewed journal articles
+
+```{r}
+
+bib |> 
+  filter(groups == "Article") |> 
+  rowwise() |> 
+  mutate(
+    buttons = sew_buttons(button(url, "article"))
+  ) |> 
+  ungroup() |> 
+  mutate(
+    item = glue::glue(
+      
+      "{author} ({year}). **{title}**. _{journal}_ {volume} ({number}): {pages}. DOI: {doi}<br>{buttons}"
+    
+    )
+  ) |> 
+  make_block()
+
+```
+
+## Book reviews
+
+```{r}
+
+bib |> 
+  filter(groups == "Review") |> 
+  rowwise() |> 
+  mutate(
+    buttons = sew_buttons(button(url, "article"))
+  ) |> 
+  ungroup() |> 
+  mutate(
+    item = glue::glue(
+      
+      "{author} ({year}). **{title}**. _{journal}_ {volume} ({number}): {pages}. DOI: {doi}<br>{buttons}"
+    
+    )
+  ) |> 
+  make_block()
+
+```
+
+## Technical reports
+
+```{r}
+
+bib |> 
+  filter(groups == "Report") |> 
+  mutate(
+    item = glue::glue(
+      
+      "{author} ({year}). **{title}**. Report submitted to the {institution}, {address}."
+    
+    )
+  ) |> 
+  make_block()
+
+```

@@ -3,4 +3,6 @@
 .RData
 .Ruserdata
 _misc/
+.quarto/
 _credentials.RData
+/.quarto/

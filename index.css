@@ -1,0 +1,67 @@
+
+body {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url("images/green_grass_valley.jpg");
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-attachment: fixed;
+  background-size: cover;
+  overflow-y: hidden;
+}
+
+#quarto-header nav {
+  background-color: transparent;
+}
+
+.navbar {
+  border-color: transparent;
+}
+
+.navbar-dark .navbar-brand {
+    color: white;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: white;
+}
+
+#title-block-header {
+  
+}
+
+#title-block-header {
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+  margin-top: 1.5rem;
+  width: 80%;
+}
+
+@media screen and (min-width: 481px) {
+  #title-block-header {
+    margin-top: 2rem;
+    width: 65%;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  #title-block-header {
+    margin-top: 3rem;
+    width: 45%;
+  }
+}
+
+#title-block-header a {
+  color: white;
+}
+
+#title-block-header strong {
+  color: white;
+}
+
+#title-block-header.quarto-title-block.default .quarto-title .title {
+    margin-bottom: 1rem;
+}
+
+footer {
+  display: none;
+}

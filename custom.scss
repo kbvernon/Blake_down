@@ -1,0 +1,22 @@
+/*-- scss:defaults --*/
+$kobe:          #8F2400 !default;
+$etonblue:      #8FCB9B !default;
+$celadonblue:   #3A7CA5 !default;
+$ochre:         #C4761C !default;
+$midnight:      #6E3371 !default;
+
+$primary:       $kobe !default;
+$success:       $etonblue !default;
+$info:          $celadonblue !default;
+$warning:       $ochre !default;
+$danger:        $midnight !default;
+
+/*-- scss:rules --*/
+strong, b, a {
+  color: $primary;  
+}
+
+.sidebar nav[role=doc-toc] ul>li>a.active {
+    border-left: 1px solid $primary;
+    color: $primary !important;
+}

@@ -1,0 +1,60 @@
+project:
+  type: website
+
+website:
+  title: "Kenneth Blake Vernon"
+  description: "My personal (professional, maybe?) website."
+  site-url: "https://www.kbvernon.io"
+  search: false
+  
+  favicon: "/images/favicon.png"
+  twitter-card:
+    image: "/images/green_grass_valley-meta.jpg"
+  open-graph:
+    image: "/images/green_grass_valley-meta.jpg"
+  
+  navbar:
+    title: "KBV"
+    left:
+      - text: "About"
+        href: about.qmd
+      - text: "Publications"
+        href: publications.qmd
+      - text: "Presentations"
+        href: presentations.qmd
+    right:
+      - icon: envelope
+        href: mailto:Kenneth.Vernon@colorado.edu
+      - icon: github
+        href: https://github.com/kbvernon/
+      - text: "{{< ai orcid size=lg >}}"
+        href: https://orcid.org/0000-0003-0098-5092
+      - text: "{{< ai google-scholar size=lg >}}"
+        href: https://scholar.google.com/citations?user=2PE4za4AAAAJ&hl=en
+      - text: "{{< ai cv size=lg >}}"
+        href: blake_vitae.pdf
+
+  page-footer:
+    center: |
+      &copy; 2022 Kenneth B. Vernon. Powered by [Quarto](https://quarto.org/).\
+      The source code for this site can be found at its <a href="https://github.com/kbvernon/Blake_down">Github repository</a>.
+
+format:
+  html:
+    theme: 
+      - simplex
+      - custom.scss
+    css: style.css
+    mainfont: sans-serif
+    fontcolor: "#151314"
+    linkcolor: "#BF211E"
+    smooth-scroll: true
+    page-layout: full
+
+editor: source
+
+execute: 
+  echo: false
+  error: false
+  warning: false
+  output: asis

@@ -1,0 +1,37 @@
+---
+format:
+  html:
+    toc: false
+    page-layout: article
+---
+
+```{r}
+
+library(dplyr)
+library(glue)
+library(here)
+
+load(here("_credentials.RData"))
+source(here("_bibliography.R"))
+source(here("_blocks.R"))
+
+```
+
+```{r}
+
+bibliography(zotero, collection, "Presentation") |> 
+  rowwise() |> 
+  mutate(
+    buttons = sew_buttons(button(url, "slides"), button(note, "github"))
+  ) |> 
+  ungroup() |> 
+  mutate(
+    item = glue::glue(
+      
+      "{author} ({year}). **{title}**. *{type} at the {shorttitle}, {address}*.<br>{buttons}"
+    
+    )
+  ) |> 
+  make_block()
+
+```

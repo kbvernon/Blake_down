@@ -1,9 +1,4 @@
 
-/* want to hide header but include it in the toc */
-.hide-header h2 {
-  display: none;
-}
-
 /* 
 table stuff 
 all tables are two column
@@ -94,4 +89,10 @@ This makes it easier to handle page breaks and CSS styling.
 
 .buttons {
   margin-top: 0.5rem;
+}
+
+/* this is for orienting icons horizontally in navbar dropdown */
+#navbarCollapse ul:nth-child(2) {
+  flex-direction: row;
+  -webkit-flex-direction: row;
 }

@@ -4,6 +4,7 @@ $etonblue:      #8FCB9B !default;
 $celadonblue:   #3A7CA5 !default;
 $ochre:         #C4761C !default;
 $midnight:      #6E3371 !default;
+$sealbrown:     #661A00 !default;
 
 $primary:       $kobe !default;
 $success:       $etonblue !default;
@@ -14,6 +15,11 @@ $danger:        $midnight !default;
 /*-- scss:rules --*/
 strong, b, a {
   color: $primary;  
+}
+
+a:not(.navbar-brand, .nav-link, .btn):hover, 
+a:not(.navbar-brand, .nav-link, .btn):hover>* {
+  color: $sealbrown;
 }
 
 .sidebar nav[role=doc-toc] ul>li>a.active {

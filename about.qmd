@@ -1,8 +1,14 @@
 ---
+image: images/profile.png
+about: 
+  id: about-heading
+  template: trestles
+  image-width: 316px
 format:
   html:
-    toc: true
+    toc: false
     page-layout: article
+css: about.css
 ---
 
 ```{r}
@@ -16,39 +22,32 @@ load(here("_credentials.RData"))
 
 ```
 
-## {{< fa user-circle >}} Who am I? {.hide-header}
+:::{#about-heading}
 
-::: grid
-::: {.g-col-12 .g-col-md-6}
-![](images/profile.png){fig-align="left" width="100%"}
-:::
+### Who am I? 🤔
 
-::: {.g-col-12 .g-col-md-6}
-**Who am I?** 🤔
-
-Well, I'm...
-
-a **BEHAVIORAL ECOLOGIST** studying the social and environmental drivers of human behavior; an **ARCHAEOLOGIST** using past human behavior to test hypotheses; a **DATA SCIENTIST** trying to make archaeological research more reproducible; an **EDUCATOR** working to make archaeological science more accessible; and a **NERD** hoping to make life just a little more weird. I'll take all the Middle Earth, Marvel, Star Trek, Star Wars, and Stargate I can get. That, and DnD. I'm even a critter.\
+Well, I'm a **BEHAVIORAL ECOLOGIST** studying the social and environmental drivers of human behavior; an **ARCHAEOLOGIST** using past human behavior to test hypotheses; a **DATA SCIENTIST** trying to make archaeological research more reproducible; an **EDUCATOR** working to make archaeological science more accessible; and a **NERD** hoping to make life just a little more weird. I'll take all the Middle Earth, Marvel, Star Trek, Star Wars, and Stargate I can get. That, and DnD. I'm even a critter.\
 
 :::{.small .text-muted .mt-4}
 _Oh! If you came looking for my curriculum vitae, just click the [**{{< ai cv size=lg >}}**](lake_vitae.pdf) button in the navbar._
 :::
-:::
+
 :::
 
 ## {{< fa address-card >}} Contact Information
 
-::: grid
-::: {.g-col-12 .g-col-md-8 }
+:::{.grid style="row-gap: 1em;"}
+:::{.g-col-12 .g-col-md-8}
+<p class="mb-0">
 Center for Collaborative Synthesis in Archaeology\
 Institute of Behavioral Science\
 University of Colorado, Boulder\
 1440 15th Street\
 Boulder, CO 80302\
 (303) 492-8147
+</p>
 :::
-
-::: {.g-col-12 .g-col-md-4 .me-sm-auto .ms-md-auto .me-md-0 .ms-lg-auto .me-lg-0}
+:::{.g-col-12 .g-col-md-4 .ms-md-auto}
 [CU Boulder Page](https://ibs.colorado.edu/people/kenneth-blake-vernon/){.btn .btn-outline-primary target="_blank"}
 :::
 :::
@@ -60,17 +59,12 @@ Boulder, CO 80302\
 read_sheet(google_page_id, sheet = "appointments") |>
   mutate(
     end = ifelse(is.na(end), "present", end),
-    x = glue("**{title}**<br>{organization}"),
-    y = glue("{start}&#8209;{end}")
+    x = glue("<li class='mb-3'>**{title}** | {start}&#8209;{end}<br>{organization}</li>")
   ) |> 
   arrange(desc(start)) |> 
-  select(x, y) |> 
-  knitr::kable(
-    format = "markdown",
-    col.names = NULL,
-    align = c('l', 'r')
-  )
-
+  pull(x) |> 
+  (\(x) cat("<ul class='list-unstyled'>", x, "</ul>", sep = "\n"))()
+  
 ```
 
 ## {{< fa graduation-cap >}} Education
@@ -79,15 +73,11 @@ read_sheet(google_page_id, sheet = "appointments") |>
 
 read_sheet(google_page_id, sheet = "education") |> 
   mutate(
-    x = glue::glue("**{university}**<br>{degree} in {major}"), 
-    y = glue::glue("{location}<br>{end}")
+    x = glue::glue("<li class='mb-3'>**{university}** | {location}<br>{degree} in {major}, {end}</li>"), 
   ) |> 
-  select(x, y) |> 
-  knitr::kable(
-    format = "markdown",
-    col.names = NULL,
-    align = c('l', 'r')
-  )
+  arrange(desc(start)) |> 
+  pull(x) |> 
+  (\(x) cat("<ul class='list-unstyled'>", x, "</ul>", sep = "\n"))()
 
 ```
 
@@ -98,14 +88,9 @@ read_sheet(google_page_id, sheet = "education") |>
 read_sheet(google_page_id, sheet = "affiliations") %>% 
   mutate(
     end = ifelse(is.na(end), "present", end),
-    x = glue::glue("<a href='{url}'>{organization}</a>"), 
-    y = glue::glue("{start}&#8209;{end}")
+    x = glue::glue("<li class='mb-3'><a href='{url}' target='_blank'>{organization}</a> | {start}&#8209;{end}</li>")
   ) %>% 
-  select(x, y) %>% 
-  knitr::kable(
-    format = "markdown",
-    col.names = NULL,
-    align = c('l', 'r')
-  )
+  pull(x) |> 
+  (\(x) cat("<ul class='list-unstyled'>", x, "</ul>", sep = "\n"))()
 
 ```

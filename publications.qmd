@@ -19,6 +19,8 @@ bib <- bibliography(zotero, collection, c("Article", "Review", "Report"))
 
 ```
 
+![](images/publication-banner.png){width="100%"}
+
 ## Peer-reviewed journal articles
 
 ```{r}

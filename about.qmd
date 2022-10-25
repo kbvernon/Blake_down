@@ -29,7 +29,7 @@ load(here("_credentials.RData"))
 Well, I'm a **BEHAVIORAL ECOLOGIST** studying the social and environmental drivers of human behavior; an **ARCHAEOLOGIST** using past human behavior to test hypotheses; a **DATA SCIENTIST** trying to make archaeological research more reproducible; an **EDUCATOR** working to make archaeological science more accessible; and a **NERD** hoping to make life just a little more weird. I'll take all the Middle Earth, Marvel, Star Trek, Star Wars, and Stargate I can get. That, and DnD. I'm even a critter.\
 
 :::{.small .text-muted .mt-4}
-_Oh! If you came looking for my curriculum vitae, just click the [**{{< ai cv size=lg >}}**](lake_vitae.pdf) button in the navbar._
+_Oh! If you came looking for my curriculum vitae, just click the [**{{< ai cv size=lg >}}**](blake_vitae.pdf) button in the navbar._
 :::
 
 :::

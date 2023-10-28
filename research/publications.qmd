@@ -1,0 +1,85 @@
+---
+format:
+  html:
+    toc: true
+    page-layout: article
+---
+
+```{r}
+
+library(dplyr)
+library(glue)
+library(here)
+
+load(here("_credentials.RData"))
+source(here("_bibliography.R"))
+source(here("_blocks.R"))
+
+bib <- bibliography(zotero, collection, c("Article", "Review", "Report"))
+
+```
+
+![](../images/publication-banner.png){width="100%" style="margin-bottom:2em;" fig-alt="Stick figures try to lift a very large book." title="Stick figures try to lift a very large book."}
+
+## Peer-reviewed journal articles
+
+```{r}
+
+bib |> 
+  filter(groups == "Article") |> 
+  rowwise() |> 
+  mutate(buttons = sew_buttons(button(url, "article"))) |> 
+  ungroup() |> 
+  mutate(
+    across(c(volume, number, pages, doi), \(x){ ifelse(is.na(x), "", x) }),
+    item = ifelse(
+      year == 3000, 
+      glue::glue("{author} (Under Review). **{title}**. _{journal}_."),
+      glue::glue(
+        
+        "{author} ({year}). **{title}**. _{journal}_ {volume} ({number}): {pages}. DOI: {doi}<br>{buttons}"
+        
+      )),
+    year = ifelse(year == 3000, format(Sys.Date(), "%Y"), year)
+  ) |>  
+  arrange(desc(author)) |>  # push my first author pub to the top
+  make_block()
+
+```
+
+## Book reviews
+
+```{r}
+
+bib |> 
+  filter(groups == "Review") |> 
+  rowwise() |> 
+  mutate(buttons = sew_buttons(button(url, "article"))) |> 
+  ungroup() |> 
+  mutate(
+    item = glue::glue(
+      
+      "{author} ({year}). **{title}**. _{journal}_ {volume} ({number}): {pages}. DOI: {doi}<br>{buttons}"
+    
+    )
+  ) |> 
+  make_block()
+
+```
+
+## Technical reports
+
+```{r}
+
+bib |> 
+  filter(groups == "Report") |> 
+  mutate(
+    item = glue::glue(
+      
+      "{author} ({year}). **{title}**. Report submitted to the {institution}. {note}"
+    
+    )
+  ) |> 
+  make_block()
+
+```

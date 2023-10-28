@@ -1,0 +1,33 @@
+---
+format:
+  html:
+    toc: false
+    page-layout: article
+---
+
+```{r}
+
+library(dplyr)
+library(glue)
+library(googlesheets4)
+library(here)
+
+load(here("_credentials.RData"))
+
+```
+
+## Classes
+
+```{r}
+#| eval: false
+
+read_sheet(google_page_id, sheet = "classes") |>
+  mutate(
+    end = ifelse(is.na(end), "present", end),
+    x = glue("<li class='mb-3'>**{title}** | {start}&#8209;{end}<br>{organization}</li>")
+  ) |> 
+  arrange(desc(start)) |> 
+  pull(x) |> 
+  (\(x) cat("<ul class='list-unstyled'>", x, "</ul>", sep = "\n"))()
+  
+```

@@ -1,11 +1,8 @@
 ---
 title: "Hi! I'm Blake."
 description: |
-  I'm a [**behavioral ecologist**]{.text-decoration-underline}, [**archaeologist**]{.text-decoration-underline}, [**data scientist**]{.text-decoration-underline}, and [**educator**]{.text-decoration-underline}. You can learn more about my research here on my personal (professional, maybe?) website.\
+  I'm a **behavioral ecologist**, **archaeologist**, **data scientist**, and **educator**. You can learn more about my research here on my personal (professional, maybe?) website.\
   \
-  [About me &rarr;](about.qmd)
-format: 
-  html:
-    page-layout: custom
+  [More about me &rarr;](about.qmd)
 css: index.css
 ---

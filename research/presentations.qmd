@@ -17,6 +17,10 @@ source(here("_blocks.R"))
 
 ```
 
+![](../images/presentations-banner.png){width="100%" style="margin-bottom:2em;" fig-alt="Stick figures putting together a scatter plot on an old tv." title="Stick figures putting together a scatter plot on an old tv."}
+
+## Presentations
+
 ```{r}
 
 bibliography(zotero, collection, "Presentation") |> 

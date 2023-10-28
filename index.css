@@ -1,6 +1,7 @@
 
 body {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url("images/green_grass_valley.jpg");
+  background: black;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.5)), url("images/green_grass_valley.jpg");
   background-repeat: no-repeat;
   background-position: center top;
   background-attachment: fixed;
@@ -25,41 +26,36 @@ body {
 }
 
 #title-block-header {
-  
-}
-
-#title-block-header {
   margin-left: auto;
   margin-right: auto;
   color: white;
-  margin-top: 1.5rem;
   width: 80%;
 }
 
 @media screen and (min-width: 481px) {
   #title-block-header {
-    margin-top: 2rem;
+    margin-top: 50px;
     width: 65%;
   }
 }
 
 @media screen and (min-width: 769px) {
   #title-block-header {
-    margin-top: 3rem;
+    margin-top: 90px;
     width: 45%;
   }
 }
 
-#title-block-header a {
+#title-block-header a, h1, strong {
   color: white;
 }
 
 #title-block-header strong {
-  color: white;
+  text-decoration: underline;
 }
 
 #title-block-header.quarto-title-block.default .quarto-title .title {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 footer {

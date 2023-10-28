@@ -1,0 +1,14 @@
+---
+format:
+  html:
+    toc: false
+    page-layout: article
+---
+
+:::{.small .text-muted}
+LAST UPDATED  
+`r Sys.Date()` 
+:::
+
+## Equality, Diversity, and Inclusion Statement
+

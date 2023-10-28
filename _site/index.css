@@ -17,12 +17,20 @@ body {
   border-color: transparent;
 }
 
-.navbar-dark .navbar-brand {
-    color: white;
+.navbar .navbar-brand {
+  color: white;
 }
 
-.navbar-dark .navbar-nav .nav-link {
-    color: white;
+.navbar .navbar-brand:hover {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.navbar .navbar-nav .nav-link {
+  color: white;
+}
+
+.navbar .navbar-nav .nav-link:hover {
+  color: rgba(255, 255, 255, 0.6);
 }
 
 #title-block-header {
@@ -48,6 +56,10 @@ body {
 
 #title-block-header a, h1, strong {
   color: white;
+}
+
+#title-block-header a:hover {
+  color: rgba(255, 255, 255, 0.6);
 }
 
 #title-block-header strong {

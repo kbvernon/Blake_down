@@ -47,8 +47,17 @@ a:not(.navbar-brand, .nav-link, .btn):hover>* {
 }
 
 .sidebar nav[role=doc-toc] ul>li>a.active {
-    border-left: 1px solid $primary;
-    color: $primary !important;
+  border-left: 1px solid $primary;
+  color: $primary !important;
+}
+
+.dropdown-menu {
+  --bs-dropdown-link-hover-color: #fff;
+  --bs-dropdown-link-hover-bg: rgba(85, 85, 85, 0.75);
+}
+
+.dropdown-menu .dropdown-item:hover .dropdown-text {
+  color: white;
 }
 
 /* about page */

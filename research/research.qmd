@@ -1,7 +1,8 @@
 ---
 format:
   html:
-    toc: false
+    toc: true
+    toc-depth: 3
     page-layout: article
 ---
 
@@ -17,20 +18,20 @@ LAST UPDATED
 `r today`
 
 DISCLAIMER  
-This statement - elevator pitch, really - describes my primary researcher interests. Here it comes in two versions. One you can find under the heading "Version written for academics." This version is an example of a type of statement typically written by desperate intellectuals looking for a job. If you're on a hiring committee, this version is definitely for you.  
+This statement - elevator pitch, really - describes my primary researcher interests. Here it comes in two versions. One you can find under the heading "For academics." This version is an example of a type of statement typically written by desperate intellectuals looking for a job. If you're on a hiring committee, this version is definitely for you.  
 
-If you're not on a hiring committee, though, and you're not an academic, then wow! It's cool that you're here! I've written another version of this research statement just for you! You can find it under the heading "Version written for ordinary people." The tedious, puffed-up jargon has for the most part been removed, so it reads more like a conversation about an idea I happen to find very interesting.  
+If you're not on a hiring committee, though, and you're not an academic, then wow! It's cool that you're here! I've written another version of this research statement just for you! You can find it under the heading "For ordinary people." The tedious, puffed-up jargon has for the most part been removed, so it reads more like a conversation about an idea I happen to find very interesting.  
 :::
 
-## RESEARCH STATEMENT 
+## RESEARCH STATEMENT
 
-### [Version written for ordinary people]{.kobe}  
+### [For ordinary people]{.kobe}  
 
-Demographers at the World Bank point to 2007 as the year [the number of humans living in cities first eclipsed the global rural population](https://ourworldindata.org/grapher/urban-and-rural-population?time=1960..latest). 2007! Human beings have been on this earth for nearly 300,000 years (longer by some measures), and we spent almost all of that time in small groups tooling around in Africa. In fact, it was only some 60,000 years ago that a substantial number of people dared to venture out from our ancestral homeland. Then, for the next 50,000 years, our kind [spread across the globe](https://www.pnas.org/doi/full/10.1073/pnas.1209494109). After that came small villages, towns, cities, states, empires, and the vast metropolises of the modern world. 
+Demographers point to 2007 as the year [the number of humans living in cities first eclipsed the global rural population](https://ourworldindata.org/grapher/urban-and-rural-population?time=1960..latest). 2007! Human beings have been on this earth for nearly 300,000 years (longer by some measures), and we spent almost all of that time in small groups tooling around in Africa. In fact, it was only some 60,000 years ago that a substantial number of our kind dared to venture out from our ancestral homeland. For the next 50,000 years, we [spread in fits and starts across the globe](https://www.pnas.org/doi/full/10.1073/pnas.1209494109). After that came small villages, towns, cities, states, empires, and the vast metropolises of the modern world. 
 
-It wasn't fate that led us to concentrate in the places we did, or concentrate at all, but we did! And I want to know why! What led to the geographic differences we see today in the **density** of human populations?
+It wasn't fate that led us to concentrate in the places we did, or concentrate at all, but we did! And I want to know why! What led to the geographic differences in the **density** of human populations that we see today?
 
-An interesting quirk about density is that it can affect the likelihood that more people move to a place, meaning density can sometimes be its own cause! To see how this works, imagine you've decided to move and you've narrowed your choice down to just two places. These places have more or less identical environments (same climate, same agricultural productivity, same number of jobs, same cost of living, etc.) and identical population densities (so, the same number of people per unit area). Now imagine one of these places experiences a spontaneous increase in its total population size. All else being equal, this change in population density should lead to more jobs to meet increasing demand for goods and services, reduced transport costs as people live closer together, and increased investments in infrastructure and other public goods required to support those interactions. At the same time, it'll lead to more competition for housing and higher rents, more transport congestion, more risk of disease spreading, and in general more strain on quality of life.  
+An interesting quirk about density is that it can affect the likelihood that more people move to a place, meaning density can sometimes be its own cause! To see how this works, imagine you've decided to move and you've narrowed your choice down to just two places. These places have more or less identical environments (same climate, same agricultural productivity, same number of jobs, same cost of living, etc.) and identical population densities (so, the same number of people per unit area). Now imagine one of these places experiences a spontaneous increase in its total population size. All else being equal, this change in population density should lead to more jobs to meet the increasing demand for goods and services, reduced transport costs as people live closer together, and increased investments in infrastructure and other public goods required to support those interactions. At the same time, it'll lead to more competition for housing and higher rents, more transport congestion, more risk of disease spreading, and in general more strain on quality of life.  
 
 These outcomes are sometimes referred to as density-dependent effects. When the positive effects outweigh the negative effects, you get conditions that encourage people to aggregate or cluster (to move to the more densely populated area). When the negative effects outweight the positive effects, you get conditions that encourage people to spread out or disperse (to move to the less densely populated area). It's hard to look at our spread across the globe and not see these effects at work, with negative effects playing an outsized role up until about 12,000 years ago, when we started to aggregate into towns and villages. 
 
@@ -38,11 +39,11 @@ So, what do I personally find so interesting about all this? For starters, I fin
 
 Finally, as an archaeologist, I appreciate that these questions give what are often perceived to be extremely niche academic interests a little more relevance to the modern world. Just look at the general upheaval of the last fifteen years, from the Great Recession to the Covid pandemic: the rush to flee dense urban cores, the rise of remote work, abandoned office space, ever increasing rents, the commodification of single-family homes, the homeless crisis, the growth of the service sector, and the collapse of rural labor markets, to name just a few. These are all in their own way the effects of density, acting as forces of aggregation and dispersal. They may have looked differently in the past, but people had to navigate them all the same.  
 
-### [Version written for academics]{.kobe} {style="margin-top: 2em;"}  
+### [For academics]{.kobe} {style="margin-top: 1em;"}  
 
 My research investigates trade-offs between aggregation and dispersal in human populations using an integrated set of conceptual tools from behavioral and population ecology, urban geography, and economics, coupled with multiple lines of evidence, including reconstructions of climate and demography, as well as estimates of diet, health, violence, and inequality. The common thread throughout is the concept of *density*, specifically *density-dependent effects*, which may promote aggregation or dispersal. As these socio-ecological dynamics are also inherently spatial processes, they raise their own unique set of challenges (notably, autocorrelation) that in turn require their own unique set of solutions (namely, spatial statistics), so I invest considerable time and energy into advancing spatial data science in anthropology, ecology, and other allied fields. Below, I provide some examples of these efforts, along with some suggestions of how I intend to build on them into the future.  
 
-### CURRENT WORK
+#### CURRENT WORK
 
 **Subsistence-settlement dynamics.** As a baseline for exploring these issues, my collaborators and I have focused on subsistence strategies, how they can vary in their efficiency across habitats and how that variation can lead to differences in their spatial distribution. Among other things, we've modeled alternative foraging strategies as a tool for evaluating the Numic expansion into the North American Great Basin (Magargal *et al* 2017), compared prehistoric farming and foraging settlement patterns within the Grand Staircase-Escalante National Monument (GSENM; Vernon *et al* 2022), and studied settlement decisions as farming adaptations to climate change (Vernon *et al* under review).  
 
@@ -56,7 +57,7 @@ At CU Boulder's [Center for Collaborative Synthesis in Archaeology](https://ibsw
 
 One of my primary contributions to the NSF project at CCSA is the development of a novel community detection or clustering algorithm used to define the spatial extent of dispersed maize farming communities (Vernon and Ortman, under review). The algorithm is applied to data from the Village Ecodynamics (VEP) and Southwest Social Networks (SWSN) projects and provides a useful way of exploring changes in density through time and across space.  
 
-### FUTURE GOALS
+#### FUTURE GOALS
 
 **Aggregation and the Collective Action Problem.** One lingering question in my research concerns how aggregations can be sustained without assuming away the collective action problem. Building on work by one of my collaborators (Wilson et al 2023) examining the evolution of hereditary social inequality, my research investigates how the internal structure of a population - involving multiple levels of competition - might help address this problem by supporting specialization and the division of labor. 
 

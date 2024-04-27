@@ -6,3 +6,4 @@ _misc/
 .quarto/
 _credentials.RData
 /.quarto/
+*.Rproj

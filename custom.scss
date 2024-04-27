@@ -41,6 +41,12 @@ strong, b, a {
   color: $primary;  
 }
 
+.navbar {
+  background-color: #fff;
+  color: rgba(0, 0, 0, .6);
+  border-color: #dedede;
+}
+
 a:not(.navbar-brand, .nav-link, .btn):hover, 
 a:not(.navbar-brand, .nav-link, .btn):hover>* {
   color: $sealbrown;

@@ -7,15 +7,19 @@ format:
 
 ```{r}
 
-library(dplyr)
-library(glue)
-library(here)
+box::use(
+  dplyr[filter],
+  here[here],
+  ../helpers[bibliography, format_entries, make_blocks]
+)
 
-load(here("_credentials.RData"))
-source(here("_bibliography.R"))
-source(here("_blocks.R"))
+here("_credentials.RData") |> load()
 
-bib <- bibliography(zotero, collection, c("Article", "Review", "Report"))
+bib <- bibliography(
+  collection, 
+  zotero, 
+  selection = c("Article", "Review", "Report", "Manuscript")
+)
 
 ```
 
@@ -26,44 +30,32 @@ bib <- bibliography(zotero, collection, c("Article", "Review", "Report"))
 ```{r}
 
 bib |> 
-  filter(groups == "Article") |> 
-  rowwise() |> 
-  mutate(buttons = sew_buttons(button(url, "article"))) |> 
-  ungroup() |> 
-  mutate(
-    across(c(volume, number, pages, doi), \(x){ ifelse(is.na(x), "", x) }),
-    item = ifelse(
-      year == 3000, 
-      glue::glue("{author} (Under Review). **{title}**. _{journal}_."),
-      glue::glue(
-        
-        "{author} ({year}). **{title}**. _{journal}_ {volume} ({number}): {pages}. DOI: {doi}<br>{buttons}"
-        
-      )),
-    year = ifelse(year == 3000, format(Sys.Date(), "%Y"), year)
-  ) |>  
-  arrange(desc(author)) |>  # push my first author pub to the top
-  make_block()
+  filter(collection == "Article") |> 
+  format_entries() |> 
+  make_blocks()
 
 ```
+
+## Manuscripts
+
+```{r}
+
+bib |> 
+  filter(collection == "Manuscript") |> 
+  format_entries() |> 
+  make_blocks()
+
+```
+
 
 ## Book reviews
 
 ```{r}
 
 bib |> 
-  filter(groups == "Review") |> 
-  rowwise() |> 
-  mutate(buttons = sew_buttons(button(url, "article"))) |> 
-  ungroup() |> 
-  mutate(
-    item = glue::glue(
-      
-      "{author} ({year}). **{title}**. _{journal}_ {volume} ({number}): {pages}. DOI: {doi}<br>{buttons}"
-    
-    )
-  ) |> 
-  make_block()
+  filter(collection == "Review") |> 
+  format_entries() |> 
+  make_blocks()
 
 ```
 
@@ -72,14 +64,8 @@ bib |>
 ```{r}
 
 bib |> 
-  filter(groups == "Report") |> 
-  mutate(
-    item = glue::glue(
-      
-      "{author} ({year}). **{title}**. Report submitted to the {institution}. {note}"
-    
-    )
-  ) |> 
-  make_block()
+  filter(collection == "Report") |> 
+  format_entries() |> 
+  make_blocks()
 
 ```

@@ -7,13 +7,20 @@ format:
 
 ```{r}
 
-library(dplyr)
-library(glue)
-library(here)
+box::use(
+  dplyr[filter],
+  here[here],
+  stringr[str_replace],
+  ../helpers[bibliography, format_entries, make_blocks]
+)
 
-load(here("_credentials.RData"))
-source(here("_bibliography.R"))
-source(here("_blocks.R"))
+here("_credentials.RData") |> load()
+
+bib <- bibliography(
+  collection, 
+  zotero, 
+  selection = c("Presentation")
+)
 
 ```
 
@@ -23,19 +30,9 @@ source(here("_blocks.R"))
 
 ```{r}
 
-bibliography(zotero, collection, "Presentation") |> 
-  rowwise() |> 
-  mutate(
-    buttons = sew_buttons(button(url, "slides"), button(note, "github"))
-  ) |> 
-  ungroup() |> 
-  mutate(
-    item = glue::glue(
-      
-      "{author} ({year}). **{title}**. *{type} at the {shorttitle}, {address}*.<br>{buttons}"
-    
-    )
-  ) |> 
-  make_block()
+bib |> 
+  filter(collection == "Presentation") |> 
+  format_entries() |> 
+  make_blocks()
 
 ```

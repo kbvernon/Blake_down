@@ -12,12 +12,15 @@ format:
 
 ```{r}
 
-library(dplyr)
-library(glue)
-library(googlesheets4)
-library(here)
+box::use(
+  dplyr[...],
+  glue[...],
+  googlesheets4[...],
+  here[here],
+  ./helpers[bibliography, format_entries, make_blocks]
+)
 
-load(here("_credentials.RData"))
+here("_credentials.RData") |> load()
 
 ```
 

@@ -41,6 +41,10 @@ strong, b, a {
   color: $primary;  
 }
 
+.disclaimer a {
+  color: var(--bs-secondary-color) !important;
+}
+
 .navbar {
   background-color: #fff;
   color: rgba(0, 0, 0, .6);

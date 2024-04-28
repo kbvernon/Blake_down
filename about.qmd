@@ -24,33 +24,42 @@ here("_credentials.RData") |> load()
 
 ```
 
-::::::{#about-heading}
-
+::: {#about-heading}
 ### Who am I? 🤔
 
-Well, I'm a **BEHAVIORAL ECOLOGIST** studying the social and environmental drivers of human behavior; an **ARCHAEOLOGIST** using past human behavior to test hypotheses; a **DATA SCIENTIST** trying to make archaeological research more reproducible; an **EDUCATOR** working to make archaeological science more accessible; and a **NERD** hoping to make life just a little more weird. I'll take all the Middle Earth, Marvel, Star Trek, Star Wars, and Stargate I can get. That, and DnD. I'm even a critter.\
+Well, I'm a **BEHAVIORAL ECOLOGIST** studying the social and environmental
+drivers of human behavior; an **ARCHAEOLOGIST** using past human behavior to
+test hypotheses; a **DATA SCIENTIST** trying to make archaeological research
+more reproducible; an **EDUCATOR** working to make archaeological science more
+accessible; and a **NERD** hoping to make life just a little more weird. I'll
+take all the Middle Earth, Marvel, Star Trek, Star Wars, and Stargate I can get.
+That, and DnD. I'm even a critter.\
 
-:::{.small .text-muted}
-_Oh! If you came looking for my curriculum vitae, just click the [**{{< ai cv size=lg >}}**](blake_vitae.pdf) button in the navbar._
+::: {.small .text-muted}
+*Oh! If you came looking for my curriculum vitae, just click the*
+[{{< ai cv size=lg >}}](blake_vitae.pdf) *button in the navbar.*
 :::
-
-::::::
+:::
 
 ## {{< fa address-card >}} Contact Information
 
-:::{.grid style="row-gap: 1em;"}
-:::{.g-col-12 .g-col-md-8}
+::: {.grid style="row-gap: 1em;"}
+::: {.g-col-12 .g-col-md-8}
 <p class="mb-0">
+
 Center for Collaborative Synthesis in Archaeology\
 Institute of Behavioral Science\
 University of Colorado, Boulder\
 1440 15th Street\
 Boulder, CO 80302\
 (303) 492-8147
+
 </p>
 :::
-:::{.g-col-12 .g-col-md-4 .ms-md-auto}
-[CU Boulder Page](https://ibs.colorado.edu/people/kenneth-blake-vernon/){.btn .btn-outline-primary target="_blank"}
+
+::: {.g-col-12 .g-col-md-4 .ms-md-auto}
+[CU Boulder Page](https://ibs.colorado.edu/people/kenneth-blake-vernon/){.btn
+.btn-outline-primary target="_blank"}
 :::
 :::
 

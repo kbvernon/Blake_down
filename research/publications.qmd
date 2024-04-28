@@ -23,7 +23,9 @@ bib <- bibliography(
 
 ```
 
-![](../images/publication-banner.png){width="100%" style="margin-bottom:2em;" fig-alt="Stick figures try to lift a very large book." title="Stick figures try to lift a very large book."}
+![](../images/publication-banner.png){width="100%" style="margin-bottom:2em;"
+fig-alt="Stick figures try to lift a very large book."
+title="Stick figures try to lift a very large book."}
 
 ## Peer-reviewed journal articles
 
@@ -46,7 +48,6 @@ bib |>
   make_blocks()
 
 ```
-
 
 ## Book reviews
 

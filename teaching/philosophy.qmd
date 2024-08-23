@@ -13,24 +13,23 @@ today <- Sys.Date()
 ```
 
 ::: {.disclaimer .small .text-muted}
-LAST UPDATED  
+LAST UPDATED\
 `r today`
 
-DISCLAIMER  
-My teaching philosophy is inspired by the American style of [pragmatism](https://en.wikipedia.org/wiki/Pragmatism) 
-I learned from my old friend and mentor, Norbert Schedler, a former Lutheran 
-minister who stumbled upon the heretical writings of intellectuals like 
-Nietzsche and Darwin and basically never looked back. He got his PhD at 
-Princeton, taught at Purdue and Berkeley, and then decided the academic rat race 
-wasn't for him, so he took a position at a small teaching college in the middle 
-of nowhere, Arkansas, where he could focus on his family and his teaching. He 
-would often say that our primary duty as educators and intellectuals and even as 
-citizens is to "keep the conversation going!" You can think of the following 
-statement as trying to articulate how I keep the conversation going in my own 
-teaching and mentoring, and for that matter, in my research, too. 
+DISCLAIMER\
+My teaching philosophy is inspired by the American style of
+[pragmatism](https://en.wikipedia.org/wiki/Pragmatism) I learned from my old
+friend and mentor, Norbert Schedler, a former Lutheran minister who stumbled
+upon the heretical writings of intellectuals like Nietzsche and Darwin and
+basically never looked back. He got his PhD at Princeton, taught at Purdue and
+Berkeley, and then decided the academic rat race wasn't for him, so he took a
+position at a small teaching college in the middle of nowhere, Arkansas, where
+he could focus on his family and his teaching. He would often say that our
+primary duty as educators and intellectuals and even as citizens is to "keep the
+conversation going!" You can think of the following statement as trying to
+articulate how I keep the conversation going in my own teaching and mentoring,
+and for that matter, in my research, too.
 :::
-
-**THIS IS STILL A WORK IN PROGRESS!**
 
 ## Teaching Statement
 
@@ -53,19 +52,21 @@ mean, it's not like signposts reading "Justice, this way" are lying about
 pointing the way. Still, the goals of education would seem to recommend a
 certain pedagogy or prescription for teaching that I would put like this:
 
-> **Try to meet students where they are, to speak their
-> language**.[^1]
+> **Try to meet students where they are, to speak their language**.[^1]
 
 [^1]: Framing it in this way is actually something I picked up from one of Neil
     deGrasse Tyson's Reddit AMAs, specifically [an answer he gave to a high
     school
     teacher](https://www.reddit.com/r/IAmA/comments/mateq/comment/c2zgn1d/?utm_source=share&utm_medium=web2x&context=3)
     looking for guidance on how to impart to students the thrill and joy of
-    actually *doing* science. The relevant part of his answer is this: "a goal
-    as teacher, perhaps ought to include knowing as much as you possibly can
-    about pop culture and referencing it at every turn as you teach the
-    syllabus." It may seem superficial, but it's actually quite reasonable, as
-    popular culture - for better or worse - provides a set of shared metaphors,
+    actually *doing* science. The relevant part of his answer is this:
+
+    > a goal as teacher, perhaps ought to include knowing as much as you
+    > possibly can about pop culture and referencing it at every turn as you
+    > teach the syllabus.
+
+    It may seem superficial, but it's actually quite reasonable, as popular
+    culture - for better or worse - provides a set of shared metaphors,
     analogies, narratives, slang terms, jokes, and memes, among other things,
     that people can use to communicate their beliefs and values in a way that
     gives them a reasonable shot at being understood.
@@ -108,20 +109,20 @@ be the goal! Sometimes a basic familiarity will suffice for what they really
 want to learn or do, and that's OK.
 
 **Invite them into the conversation.** This is my preferred way of describing
-what most folks in the academy would call "active learning" as it emphasizes 
-that the learning in this case is participatory, meaning the student does not 
-just learn how to, say, move liquids with a pipette or calibrate a scale, but to 
-engage critically with the scientific process, to step up and make their own 
-moves in the wider conversation of science. As a graduate student at the 
-University of Utah, I had the good fortune to mentor a lot of undergraduate 
-researchers - dozens of them, actually - from all walks of life, mostly through 
-my role as Assistant Director of the Archaeological Center. It's easily one of 
-the most rewarding things I did as a graduate student at the U, and something I 
+what most folks in the academy would call "active learning" as it emphasizes
+that the learning in this case is participatory, meaning the student does not
+just learn how to, say, move liquids with a pipette or calibrate a scale, but to
+engage critically with the scientific process, to step up and make their own
+moves in the wider conversation of science. As a graduate student at the
+University of Utah, I had the good fortune to mentor a lot of undergraduate
+researchers - dozens of them, actually - from all walks of life, mostly through
+my role as Assistant Director of the Archaeological Center. It's easily one of
+the most rewarding things I did as a graduate student at the U, and something I
 look forward to continuing into the future.
 
-**But, also have some perspective.** In the social sciences and humanities, we 
-need to be more cognizant of the possibility that encouraging students to pursue 
-careers in our disciplines might do little more than subject them to a life of 
-penury. The best way we can do that is by teaching "transferable skills." For 
-me, that mostly means teaching them data science skills, specifically 
+**But, also have some perspective.** In the social sciences and humanities, we
+need to be more cognizant of the possibility that encouraging students to pursue
+careers in our disciplines might do little more than subject them to a life of
+penury. The best way we can do that is by teaching "transferable skills." For
+me, that mostly means teaching them data science skills, specifically
 quantitative reasoning or statistics and computer programming.

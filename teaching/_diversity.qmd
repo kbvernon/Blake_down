@@ -10,5 +10,5 @@ LAST UPDATED
 `r Sys.Date()` 
 :::
 
-## Equality, Diversity, and Inclusion Statement
+## Diversity, Equity, and Inclusion Statement
 

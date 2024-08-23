@@ -186,3 +186,12 @@ This makes it easier to handle page breaks and CSS styling.
   flex-direction: row;
   -webkit-flex-direction: row;
 }
+
+section.footnotes {
+  ol li:not(:first-child) {
+    margin-top: 0.8em;
+  }
+  ul li:not(:first-child) {
+    margin-top: 0.8em;
+  }
+}

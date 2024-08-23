@@ -1,8 +1,7 @@
 ---
 format:
   html:
-    toc: true
-    toc-depth: 3
+    toc: false
     page-layout: article
 ---
 
@@ -13,54 +12,145 @@ today <- Sys.Date()
 
 ```
 
-:::{.small .text-muted}
+::: {.small .text-muted}
 LAST UPDATED  
 `r today`
 
 DISCLAIMER  
-This statement - elevator pitch, really - describes my primary research interests. Here it comes in two versions. One you can find under the heading "For academics." This version is an example of a type of statement typically written by desperate intellectuals looking for a job. If you're on a hiring committee, this version is definitely for you.  
-
-If you're not on a hiring committee, though, and you're not an academic, then wow! It's cool that you're here! I've written another version of this research statement just for you! You can find it under the heading "For ordinary people." The tedious, puffed-up jargon has for the most part been removed, so it reads more like a conversation about an idea I happen to find very interesting.  
+This statement - elevator pitch, really - describes my primary research 
+interests. The main ideas are found in the first two paragraphs. The sections on 
+previous research and current and future research are just there to provide 
+evidence of research productivity to hiring committees while I'm on the job 
+market.
 :::
 
 ## RESEARCH STATEMENT
 
-### [For ordinary people]{.kobe}  
+I'm an archaeologist and environmental data scientist whose research focuses on
+understanding the origins and resilience of urban systems – paradigmatically,
+cities – under changing demographic and climatic conditions. This is a hefty
+topic, of course, with a lot of moving parts, so I have recently settled on
+something of a divide-and-conquer strategy, splitting the problem up into the
+following set of smaller and hopefully more manageable questions:
 
-Demographers point to 2007 as the year [the number of humans living in cities first eclipsed the global rural population](https://ourworldindata.org/grapher/urban-and-rural-population?time=1960..latest). 2007! Human beings have been on this earth for nearly 300,000 years (longer by some measures), and we spent almost all of that time in small groups tooling around in Africa. In fact, it was only some 60,000 years ago that a substantial number of our kind dared to venture out from our ancestral homeland. For the next 50,000 years, we [spread in fits and starts across the globe](https://www.pnas.org/doi/full/10.1073/pnas.1209494109). After that came small villages, towns, cities, states, empires, and the vast metropolises of the modern world. 
+1.  **Location:** why do human settlements get established where they do?
+2.  **Size:** why do some human settlements grow larger than others?
+3.  **Longevity:** why do some human settlements last longer than others?
 
-It wasn't fate that led us to concentrate in the places we did, or concentrate at all, but we did! And I want to know why! What led to the geographic differences in the **density** of human populations that we see today?
+These questions target critical aspects of urban socio-economic organization, so
+they also offer an important opportunity to study an increasingly urgent
+dimension of human adaptation to climate change, namely, urban adaptation to
+climate change. A growing body of evidence points to the critical role of urban
+systems for past populations coping with climate crises. Its importance to
+combating current and future climate change has also been recognized by the
+IPCC, which for its [7th Assessment Report
+Cycle](https://www.ipcc.ch/2024/01/19/ipcc-60-ar7-work-programme/), will include
+a special report on climate change and cities.
 
-An interesting quirk about density is that it can affect the likelihood that more people move to a place, meaning density can sometimes be its own cause! To see how this works, imagine two places that have more or less identical environments (same climate, same agricultural productivity, same number of jobs, same cost of living, etc.) and identical population densities (so, the same number of people per unit area). Now imagine one of these places experiences a spontaneous increase in its total population size. All else being equal, this change in population density should lead to more jobs to meet the increasing demand for goods and services, reduced transport costs as people live closer together, and increased investments in infrastructure and other public goods required to support those interactions. At the same time, it'll lead to more competition for housing and higher rents, more transport congestion, more risk of disease spreading, and in general more strain on quality of life.  
+To study urbanism, I draw on an integrated set of conceptual tools from
+behavioral and population ecology, urban geography, and economics, coupled with
+multiple lines of evidence, including reconstructions of climate, demography,
+and archaeological settlement systems, as well as estimates of diet, health,
+violence, and inequality. As these socio-ecological dynamics are also inherently
+spatial processes, they raise their own unique set of challenges (notably,
+autocorrelation) that in turn require their own unique set of solutions (namely,
+spatial statistics), so I invest considerable time and energy into advancing
+spatial and environmental data science in anthropology, ecology, and other
+allied fields. Below, I provide some examples of these efforts, along with some
+suggestions of how I intend to build on them into the future.
 
-These outcomes are sometimes referred to as density-dependent effects. When the positive effects outweigh the negative effects, you get conditions that encourage people to aggregate or cluster (to move to the more densely populated area). When the negative effects outweigh the positive effects, you get conditions that encourage people to spread out or disperse (to move to the less densely populated area). It's hard to look at our spread across the globe and not see these effects at work, with negative effects playing an outsized role up until about 12,000 years ago, when we started to aggregate into towns and villages. 
+### [Previous Research]{.kobe}
 
-So, what do I personally find so interesting about all this? For starters, I find the methodological challenges that these sorts of spatial questions raise really engaging, like a complex game of Sudoku, but one happening on a map, and involving real people. I also appreciate that these processes are not unique to the modern world. They're not even unique to our species! In fact, they happen all over the animal kingdom, from schooling fish to crowding emperor penguins, and we can learn a lot about how we handle those processes by investigating the ways our non-human cousins do. 
+A lot of my previous research has focused on the location problem, which my
+collaborators and I have sought to address by combining inductive Species
+Distribution Models (SDMs) from ecology with the theoretical Ideal Free
+Distribution model from population ecology, with several papers coming out of
+that effort. One compares different regression and machine-learning algorithms
+for fitting SDMs to archaeological point pattern data.[^1] Another uses a
+popular machine-learning SDM known as MaxEnt to compare settlement strategies
+among prehistoric foragers and farmers in the Grand Staircase-Escalante National
+Monument.[^2] And a third uses a simple Poisson SDM to evaluate the origins of
+agriculture in western Utah.[^3]
 
-Finally, as an archaeologist, I appreciate that these questions give what are often perceived to be extremely niche academic interests a little more relevance to the modern world. Just look at the general upheaval of the last fifteen years, from the Great Recession to the Covid pandemic: the rush to flee dense urban cores, the rise of remote work, abandoned office space, ever increasing rents, the commodification of single-family homes, the homeless crisis, the growth of the service sector, and the collapse of rural labor markets, to name just a few. These are all in their own way the effects of density, acting as forces of aggregation and dispersal. They may have looked differently in the past, but people had to navigate them all the same.  
+[^1]: Peter M. Yaworsky, Kenneth B. Vernon, Jerry D. Spangler, Simon C. Brewer,
+    Brian F. Codding (2020). **Advancing predictive modeling in archaeology: An
+    evaluation of regression and machine learning methods on the Grand
+    Staircase-Escalante National Monument**. *PLOS ONE* 15 (10): e0239424. DOI:
+    10.1371/journal.pone.0239424  
 
-### [For academics]{.kobe} {style="margin-top: 1em;"}  
+[^2]: Kenneth B. Vernon, Peter M. Yaworsky, Jerry Spangler, Simon Brewer, Brian
+    F. Codding (2022). **Decomposing habitat suitability across the forager to
+    farmer transition**. *Environmental Archaeology* 27 (4): 420-433. DOI:
+    10.1080/14614103.2020.1746880  
 
-My research investigates trade-offs between aggregation and dispersal in human populations using an integrated set of conceptual tools from behavioral and population ecology, urban geography, and economics, coupled with multiple lines of evidence, including reconstructions of climate and demography, as well as estimates of diet, health, violence, and inequality. The common thread throughout is the concept of *density*, specifically *density-dependent effects*, which may promote aggregation or dispersal. As these socio-ecological dynamics are also inherently spatial processes, they raise their own unique set of challenges (notably, autocorrelation) that in turn require their own unique set of solutions (namely, spatial statistics), so I invest considerable time and energy into advancing spatial data science in anthropology, ecology, and other allied fields. Below, I provide some examples of these efforts, along with some suggestions of how I intend to build on them into the future.  
+[^3]: Kenneth B. Vernon, Weston C. McCool, Peter M. Yaworsky, Jerry D. Spangler,
+    Simon C. Brewer, Brian F. Codding (accepted). **The Fremont Frontier: Living
+    at the Margins of Maize Farming**. *American Antiquity*.  
+    📄: <https://github.com/kbvernon/western_fremont>  
+    📺: <https://github.com/kbvernon/saa_2022-western_fremont>  
 
-#### CURRENT WORK
+I am also involved in ongoing ethnographic research within a traditional
+ranching community in Baja California Sur, Mexico. As part of that project, I
+built a series of models to examine the ways in which ranchers in that community
+balance the benefits of market integration with the necessities of rural life,
+with an emphasis on how infrastructure development can upend that calculus.[^4]
 
-**Subsistence-settlement dynamics.** As a baseline for exploring these issues, my collaborators and I have focused on subsistence strategies, how they can vary in their efficiency across habitats and how that variation can lead to differences in their spatial distribution. Among other things, we've modeled alternative foraging strategies as a tool for evaluating the Numic expansion into the North American Great Basin (Magargal *et al* 2017), compared prehistoric farming and foraging settlement patterns within the Grand Staircase-Escalante National Monument (GSENM; Vernon *et al* 2022), and studied settlement decisions as farming adaptations to climate change (Vernon *et al* under review).  
+[^4]: Kenneth B. Vernon, Brian F. Codding, Simon C. Brewer, Shane J. Macfarlan
+    (2024). **Trade-off between market and ecosystem services drives settlement
+    decisions among smallholder ranchers in Baja California Sur, Mexico**.
+    *Sustainability Science*. DOI: 10.1007/s11625-024-01491-9.  
+    📄: <https://github.com/kbvernon/baja-ranching>  
 
-**Trade-offs between aggregation and dispersal.** A recent ethnographic project examines the ways in which traditional ranchers in Baja California Sur, Mexico, balance the benefits of market integration with the necessities of rural life, with an emphasis on how infrastructure development can upend that calculus (Vernon *et al* under review).  
+### [Current and Future Research]{.kobe}
 
-My collaborators and I are also exploring the root causes of violence, with research showing that a marginal environment with an unpredictable resource base may encourage individuals to travel further to secure their subsistence needs, thus increasing their exposure to violence (McCool *et al* 2022), that an increase in favorable climate conditions followed by a subsequent downturn can lead to both increasing density and resource strain, thus promoting violent contests (McCool *et al* 2022), and that aggregation and fortification provide a useful proxy for rates of violence among maize farming populations in the Four Corners region (McCool *et al* in progress).  
+Currently, I am a postdoctoral researcher at the Institute of Behavioral Science
+at CU Boulder. The position is supported by an NSF grant (Award No.
+[#2213921](https://www.nsf.gov/awardsearch/showAward?AWD_ID=2213921)) involving
+a large collaboration between tribal representatives and researchers from
+multiple disciplines (geography, anthropology, data science, and climate
+science). A major goal of the project is to develop archaeological proxies for
+UN sustainable development goals, including economic growth, equality, and
+health, so that we can then model the sustainable development of small-scale
+agricultural communities in the US Southwest before the Spanish entrada (from
+roughly 800 to 1600 CE). As part of this project, I developed a method – heavily
+inspired by the US Office of Management and Budget’s concept of a Core Based
+Statistical Area – for defining the territorial extent of dispersed farming
+communities based on the size and spatial distribution of agricultural
+settlements.[^5]
 
-At CU Boulder's [Center for Collaborative Synthesis in Archaeology](https://ibsweb.colorado.edu/archaeology/) (CCSA), I'm working as a postdoc with [Dr. Scott Ortman](https://ibsweb.colorado.edu/archaeology/people/scott-ortman/) on an NSF supported project (Award No. [#2213921](https://www.nsf.gov/awardsearch/showAward?AWD_ID=2213921)) involving researchers from a number of universities, non-profit organizations, and tribal communities to investigate the ways in which networks of social interaction may have shaped the sustainable development of dispersed maize farming communities in the US Southwest prior to European contact, using data from [cyberSW](https://cybersw.org/).
+[^5]: Kenneth B. Vernon, Scott G. Ortman (accepted). **A method for defining
+    dispersed community territories**. *Journal of Archaeological Science*.  
+    📄: <https://github.com/kbvernon/community-centers>  
+    📺: <https://github.com/kbvernon/eaa_2023-community_centers>  
 
-**Spatial data science.** To aid in the study of these spatial processes, I also work to improve spatial data science. Examples include a predictive model of archaeological site locations in the GSENM (this actually ended up in a 2018 [*amicus brief*](http://s3.amazonaws.com/rdcms-aaa/files/production/public/BearsEarsAmicus.pdf) filed by a coalition of archaeological organizations in support of plaintiffs suing the Trump administration for illegally attempting to reduce the size of the GSENM), a comparative analysis of the ability of various regression and machine learning models to predict the locations of archaeological sites (Yaworsky et al 2020), and a popular point-process model known as Maximum Entropy applied to the same GSENM data (Vernon *et al* 2022).  
+My current plan for tackling the size and longevity questions involves the use
+of Spatial Interaction Models and Survival Analysis.[^6] However, I first need
+to get a handle on population reconstruction, which requires the use of spatial
+interpolation methods, in this case something like regression kriging, as we
+wish to leverage information about artifact assemblages at directly dated
+archaeological sites, and then incorporate information about the spatial
+structure of the residuals. As we are more concerned with prediction rather than
+explanation in this case, it makes sense to go all-in on black-box methods, so I
+am experimenting with a deep learning, Bayesian Neural Network model that
+incorporates Moran Eigenvector Maps to handle spatial dependence. Ultimately,
+the goal is to build the framework into a Rust crate because of that language’s
+performance advantages, and then wrap that crate in an R package to make it more
+accessible to the scientific community. This will be followed up by papers in
+the Journal of Open Source Software and the Journal of Archaeological Science.
 
-One of my primary contributions to the NSF project at CCSA is the development of a novel community detection or clustering algorithm used to define the spatial extent of dispersed maize farming communities (Vernon and Ortman, under review). The algorithm is applied to data from the Village Ecodynamics (VEP) and Southwest Social Networks (SWSN) projects and provides a useful way of exploring changes in density through time and across space.  
+[^6]: 📺: <https://github.com/kbvernon/koln-2024_settlement-persistence>  
 
-#### FUTURE GOALS
-
-**Aggregation and the Collective Action Problem.** One lingering question in my research concerns how aggregations can be sustained without assuming away the collective action problem. Building on work by one of my collaborators (Wilson et al 2023) examining the evolution of hereditary social inequality, my research investigates how the internal structure of a population - involving multiple levels of competition - might help address this problem by supporting specialization and the division of labor. 
-
-**Spatial data science.** An exciting development in statistical modeling involves the use of multivariate spatio-temporal point process models (MVST-PPMs) for comparative analysis, mostly in epidemiology and ecology. These are not a new class of model, but Bayesian methods for implementing them have gotten a lot of attention recently. They hold great promise as tools to address a number of thorny methodological issues in archaeology and to help tease out socio-ecological drivers of behavior. One example from my research involves using MVST-PPMs to handle extremely small samples, specifically to model just 11 PaleoIndian sites in Grass Valley, Nevada, by comparing them to a larger distribution of later Archaic sites (Vernon *et al* in progress). Another example, one closer to my theoretical interests, investigates whether individuals are aggregating in response to the presence of others or whether they are simply moving there because of favorable environmental conditions, with one exploring the origins of Chaco great houses (Vernon *et al* in prep) across the Chaco region and another looking at the origins of community centers in the Four Corners (Vernon *et al* in prep).  
-
-Some other work in the pipeline includes refining a chronology of the Fremont to understand the effects of climate shocks on community resilience in the North American Southwest (NSF HNDS-R \$1.2M, co-PI, in prep) and investigating the health and demographic consequences of market integration in Baja, Mexico (NSF HNDS HEGS \$350k, co-PI, in prep). These projects will offer undergraduate and graduate students many opportunities to engage directly in scientific research, from data collection to analysis, with a focus on recruiting individuals from underrepresented categories.    
+Finally, I continue to be an active contributor to a number of projects that
+directly or indirectly support environmental data science research. Perhaps most
+notably, I am a contributor to ESRI’s officially supported
+[{arcgisutils}](https://github.com/R-ArcGIS/arcgisutils) suite of R packages,
+which provide tools for working with ArcGIS Online REST APIs. I have also helped
+maintain the [{paleocar}](https://github.com/bocinsky/paleocar) R package, which
+implements functions for spatio-temporal paleoclimate reconstruction using
+tree-rings and modern climate data (usually PRISM). And I contribute to the
+[{extendr}](https://github.com/extendr/extendr) project that provides bindings
+for R and Rust. I am involved in this project because I have a strong desire to
+make a lot of extremely costly data processing that is common in archaeology and
+other social sciences more type safe and performant by porting it from R to
+Rust, then wrapping the resulting Rust code in R so that researchers can take
+advantage of Rust without having to learn it themselves.

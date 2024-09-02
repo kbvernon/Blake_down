@@ -6,6 +6,7 @@ format:
 ---
 
 ```{r}
+#| include: false
 
 box::use(
   dplyr[filter],
@@ -38,16 +39,17 @@ bib |>
 
 ```
 
-## Manuscripts
+<!-- ## Manuscripts -->
 
 ```{r}
+#| eval: false
 
 bib |> 
   filter(collection == "Manuscript") |> 
   format_entries() |> 
   make_blocks()
 
-```
+``` 
 
 ## Book reviews
 

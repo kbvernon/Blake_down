@@ -20,22 +20,10 @@ website:
     left:
       - text: "About"
         href: about.qmd
-      - text: "Research"
-        menu: 
-          - text: "Research summary"
-            href: research/research.qmd
-          - text: "Publications"
-            href: research/publications.qmd
-          - text: "Presentations"
-            href: research/presentations.qmd
-      - text: "Teaching"
-        menu: 
-          - text: "Teaching statement"
-            href: teaching/philosophy.qmd
-          - text: "Diversity statement"
-            href: teaching/diversity.qmd
-          - text: "Classes"
-            href: teaching/classes.qmd  
+      - text: "Publications"
+        href: publications.qmd
+      - text: "Presentations"
+        href: presentations.qmd
     right:
       - icon: envelope
         href: mailto:Kenneth.Vernon@colorado.edu
@@ -59,10 +47,10 @@ format:
       - simplex
       - custom.scss
     mainfont: sans-serif
-    fontcolor: "#151314"
-    linkcolor: "#BF211E"
+    page-layout: article
+    toc: false
+    minimal: true
     smooth-scroll: true
-    page-layout: full
 
 editor: source
 

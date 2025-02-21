@@ -1,107 +1,97 @@
----
-image: images/profile.png
-about: 
-  id: about-heading
-  template: trestles
-  image-width: 316px
-format:
-  html:
-    toc: false
-    page-layout: article
----
+## About Me
 
-```{r}
+By training, I'm an archaeologist, but that's not the only thing I am. Here are 
+a few more labels I'm happy to embrace: pragmatist, naturalist, scientist, 
+humanist, anthropologist, behavioral ecologist, geographer, historian, 
+environmental data scientist, programmer, recovering philosopher, and nerd. For 
+good measure, you might even throw in hillbilly and/or redneck, too.
 
-box::use(
-  dplyr[...],
-  glue[...],
-  googlesheets4[...],
-  here[here],
-  ./helpers[bibliography, format_entries, make_blocks]
-)
+#### **Research Interests**
 
-here("_credentials.RData") |> load()
+Broadly speaking, my research focuses on the ecology of human behavior, with a 
+particular emphasis on spatial dynamics. Here is a list of the specific topics 
+and questions that really animate me these days:
 
-```
+-   **Climate adaptation and migration**: in very abstract terms, how do people 
+    distribute themselves across space, and how is that influenced over the long 
+    term by climate trends? For this, I usually draw on species distribution 
+    modeling approaches from ecology, including machine learning approaches like 
+    Random Forest and Maximum Entropy, though I also find my attention drawn 
+    more and more to INLA models, too.
+-   **The micro-economics of early, early, early urbanism**: like, how did we 
+    get from small, dispersed groups of mobile hunter-gatherers to large 
+    concentrations of sedentary city dwellers? I'm attracted to this problem 
+    mostly because it's a spatial problem, but there's also this other really 
+    weird thing about cities that I find deeply fascinating: how it is that they 
+    can exhibit such dramatic scaling effects while still failing utterly to 
+    resolve the problem of collective action.
+-   **Demographic interpolation**: how do we estimate population size without a 
+    census? There is a lot of neat work on this using remote-sensed measures of 
+    built area to interpolate modern populations across a grid, but transferring 
+    those efforts over to deep time raises an interesting problem, namely, that 
+    built area in that context is a palimpsest (like the many layers of ancient 
+    Troy), which requires that we estimate both a chronology and a population 
+    size at the same time. The current statistical approaches I find interesting 
+    for this include Gaussian and Dirichlet Process Mixture Models, as well as 
+    their deep learning analogs.
 
-::: {#about-heading}
-### Who am I? 🤔
+In my spare time, I contribute to several FOSS projects in the R community.
 
-Well, I'm a **BEHAVIORAL ECOLOGIST** studying the social and environmental
-drivers of human behavior; an **ARCHAEOLOGIST** using past human behavior to
-test hypotheses; a **DATA SCIENTIST** trying to make archaeological research
-more reproducible; an **EDUCATOR** working to make archaeological science more
-accessible; and a **NERD** hoping to make life just a little more weird. I'll
-take all the Middle Earth, Marvel, Star Trek, Star Wars, and Stargate I can get.
-That, and DnD. I'm even a critter.\
+#### **Current Work**
 
-::: {.small .text-muted}
-*Oh! If you came looking for my curriculum vitae, just click the*
-[{{< ai cv size=lg >}}](blake_vitae.pdf) *button in the navbar.*
-:::
-:::
+Currently, I'm a One-U Responsible AI Postdoctoral Fellow at the University of 
+Utah. My work as a fellow is narrowly focused on a specific aspect of my broader 
+research, namely, climate adaptation in agricultural systems, particularly those 
+related to water usage. The immediate goal is to develop an encoder-decoder 
+hydrological model (EDHM) that can estimate soil moisture and streamflow, both 
+of which have obvious importance to farmers. The larger ambition, though, is to 
+contribute to the overall mission of One-U RAI - to the promotion of responsible 
+AI - by making that modeling effort as open, as interpretable, and as accessible 
+as possible to both scientists and community stakeholders. The hope is that it 
+will contribute to strategic climate adaptation planning, too.
+
+<hr class="mt-5 mb-5">
 
 ## {{< fa address-card >}} Contact Information
 
-::: {.grid style="row-gap: 1em;"}
-::: {.g-col-12 .g-col-md-8}
-<p class="mb-0">
-
-Center for Collaborative Synthesis in Archaeology\
-Institute of Behavioral Science\
-University of Colorado, Boulder\
-1440 15th Street\
-Boulder, CO 80302\
-(303) 492-8147
-
-</p>
-:::
-
-::: {.g-col-12 .g-col-md-4 .ms-md-auto}
-[CU Boulder Page](https://ibs.colorado.edu/people/kenneth-blake-vernon/){.btn
-.btn-outline-primary target="_blank"}
-:::
-:::
+**Scientific Computing and Imaging Institute**  
+72 So. Central Campus Drive Room 3750  
+Salt Lake City, Utah 84112  
+[SCI Page](https://www.sci.utah.edu/people/k.vernon.html){.btn .btn-outline-primary .mt-2 target="_blank"}
 
 ## {{< fa briefcase >}} Appointments
 
-```{r}
-
-read_sheet(google_page_id, sheet = "appointments") |>
-  mutate(
-    end = ifelse(is.na(end), "present", end),
-    x = glue("<li class='mb-3'>**{title}** | {start}&#8209;{end}<br>{organization}</li>")
-  ) |> 
-  arrange(desc(start)) |> 
-  pull(x) |> 
-  (\(x) cat("<ul class='list-unstyled'>", x, "</ul>", sep = "\n"))()
-  
-```
+::: about-list
+-   **One-U Responsible AI Postdoctoral Fellow** | 2025-Present  
+    Scientific Computing and Imaging Institute  
+    School of Environment, Society, and Sustainability  
+    University of Utah  
+-   **Post-Doctoral Associate** | 2022-2024  
+    Center for Collaborative Synthesis in Archaeology, CU Boulder  
+-   **Assistant Director** | 2018-2022  
+    University of Utah Archaeological Center  
+:::
 
 ## {{< fa graduation-cap >}} Education
 
-```{r}
-
-read_sheet(google_page_id, sheet = "education") |> 
-  mutate(
-    x = glue::glue("<li class='mb-3'>**{university}** | {location}<br>{degree} in {major}, {end}</li>"), 
-  ) |> 
-  arrange(desc(start)) |> 
-  pull(x) |> 
-  (\(x) cat("<ul class='list-unstyled'>", x, "</ul>", sep = "\n"))()
-
-```
+::: about-list
+-   **University of Utah** | Salt Lake City, UT  
+    PhD in Anthropology, 2022  
+-   **Northern Illinois University** | DeKalb, IL  
+    MA in Philosophy, 2009  
+-   **University of Central Arkansas** | Conway, AR  
+    BA in History and Philosophy, 2006  
+:::
 
 ## {{< fa people-arrows >}} Professional Affiliations {#affiliations}
 
-```{r}
-
-read_sheet(google_page_id, sheet = "affiliations") %>% 
-  mutate(
-    end = ifelse(is.na(end), "present", end),
-    x = glue::glue("<li class='mb-3'><a href='{url}' target='_blank'>{organization}</a> | {start}&#8209;{end}</li>")
-  ) %>% 
-  pull(x) |> 
-  (\(x) cat("<ul class='list-unstyled'>", x, "</ul>", sep = "\n"))()
-
-```
+::: about-list
+-   [**Great Basin Anthropological
+    Association**](https://greatbasinanthropologicalassociation.org/) |
+    2016-present  
+-   [**Society for American Archaeology**](https://www.saa.org/) | 2014-present  
+-   [**Coalition for Archaeological Synthesis**](https://www.archsynth.org/) |
+    2022-present  
+-   [**European Association of Archaeologists**](https://www.e-a-a.org/) |
+    2023-present  
+:::

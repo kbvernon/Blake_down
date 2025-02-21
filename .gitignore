@@ -7,3 +7,4 @@ _misc/
 _credentials.RData
 /.quarto/
 *.Rproj
+/pdfs/

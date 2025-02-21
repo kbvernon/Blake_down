@@ -1,48 +1,22 @@
 /*-- scss:defaults --*/
-$kobe:          #8F2400 !default;
-$etonblue:      #8FCB9B !default;
-$celadonblue:   #3A7CA5 !default;
-$ochre:         #C4761C !default;
-$midnight:      #6E3371 !default;
-$sealbrown:     #661A00 !default;
+$caribbean: #246A6B !default;
+$mint: #CDF7F6 !default;
+$eggplant: #533B4D !default;
+$sand: #D2AB99 !default;
 
-$primary:       $kobe !default;
-$success:       $etonblue !default;
-$info:          $celadonblue !default;
-$warning:       $ochre !default;
-$danger:        $midnight !default;
+$primary: $caribbean;
 
 /*-- scss:rules --*/
-.kobe {
-  color: $kobe;
+strong,
+b,
+a {
+  color: $caribbean;
 }
 
-.etonblue {
-  color: $etonblue;
-}
-
-.celadonblue {
-  color: $celadonblue;
-}
-
-.ochre {
-  color: $ochre;
-}
-
-.midnight {
-  color: $midnight;
-}
-
-.sealbrown {
-  color: $sealbrown;
-}
-
-strong, b, a {
-  color: $primary;  
-}
-
-.disclaimer a {
-  color: var(--bs-secondary-color) !important;
+h2,
+.h2 {
+  border-bottom: none;
+  padding-bottom: 0;
 }
 
 .navbar {
@@ -51,134 +25,40 @@ strong, b, a {
   border-color: #dedede;
 }
 
-a:not(.navbar-brand, .nav-link, .btn):hover, 
-a:not(.navbar-brand, .nav-link, .btn):hover>* {
-  color: $sealbrown;
+a:not(.btn):hover,
+a:not(.btn):hover>* {
+  color: lighten($caribbean, 5);
 }
 
-.sidebar nav[role=doc-toc] ul>li>a.active {
-  border-left: 1px solid $primary;
-  color: $primary !important;
-}
+.sidebar nav[role=doc-toc] {
+  ul>li>a.active {
+    border-left: 1px solid $caribbean;
+    color: lighten($caribbean, 5) !important;
+  }
 
-.dropdown-menu {
-  --bs-dropdown-link-hover-color: #fff;
-  --bs-dropdown-link-hover-bg: rgba(85, 85, 85, 0.75);
-}
-
-.dropdown-menu .dropdown-item:hover .dropdown-text {
-  color: white;
+  ul>li>a:hover {
+    color: lighten($caribbean, 5) !important;
+  }
 }
 
 /* about page */
-div.quarto-about-trestles {
-  padding-top: 0 !important;
+.about-list ul {
+  list-style: none;
+  padding-left: 0;
+  margin-left: 0;
 }
 
-div.quarto-about-trestles .about-entity .about-image {
-  margin-top: 1.5em;
+.about-list ul li:not(:first-child) {
+  margin-top: 0.8rem;
 }
 
-@media (min-width: 992px) {
-  div.quarto-about-trestles .about-contents {
-    border-left: none;
-  }
-}
-
-/* 
-table stuff 
-all tables are two column
-*/
-.table tr td:first-child {
-  padding-left: 0 !important;
-}
-
-.table tr td:last-child {
-  padding-right: 0 !important;
-}
-
-.table>tbody {
-  border-top: none;
-}
-
-.table>:not(:first-child) {
-  border-top-width: 0px;
-}
-
-thead, tbody, tfoot, tr, td, th {
+thead,
+tbody,
+tfoot,
+tr,
+td,
+th {
   border-style: none;
-}
-
-/*
-A Frankenstein'd list to hold cv list items
-
-Hierarchy: 
-blocks 
-  |--> block-year
-          |--> block-row = {date + details}
-          |--> block-row
-  |--> block-year
-          |--> block-row
-          |--> block-row
-          
-This makes it easier to handle page breaks and CSS styling.
-*/
-
-:root{
-  --decorator-horizontal-margin: 0;
-  --row-blocks-padding-top: 0;
-  --date-block-width: 0.6in;
-  --main-blocks-title-icon-offset-left: calc(-17pt - 0.25 * var(--root-font-size));
-}
-
-.blocks {
-  margin-top: 1em;
-  margin-bottom: 0.75rem;
-}
-
-/* hide all dates in block year except the first one */
-.block-year .block-row:not(:first-child) .date p {
-  display: none;
-}
-
-.block-row {
-  display: flex;
-  flex-flow: row nowrap;
-  break-inside: avoid;
-  padding-bottom: 1rem;
-  vertical-align: top;
-  align-items: start;
-}
-
-.blocks p {
-  margin: 0;
-  padding: 0;
-  vertical-align: top;
-}
-
-.date{
-  flex: 0 0 var(--date-block-width);
-  padding-top: var(--row-blocks-padding-top) !important;
-  padding-right: var(--decorator-horizontal-margin);
-  text-align: left;
-  max-width: var(--date-block-width);
-  vertical-align: top;
-  top: 0;
-}
-
-.details{
-  vertical-align: top;
-  top: 0;
-}
-
-.buttons {
-  margin-top: 0.5rem;
-}
-
-@media (max-width: 480px) {
-  .buttons .btn span {
-    display: none;
-  }
 }
 
 /* this is for orienting icons horizontally in navbar dropdown */
@@ -187,11 +67,46 @@ This makes it easier to handle page breaks and CSS styling.
   -webkit-flex-direction: row;
 }
 
-section.footnotes {
-  ol li:not(:first-child) {
-    margin-top: 0.8em;
+@counter-style bib-style {
+  system: extends decimal;
+  suffix: ' ';
+}
+
+ol.bib-list {
+  list-style: bib-style;
+  width: 100%;
+  margin: 0 0 0 1rem;
+
+  // li::marker {}
+
+  .bib-year:not(:first-child),
+  .bib-block:not(:first-child) {
+    margin-top: 1.5rem;
   }
-  ul li:not(:first-child) {
-    margin-top: 0.8em;
+
+  .bib-ref {
+    p {
+      margin: 0;
+    }
+
+    .bib-title {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: $caribbean;
+    }
+
+    .bib-authors,
+    .bib-details {
+      font-size: 0.9rem;
+      margin-top: 0.3rem;
+    }
+
+    .bib-details .bib-journal {
+      font-style: italic;
+    }
+  }
+
+  .bib-buttons {
+    margin-top: 0.7rem;
   }
 }

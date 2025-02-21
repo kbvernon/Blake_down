@@ -1,27 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.kbvernon.io/teaching/philosophy.html</loc>
-    <lastmod>2024-08-21T22:27:48.002Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.kbvernon.io/research/publications.html</loc>
-    <lastmod>2024-09-16T23:43:18.807Z</lastmod>
+    <loc>https://www.kbvernon.io/publications.html</loc>
+    <lastmod>2025-02-20T20:56:35.553Z</lastmod>
   </url>
   <url>
     <loc>https://www.kbvernon.io/index.html</loc>
-    <lastmod>2024-09-02T15:28:05.821Z</lastmod>
+    <lastmod>2025-02-21T00:25:46.528Z</lastmod>
   </url>
   <url>
     <loc>https://www.kbvernon.io/about.html</loc>
-    <lastmod>2024-04-27T15:54:39.882Z</lastmod>
+    <lastmod>2025-02-21T00:47:46.864Z</lastmod>
   </url>
   <url>
-    <loc>https://www.kbvernon.io/research/presentations.html</loc>
-    <lastmod>2024-09-15T17:12:59.175Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.kbvernon.io/research/research.html</loc>
-    <lastmod>2024-08-23T23:05:45.707Z</lastmod>
+    <loc>https://www.kbvernon.io/presentations.html</loc>
+    <lastmod>2025-02-20T20:56:36.330Z</lastmod>
   </url>
 </urlset>

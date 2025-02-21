@@ -1,0 +1,17 @@
+```{r}
+#| include: false
+source("utils.R")
+```
+
+## Presentations
+
+```{r}
+#| label: presentations
+presentations <- get_collection(
+  user = Sys.getenv("ZOTERO_ID"),
+  key = Sys.getenv("ZOTERO_KEY"),
+  collection = Sys.getenv("ZOTERO_PRESENTATION")
+)
+
+bib_list(presentations, "presentation")
+```

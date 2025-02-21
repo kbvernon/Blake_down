@@ -1,0 +1,61 @@
+---
+toc: true
+---
+
+```{r}
+#| include: false
+source("utils.R")
+```
+
+## Peer-reviewed journal articles
+
+```{r}
+#| label: articles
+articles <- get_collection(
+  user = Sys.getenv("ZOTERO_ID"),
+  key = Sys.getenv("ZOTERO_KEY"),
+  collection = Sys.getenv("ZOTERO_ARTICLE")
+)
+
+bib_list(articles, "article")
+```
+
+## Manuscripts
+
+```{r}
+#| label: manuscripts
+#| eval: false
+manuscripts <- get_collection(
+  user = Sys.getenv("ZOTERO_ID"),
+  key = Sys.getenv("ZOTERO_KEY"),
+  collection = Sys.getenv("ZOTERO_MANUSCRIPT")
+)
+
+bib_list(manuscripts, "manuscript")
+``` 
+
+## Book reviews
+
+```{r}
+#| label: reviews
+reviews <- get_collection(
+  user = Sys.getenv("ZOTERO_ID"),
+  key = Sys.getenv("ZOTERO_KEY"),
+  collection = Sys.getenv("ZOTERO_REVIEW")
+)
+
+bib_list(reviews, "review")
+```
+
+## Technical reports
+
+```{r}
+#| label: reports
+reports <- get_collection(
+  user = Sys.getenv("ZOTERO_ID"),
+  key = Sys.getenv("ZOTERO_KEY"),
+  collection = Sys.getenv("ZOTERO_REPORT")
+)
+
+bib_list(reports, "report")
+```

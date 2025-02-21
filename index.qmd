@@ -1,5 +1,7 @@
 ---
-format: html
+format: 
+  html:
+    page-layout: full
 engine: knitr
 ---
 
@@ -32,10 +34,9 @@ body {
   color: white;
 }
 
-header.quarto-title-block {
+.quarto-title-block {
   display: none;
 }
-
 
 .index-title-container {
   position: relative;
@@ -43,7 +44,7 @@ header.quarto-title-block {
   height: 100%;
 }
 
-.index-title-container p {
+.index-title-container h1 {
   position: absolute;
   bottom: 10px;
   right: 10px;
@@ -58,6 +59,6 @@ footer.footer {
 
 ```
 
-:::{.index-title-container}
-Kenneth Blake Vernon
+::: {.index-title-container}
+# K. Blake Vernon
 :::

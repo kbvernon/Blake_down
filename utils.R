@@ -77,16 +77,19 @@ bib_list <- function(bib, collection) {
   for (year in unique_years) {
     i <- which(bib[["year"]] == year)
 
-    bib_years[[year]] <- htmltools::tags$li(
+    bib_years[[year]] <- htmltools::tags$div(
       class = "bib-year",
       id = paste0("bib-year-", year),
-      value = year,
+      htmltools::h3(
+        class = "bib-year-header",
+        year
+      ),
       year_items[i]
     )
   }
 
   # combine all list items in ordered list
-  htmltools::tags$ol(
+  htmltools::tags$div(
     class = "bib-list",
     id = paste0("bib-", collection),
     bib_years

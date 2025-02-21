@@ -3,8 +3,20 @@
 By training, I'm an archaeologist, but that's not the only thing I am. Here are 
 a few more labels I'm happy to embrace: pragmatist, naturalist, scientist, 
 humanist, anthropologist, behavioral ecologist, geographer, historian, 
-environmental data scientist, programmer, recovering philosopher, and nerd. For 
-good measure, you might even throw in hillbilly and/or redneck, too.
+environmental data scientist, programmer, recovering philosopher, and nerd. 
+
+#### **Current Work**
+
+Currently, I'm a One-U Responsible AI Postdoctoral Fellow at the University of 
+Utah. My work as a fellow is narrowly focused on a specific aspect of my broader 
+research, namely, climate adaptation in agricultural systems, particularly those 
+related to water usage. The immediate goal is to develop an encoder-decoder 
+hydrological model (EDHM) that can estimate soil moisture and streamflow, both 
+of which have obvious importance to farmers. The larger ambition, though, is to 
+contribute to the overall mission of One-U RAI - to the promotion of responsible 
+AI - by making that modeling effort as open, as interpretable, and as accessible 
+as possible to both scientists and community stakeholders. The hope is that it 
+will contribute to strategic climate adaptation planning, too.
 
 #### **Research Interests**
 
@@ -36,19 +48,6 @@ and questions that really animate me these days:
     their deep learning analogs.
 
 In my spare time, I contribute to several FOSS projects in the R community.
-
-#### **Current Work**
-
-Currently, I'm a One-U Responsible AI Postdoctoral Fellow at the University of 
-Utah. My work as a fellow is narrowly focused on a specific aspect of my broader 
-research, namely, climate adaptation in agricultural systems, particularly those 
-related to water usage. The immediate goal is to develop an encoder-decoder 
-hydrological model (EDHM) that can estimate soil moisture and streamflow, both 
-of which have obvious importance to farmers. The larger ambition, though, is to 
-contribute to the overall mission of One-U RAI - to the promotion of responsible 
-AI - by making that modeling effort as open, as interpretable, and as accessible 
-as possible to both scientists and community stakeholders. The hope is that it 
-will contribute to strategic climate adaptation planning, too.
 
 <hr class="mt-5 mb-5">
 

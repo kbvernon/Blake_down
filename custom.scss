@@ -3,6 +3,7 @@ $caribbean: #246A6B !default;
 $mint: #CDF7F6 !default;
 $eggplant: #533B4D !default;
 $sand: #D2AB99 !default;
+$gray: #dee2e6 !default;
 
 $primary: $caribbean;
 
@@ -67,46 +68,60 @@ th {
   -webkit-flex-direction: row;
 }
 
-@counter-style bib-style {
-  system: extends decimal;
-  suffix: ' ';
-}
-
-ol.bib-list {
-  list-style: bib-style;
+.bib-list {
   width: 100%;
-  margin: 0 0 0 1rem;
+  margin: 0;
+  padding-left: 0;
 
-  // li::marker {}
+  .bib-year {
+    margin-top: 0;
 
-  .bib-year:not(:first-child),
-  .bib-block:not(:first-child) {
-    margin-top: 1.5rem;
-  }
-
-  .bib-ref {
-    p {
-      margin: 0;
+    &:not(:first-child) {
+      margin-top: 1.5rem;
     }
 
-    .bib-title {
-      font-size: 1.1rem;
+    h3.bib-year-header {
       font-weight: bold;
-      color: $caribbean;
+      margin: 0;
+      color: $eggplant;
+      margin-bottom: 0.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid $gray;
     }
 
-    .bib-authors,
-    .bib-details {
-      font-size: 0.9rem;
-      margin-top: 0.3rem;
-    }
+    .bib-block {
+      margin-top: 0;
 
-    .bib-details .bib-journal {
-      font-style: italic;
-    }
-  }
+      &:not(:first-of-type) {
+        margin-top: 1.5rem;
+      }
 
-  .bib-buttons {
-    margin-top: 0.7rem;
+      .bib-ref {
+        p {
+          margin: 0;
+        }
+
+        .bib-title {
+          font-size: 1.1rem;
+          font-weight: bold;
+          color: $caribbean;
+        }
+
+        .bib-authors,
+        .bib-details {
+          font-size: 0.9rem;
+          margin-top: 0.3rem;
+        }
+
+        .bib-details .bib-journal {
+          font-style: italic;
+        }
+      }
+
+      .bib-buttons {
+        margin-top: 0.7rem;
+        padding: 0.2rem 0;
+      }
+    }
   }
 }

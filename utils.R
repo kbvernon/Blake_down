@@ -106,7 +106,7 @@ article_block <- function(bib) {
   number <- sub(" \\(NA\\):", "", paste0(" (", bib[["number"]], "):"))
   pages <- sub(" NA.", "", paste0(" ", bib[["pages"]]))
   year <- paste0(" (", bib[["year"]], ")")
-  doi <- paste0("DOI: ", bib[["doi"]])
+  doi <- paste0(" ", bib[["doi"]])
 
   github <- bib[["note"]][[1]]["github"]
   preprint <- bib[["note"]][[1]]["preprint"]
@@ -117,12 +117,16 @@ article_block <- function(bib) {
     htmltools::div(
       class = "bib-ref",
       htmltools::p(class = "bib-title", title),
-      htmltools::p(class = "bib-authors", authors),
       htmltools::p(
         class = "bib-details",
         htmltools::span(class = "bib-journal", journal),
-        paste0(volume, number, pages, year),
-        htmltools::br(),
+        volume, number, pages, year
+      ),
+      htmltools::p(class = "bib-authors", icon_bi_people, authors),
+      htmltools::p(
+        class = "bib-details",
+        id = "doi",
+        icon_doi,
         doi
       )
     )
@@ -177,12 +181,12 @@ manuscript_block <- function(bib) {
     htmltools::div(
       class = "bib-ref",
       htmltools::p(class = "bib-title", title),
-      htmltools::p(class = "bib-authors", authors),
       htmltools::p(
         class = "bib-details",
         htmltools::span(class = "bib-journal", journal),
         status
-      )
+      ),
+      htmltools::p(class = "bib-authors", icon_bi_people, authors)
     )
   )
 
@@ -215,11 +219,11 @@ presentation_block <- function(bib) {
     htmltools::div(
       class = "bib-ref",
       htmltools::p(class = "bib-title", title),
-      htmltools::p(class = "bib-authors", authors),
       htmltools::p(
         class = "bib-details",
         paste0(type, " at the ", shorttitle, ", ", address, ".")
-      )
+      ),
+      htmltools::p(class = "bib-authors", icon_bi_people, authors)
     )
   )
 
@@ -248,11 +252,11 @@ report_block <- function(bib) {
     htmltools::div(
       class = "bib-ref",
       htmltools::p(class = "bib-title", title),
-      htmltools::p(class = "bib-authors", authors),
       htmltools::p(
         class = "bib-details",
         paste0("Report submitted to the ", institution, ". ", note)
-      )
+      ),
+      htmltools::p(class = "bib-authors", icon_bi_people, authors)
     )
   )
 }
@@ -316,3 +320,41 @@ btn <- function(href, icon) {
     htmltools::tags$span(span_text)
   )
 }
+
+# icons ------------------------------------------------------------------
+
+icon_bi_people <- htmltools::tags$svg(
+  class = "iconify-icon",
+  id = "bi-people",
+  xmlns = "http://www.w3.org/2000/svg",
+  width = "16",
+  height = "16",
+  viewBox = "0 0 16 16",
+  htmltools::tags$rect(
+    width = "16",
+    height = "16",
+    fill = "none"
+  ),
+  htmltools::tags$path(
+    fill = "currentColor",
+    d = "M15 14s1 0 1-1s-1-4-5-4s-5 3-5 4s1 1 1 1zm-7.978-1L7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276c.593.69.758 1.457.76 1.72l-.008.002l-.014.002zM11 7a2 2 0 1 0 0-4a2 2 0 0 0 0 4m3-2a3 3 0 1 1-6 0a3 3 0 0 1 6 0M6.936 9.28a6 6 0 0 0-1.23-.247A7 7 0 0 0 5 9c-4 0-5 3-5 4q0 1 1 1h4.216A2.24 2.24 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904c.243-.294.526-.569.846-.816M4.92 10A5.5 5.5 0 0 0 4 13H1c0-.26.164-1.03.76-1.724c.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0a3 3 0 0 1-6 0m3-2a2 2 0 1 0 0 4a2 2 0 0 0 0-4"
+  )
+)
+
+icon_doi <- htmltools::tags$svg(
+  class = "iconify-icon",
+  id = "custom-doi",
+  xmlns = "http://www.w3.org/2000/svg",
+  width = "24",
+  height = "24",
+  viewBox = "0 0 24 24",
+  htmltools::tags$rect(
+    width = "24",
+    height = "24",
+    fill = "none"
+  ),
+  htmltools::tags$path(
+    fill = "currentColor",
+    d = "M21,4H3v-1h18v1ZM21,20H3v1h18v-1ZM3.2,7.4c-.1.2-.2.5-.2.9v7.1c0,.3,0,.6,0,.8,0,.2.1.3.3.5s.4.2.6.2h2c.4,0,.7,0,.9,0s.5-.2.8-.3.5-.3.7-.6c.3-.3.5-.6.6-1,.2-.4.3-.8.4-1.3s.1-1,.1-1.6c0-1.8-.4-3.1-1.2-3.9-.3-.3-.6-.6-1-.7s-.8-.2-1.4-.2h-2c-.3,0-.6,0-.7.3ZM5.6,8.7c.5,0,.9,0,1.2.2.3.1.6.4.8.9s.3,1.2.3,2.1c0,1.4-.3,2.3-.8,2.9-.1.1-.3.2-.4.3s-.3.1-.5.1-.3,0-.6,0h-1.2v-6.6h1ZM12.7,7.3c-.5.2-.8.6-1.2,1s-.6,1-.7,1.6-.3,1.3-.3,2,0,1.4.2,2c.2.6.4,1.2.7,1.6s.7.8,1.2,1c.5.2,1,.4,1.6.4s1.1-.1,1.6-.4.9-.6,1.2-1,.6-1,.7-1.6.2-1.3.2-2-.1-1.9-.4-2.6c-.3-.7-.7-1.3-1.3-1.7-.6-.4-1.3-.6-2-.6s-1.1.1-1.6.3ZM16.2,13.9c-.2.5-.5.9-.8,1.2s-.7.4-1.1.4-.6,0-.9-.2c-.3-.1-.5-.4-.7-.7-.2-.3-.4-.7-.5-1.1-.1-.4-.2-.9-.2-1.5s0-1,.2-1.5c.1-.4.3-.8.4-1.1s.4-.5.7-.6c.3-.1.5-.2.9-.2s.8.1,1.2.4.6.7.8,1.2.3,1.1.3,1.8,0,1.4-.3,1.9ZM19.7,16.7c.1.2.3.3.6.3s.4,0,.6-.3c.1-.2.2-.5.2-.9v-7.6c0-.4,0-.7-.2-.9-.1-.2-.3-.3-.6-.3s-.4,0-.6.3-.2.5-.2.9v7.6c0,.4,0,.7.2.9Z"
+  )
+)

@@ -81,6 +81,7 @@ th {
     }
 
     h3.bib-year-header {
+      font-size: 1rem;
       font-weight: bold;
       margin: 0;
       color: $eggplant;
@@ -102,7 +103,7 @@ th {
         }
 
         .bib-title {
-          font-size: 1.1rem;
+          font-size: 1rem;
           font-weight: bold;
           color: $caribbean;
         }
@@ -123,5 +124,13 @@ th {
         padding: 0.2rem 0;
       }
     }
+  }
+
+  .iconify-icon {
+    color: $eggplant;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    vertical-align: -0.125em
   }
 }

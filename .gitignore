@@ -8,3 +8,4 @@ _credentials.RData
 /.quarto/
 *.Rproj
 /pdfs/
+/.luarc.json

@@ -51,14 +51,14 @@ In my spare time, I contribute to several FOSS projects in the R community.
 
 <hr class="mt-5 mb-5">
 
-## {{< fa address-card >}} Contact Information
+## {{< iconify fa6-solid:address-card >}} Contact Information
 
 **Scientific Computing and Imaging Institute**  
 72 So. Central Campus Drive Room 3750  
 Salt Lake City, Utah 84112  
 [SCI Page](https://www.sci.utah.edu/people/k.vernon.html){.btn .btn-outline-primary .mt-2 target="_blank"}
 
-## {{< fa briefcase >}} Appointments
+## {{< iconify fa6-solid:briefcase >}} Professional Appointments
 
 ::: about-list
 -   **One-U Responsible AI Postdoctoral Fellow** | 2025-Present  
@@ -71,7 +71,7 @@ Salt Lake City, Utah 84112
     University of Utah Archaeological Center  
 :::
 
-## {{< fa graduation-cap >}} Education
+## {{< iconify fa6-solid:graduation-cap >}} Education
 
 ::: about-list
 -   **University of Utah** | Salt Lake City, UT  
@@ -82,7 +82,7 @@ Salt Lake City, Utah 84112
     BA in History and Philosophy, 2006  
 :::
 
-## {{< fa people-arrows >}} Professional Affiliations {#affiliations}
+## {{< iconify fa6-solid:people-arrows >}} Professional Affiliations {#affiliations}
 
 ::: about-list
 -   [**Great Basin Anthropological

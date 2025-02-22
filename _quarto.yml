@@ -29,11 +29,11 @@ website:
         href: mailto:Kenneth.Vernon@colorado.edu
       - icon: github
         href: https://github.com/kbvernon/
-      - text: "{{< ai orcid size=lg >}}"
+      - text: "{{< iconify fa6-brands:orcid size=lg >}}"
         href: https://orcid.org/0000-0003-0098-5092
-      - text: "{{< ai google-scholar size=lg >}}"
+      - text: "{{< iconify academicons:google-scholar size=lg >}}"
         href: https://scholar.google.com/citations?user=2PE4za4AAAAJ&hl=en
-      - text: "{{< ai cv size=lg >}}"
+      - text: "{{< iconify academicons:cv size=lg >}}"
         href: blake_vitae.pdf
 
   page-footer:

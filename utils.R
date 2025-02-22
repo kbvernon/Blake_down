@@ -172,9 +172,9 @@ manuscript_block <- function(bib) {
   authors <- bib[["author"]]
   journal <- bib[["journal"]]
 
-  github <- bib[["note"]]["github"]
-  preprint <- bib[["note"]]["preprint"]
-  status <- sub("\\(NA\\)", "", paste0("(", bib[["note"]]["status"], ")"))
+  github <- bib[["note"]][[1]]["github"]
+  preprint <- bib[["note"]][[1]]["preprint"]
+  status <- sub("\\(NA\\)", "", paste0("(", bib[["note"]][[1]]["status"], ")"))
 
   block <- htmltools::div(
     class = "bib-block",

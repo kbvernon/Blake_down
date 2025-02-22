@@ -24,7 +24,6 @@ bib_list(articles, "article")
 
 ```{r}
 #| label: manuscripts
-#| eval: false
 manuscripts <- get_collection(
   user = Sys.getenv("ZOTERO_ID"),
   key = Sys.getenv("ZOTERO_KEY"),

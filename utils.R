@@ -59,6 +59,7 @@ bib_list <- function(bib, collection) {
     "review" = review_block,
     "synergy" = synergy_block
   )
+
   # build entries for each year
   year_items <- vector(mode = "list", length = nrow(bib))
 
@@ -77,7 +78,7 @@ bib_list <- function(bib, collection) {
   for (year in unique_years) {
     i <- which(bib[["year"]] == year)
 
-    bib_years[[year]] <- htmltools::tags$div(
+    bib_years[[as.character(year)]] <- htmltools::tags$div(
       class = "bib-year",
       id = paste0("bib-year-", year),
       htmltools::h3(
@@ -150,7 +151,7 @@ article_block <- function(bib) {
 funding_block <- function(bib) {
   title <- bib[["title"]]
   authors <- bib[["pi"]]
-  fot <- bib[["FOT"]]
+  fot <- bib[["fot"]]
   organization <- bib[["organization"]]
 
   htmltools::div(
@@ -158,11 +159,11 @@ funding_block <- function(bib) {
     htmltools::div(
       class = "bib-ref",
       htmltools::p(class = "bib-title", title),
-      htmltools::p(class = "bib-authors", authors),
       htmltools::p(
         class = "bib-details",
         paste0(fot, ", ", organization, ".")
-      )
+      ),
+      htmltools::p(class = "bib-authors", icon_bi_people, authors)
     )
   )
 }

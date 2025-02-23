@@ -1,5 +1,12 @@
 [
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "K. Blake Vernon",
+    "section": "",
+    "text": "K. Blake Vernon\n\nprocessing file: _cv.qmd 1/17\n2/17 [unnamed-chunk-1] 3/17\n4/17 [unnamed-chunk-2] 5/17\n6/17 [articles]\n7/17\n8/17 [manuscripts]\n9/17\n10/17 [reviews]\n11/17\n12/17 [reports]\n13/17\n14/17 [funding]\n15/17\n16/17 [presentations]\n17/17\noutput file: _cv.knit.md\npandoc –output _cv.html to: html standalone: true embed-resources: true section-divs: true html-math-method: mathjax wrap: none default-image-extension: png toc: false\nmetadata document-css: false link-citations: true date-format: long lang: en page-layout: custom theme: - simplex - custom.scss mainfont: sans-serif minimal: true\nOutput created: _cv.html\n[1] TRUE"
+  },
+  {
     "objectID": "publications.html",
     "href": "publications.html",
     "title": "Kenneth Blake Vernon",
@@ -33,13 +40,6 @@
     "title": "Kenneth Blake Vernon",
     "section": "Technical reports",
     "text": "Technical reports\n\n\n2022\n\n\nArchaeological Survey of Cottonwood Wash, San Rafael Desert, Emery County, Utah\nReport submitted to the Bureau of Land Management, Price Field Office, Price, Utah; and State of Utah School and Institutional Trust Lands Administration, Salt Lake City, Utah. Prepared by the University of Utah Archaeological Center and the Colorado Plateau Archaeological Alliance. BLM Cooperative Agreement L20AC00267. United States Department of Interior Permit No. 21UT85115. State of Utah Antiquities Project No. U22UA031. University of Utah Archaeological Center Project No. UUAC22052.\n\n\n\n\n\nIshmael Medina, Kenneth B. Vernon, Kate E. Magargal, Weston C. McCool, Jerry D. Spangler, Brian F. Codding\n\n\n\n\n\n2021\n\n\nLimited Test Excavations at Red Reef Shelter (42WS519), Red Cliffs National Conservation Area, Washington County, Utah\nReport submitted to the Bureau of Land Management, St. George, Utah. NA\n\n\n\n\n\nJerry D. Spangler, Matthew Zweifel, Heidi Roberts, Kenneth B. Vernon, Isaac Hart, Brian F. Codding, Anne Lawlor\n\n\n\n\n\n2019\n\n\nHisatsinom of the high plateaus: a Class I overview of prehistoric cultural resources in Grand Staircase-Escalante National Monument\nReport submitted to the Bureau of Land Management, Salt Lake City, Utah. NA\n\n\n\n\n\nJerry D. Spangler, Peter M. Yaworsky, Kenneth B. Vernon, Brian F. Codding\n\n\n\n\n\n2018\n\n\nPreliminary Archaeological Investigations at the Jack Kirk Site, Mariposa Creek, California\nReport submitted to the North Fork Mono Tribe, Mariposa Creek, California. NA\n\n\n\n\n\nBrian F. Codding, Kate E. Magargal, Kenneth B. Vernon, Paul E. Allgaier, Jess Valdez, Ron Goode\n\n\n\n\n\nThe Archaeology of Molen Reef, Emery County, Utah\nReport submitted to the Southern Utah Wilderness Alliance, Salt Lake City, Utah. NA\n\n\n\n\n\nKenneth B. Vernon, Peter M. Yaworsky, Jerry D. Spangler"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "K. Blake Vernon",
-    "section": "",
-    "text": "K. Blake Vernon"
   },
   {
     "objectID": "about.html",
@@ -77,8 +77,8 @@
     "text": "Education\n\n\nUniversity of Utah | Salt Lake City, UT\nPhD in Anthropology, 2022\n\nNorthern Illinois University | DeKalb, IL\nMA in Philosophy, 2009\n\nUniversity of Central Arkansas | Conway, AR\nBA in History and Philosophy, 2006"
   },
   {
-    "objectID": "about.html#affiliations",
-    "href": "about.html#affiliations",
+    "objectID": "about.html#professional-affiliations",
+    "href": "about.html#professional-affiliations",
     "title": "Kenneth Blake Vernon",
     "section": " Professional Affiliations",
     "text": "Professional Affiliations\n\n\nGreat Basin Anthropological Association | 2016-present\n\nSociety for American Archaeology | 2014-present\n\nCoalition for Archaeological Synthesis | 2022-present\n\nEuropean Association of Archaeologists | 2023-present"

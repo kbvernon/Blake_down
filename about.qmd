@@ -82,7 +82,7 @@ Salt Lake City, Utah 84112
     BA in History and Philosophy, 2006  
 :::
 
-## {{< iconify fa6-solid:people-arrows >}} Professional Affiliations {#affiliations}
+## {{< iconify fa6-solid:people-arrows >}} Professional Affiliations
 
 ::: about-list
 -   [**Great Basin Anthropological

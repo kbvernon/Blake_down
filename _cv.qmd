@@ -1,0 +1,281 @@
+---
+format: 
+  html:
+    page-layout: custom
+    theme: 
+      - simplex
+      - custom.scss
+    mainfont: sans-serif
+    toc: false
+    minimal: true
+    embed-resources: true
+execute: 
+  echo: false
+  error: false
+  warning: false
+  output: asis
+---
+
+```{r}
+#| include: false
+library(googlesheets4, include.only = "read_sheet")
+source("utils.R")
+```
+
+```{css}
+body, 
+section {
+  background-color: white;
+}
+
+.about-list iconify-icon {
+  color: #533B4D;
+}
+
+#profile {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+footer.footer {
+  display: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+h2,
+h3,
+h4,
+h5 {
+  break-after: avoid;  
+}
+
+h1 {
+  margin-top: 0;
+}
+
+h2 {
+  margin-top: 2rem !important;
+}
+
+h3, 
+h4, 
+h5 {
+  margin-top: 1rem !important;
+}
+
+h3 {
+  font-size: 1.3rem;
+  font-style: italic;
+}
+
+section.level1 {
+  padding-top: 0;
+}
+
+/* suppress margins at the top of the page */
+section.level2:first-child h2:first-child,
+section.level3:first-child h3:first-child,
+section.level4:first-child h4:first-child,
+.bib-list:first-child .bib-year:first-child h3:first-child {
+  margin-top: 0 !important;
+}
+
+.bib-list .bib-year h3 {
+  break-after: avoid;
+}
+
+.bib-list .bib-year .bib-block {
+  break-inside: avoid;
+}
+
+.bib-list .bib-year .bib-block:not(:first-of-type){
+  margin-top: 1rem;
+}
+
+.bib-list .bib-year .bib-block .bib-buttons {
+  display: none;
+}
+
+#profile span.icon {
+  display: inline-block;
+  width: 1.2rem;
+  text-align: center;
+}
+
+@page {
+  size: letter portrait;
+  margin: 0.8in;
+  font-size: 1rem;
+  background-color: white;
+}
+```
+
+# Kenneth Blake Vernon
+
+:::::: {.grid .align-items-start #profile}
+::: {.g-col-8}
+[**Scientific Computing and Imaging Institute**](https://www.sci.utah.edu/people/k.vernon.html)  
+University of Utah  
+72 So. Central Campus Drive Room 3750  
+Salt Lake City, Utah 84112  
+:::
+
+::: {.g-col-4 .text-end}
+[kbvernon.io](https://www.kbvernon.io/) [{{< iconify fa6-solid:image-portrait >}}]{.icon}  
+[kbvernon](https://github.com/kbvernon) [{{< iconify fa:github >}}]{.icon}  
+[0000-0003-0098-5092](https://orcid.org/0000-0003-0098-5092) [{{< iconify academicons:orcid >}}]{.icon}  
+[2PE4za4AAAAJ](https://scholar.google.com/citations?user=2PE4za4AAAAJ&hl=en) [{{< iconify academicons:google-scholar >}}]{.icon}
+:::
+::::::
+
+## {{< iconify fa6-solid:briefcase >}} Professional Appointments
+
+::: {.about-list}
+-   **One-U Responsible AI Postdoctoral Fellow** | 2025-Present  
+    Scientific Computing and Imaging Institute  
+    School of Environment, Society, and Sustainability  
+    University of Utah  
+-   **Post-Doctoral Associate** | 2022-2024  
+    Center for Collaborative Synthesis in Archaeology, CU Boulder  
+-   **Assistant Director** | 2018-2022  
+    University of Utah Archaeological Center  
+:::
+
+## {{< iconify fa6-solid:graduation-cap >}} Education
+
+::: {.about-list}
+-   **University of Utah** | Salt Lake City, UT  
+    PhD in Anthropology, 2022  
+-   **Northern Illinois University** | DeKalb, IL  
+    MA in Philosophy, 2009  
+-   **University of Central Arkansas** | Conway, AR  
+    BA in History and Philosophy, 2006  
+:::
+
+## {{< iconify fa6-solid:book >}} Publications
+
+### Peer-reviewed journal articles
+
+```{r}
+#| label: articles
+articles <- get_collection(
+  user = Sys.getenv("ZOTERO_ID"),
+  key = Sys.getenv("ZOTERO_KEY"),
+  collection = Sys.getenv("ZOTERO_ARTICLE")
+)
+
+bib_list(articles, "article")
+```
+
+### Manuscripts
+
+```{r}
+#| label: manuscripts
+manuscripts <- get_collection(
+  user = Sys.getenv("ZOTERO_ID"),
+  key = Sys.getenv("ZOTERO_KEY"),
+  collection = Sys.getenv("ZOTERO_MANUSCRIPT")
+)
+
+bib_list(manuscripts, "manuscript")
+``` 
+
+### Book reviews
+
+```{r}
+#| label: reviews
+reviews <- get_collection(
+  user = Sys.getenv("ZOTERO_ID"),
+  key = Sys.getenv("ZOTERO_KEY"),
+  collection = Sys.getenv("ZOTERO_REVIEW")
+)
+
+bib_list(reviews, "review")
+```
+
+### Technical reports
+
+```{r}
+#| label: reports
+reports <- get_collection(
+  user = Sys.getenv("ZOTERO_ID"),
+  key = Sys.getenv("ZOTERO_KEY"),
+  collection = Sys.getenv("ZOTERO_REPORT")
+)
+
+bib_list(reports, "report")
+```
+
+## {{< iconify fa6-solid:hand-holding-dollar >}} Grants, Fellowships, and Awards
+
+```{r}
+#| label: funding
+funding <- read_sheet(Sys.getenv("GOOGLE_PAGE_ID"), sheet = "funding") |>
+  subset(result == "Awarded") |>
+  transform(collection = "Funding")
+
+bib_list(funding, "funding")
+```
+
+## {{< iconify fa6-solid:desktop >}} Presentations
+
+```{r}
+#| label: presentations
+presentations <- get_collection(
+  user = Sys.getenv("ZOTERO_ID"),
+  key = Sys.getenv("ZOTERO_KEY"),
+  collection = Sys.getenv("ZOTERO_PRESENTATION")
+)
+
+bib_list(presentations, "presentation")
+```
+
+## {{< iconify fa-solid:chalkboard-teacher >}} Teaching {#teaching}
+
+::: {.mb-2}
+**Teaching interests**. Behavioral Ecology, Urban Science, Environmental Data 
+Science, Statistics, Geography, Conservation & Sustainability, Human Prehistory, 
+North American Prehistory.
+:::
+
+**University of Utah**  
+
+-   ANTH 1010: Culture and the Human Experience  
+-   ANTH 1030: Introduction to World Prehistory  
+-   ANTH 5850: Quantitative Analysis of Archaeological Data  
+
+## {{< iconify fa6-solid:people-arrows >}} Professional Affiliations
+
+::: {.about-list}
+-   [**Great Basin Anthropological
+    Association**](https://greatbasinanthropologicalassociation.org/) |
+    2016-present  
+-   [**Society for American Archaeology**](https://www.saa.org/) | 2014-present  
+-   [**Coalition for Archaeological Synthesis**](https://www.archsynth.org/) |
+    2022-present  
+-   [**European Association of Archaeologists**](https://www.e-a-a.org/) |
+    2023-present  
+:::
+
+## {{< iconify fa-solid:hands-helping >}} Service, Outreach, and Other Activities
+
+::: {.about-list}
+-   **Studio Lab** | University of Colorado, Boulder, 2022-2024.  
+    {{< iconify tabler:checklist >}} **Mentor**. Supporting undergraduate research.  
+-   **Undergraduate Research Opportunities Program**. | University of Utah, 2018-2022.  
+    {{< iconify tabler:checklist >}} **Mentor**. Supporting undergraduate research.  
+-   **Journal Club: Problems in Evolutionary Anthropology** | University of Utah, 2018-2022.  
+    {{< iconify tabler:checklist >}} **Organizer**.  
+-   **Hopi Tribe v Donald J. Trump, Utah Diné Bikéyah v Donald J. Trump, Natural 
+    Resources Defense Council v Donald J. Trump** | 2018.  
+    Brief Amici Curiae of Archaeological Organizations in Support of Plaintiffs.  
+    {{< iconify tabler:checklist >}} **Contributor**.  
+:::
+
+## {{< iconify fa6-solid:envelope >}} References
+
+*Available upon request.*

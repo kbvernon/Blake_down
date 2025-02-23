@@ -53,7 +53,7 @@ body {
   margin: 0;
 }
 
-footer.footer {
+footer.footer, .btn {
   display: none;
 }
 
@@ -62,3 +62,14 @@ footer.footer {
 ::: {.index-title-container}
 # K. Blake Vernon
 :::
+
+```{r}
+temp_html <- "_cv.html"
+quarto::quarto_render("_cv.qmd", output_file = temp_html)
+pagedown::chrome_print(
+  "_cv.html",
+  output = "cv-vernon.pdf",
+  options = list(preferCSSPageSize = TRUE)
+)
+file.remove(temp_html)
+```

@@ -34,7 +34,7 @@ website:
       - text: "{{< iconify academicons:google-scholar size=lg >}}"
         href: https://scholar.google.com/citations?user=2PE4za4AAAAJ&hl=en
       - text: "{{< iconify academicons:cv size=lg >}}"
-        href: blake_vitae.pdf
+        href: cv-vernon.pdf
 
   page-footer:
     center: |

@@ -5,6 +5,23 @@ a few more labels I'm happy to embrace: pragmatist, naturalist, scientist,
 humanist, anthropologist, behavioral ecologist, geographer, historian, 
 environmental data scientist, programmer, recovering philosopher, and nerd. 
 
+In case you were wondering, this is me:   
+
+:::::: {.grid .align-items-start #profile}
+::: {.g-col-6}
+![](images/profile.jpg){width=100%}
+:::
+::: {.g-col-6}
+![](images/profile-muppet.png){width=100%}
+:::
+::::::
+
+The one on the left was taken on a survey in Nine Mile Canyon, Utah. That would 
+have been the Before Times, so maybe 500 years ago. The one on the right is the 
+same photo passed to ChatGPT with the request that it make me look like a Jim 
+Henson muppet. When asked to provide more details, I said, "Use Bert and Ernie 
+as inspiration."
+
 #### **Current Work**
 
 Currently, I'm a One-U Responsible AI Postdoctoral Fellow at the University of 

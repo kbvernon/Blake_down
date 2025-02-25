@@ -55,8 +55,13 @@ K. Blake Vernon
 ::::::
 
 ```{r}
+#| include: false
 temp_html <- "_cv.html"
-quarto::quarto_render("_cv.qmd", output_file = temp_html)
+quarto::quarto_render(
+  "_cv.qmd",
+  output_file = temp_html,
+  quiet = TRUE
+)
 pagedown::chrome_print(
   "_cv.html",
   output = "cv-vernon.pdf",

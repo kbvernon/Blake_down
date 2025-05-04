@@ -7,11 +7,5 @@ source("utils.R")
 
 ```{r}
 #| label: presentations
-presentations <- get_collection(
-  user = Sys.getenv("ZOTERO_ID"),
-  key = Sys.getenv("ZOTERO_KEY"),
-  collection = Sys.getenv("ZOTERO_PRESENTATION")
-)
-
-bib_list(presentations, "presentation")
+get_zotero_collection("presentation") |> make_bib_list()
 ```

@@ -1,63 +1,93 @@
+# read google collection -------------------------------------------------
+get_google_collection <- function(x) {
+  bib <- Sys.getenv("GOOGLE_PAGE_ID") |>
+    googlesheets4::read_sheet(sheet = x) |>
+    subset(result == "Awarded")
+
+  attr(bib, "collection") <- x
+  bib
+}
+
+
 # read zotero collection -------------------------------------------------
-get_collection <- function(user, key, collection) {
-  tbl <- RefManageR::ReadZotero(
-    user = user,
-    .params = list(
-      key = key,
-      collection = collection
-    )
+get_zotero_collection <- function(x) {
+  collection <- switch(x,
+    "article" = Sys.getenv("ZOTERO_ARTICLE"),
+    "manuscript" = Sys.getenv("ZOTERO_MANUSCRIPT"),
+    "presentation" = Sys.getenv("ZOTERO_PRESENTATION"),
+    "report" = Sys.getenv("ZOTERO_REPORT"),
+    "review" = Sys.getenv("ZOTERO_REVIEW")
   )
 
-  tbl <- as.data.frame(tbl)
+  zotero_request <- httr2::req_url_path_append(
+    httr2::request("https://api.zotero.org"),
+    "users",
+    Sys.getenv("ZOTERO_ID"),
+    "collections",
+    collection,
+    "items"
+  )
 
-  rownames(tbl) <- NULL
+  zotero_request <- httr2::req_url_query(
+    zotero_request,
+    key = Sys.getenv("ZOTERO_KEY"),
+    itemType = "-note",
+    format = "json",
+    limit = 99L
+  )
 
-  # clean up special characters
-  tbl[["author"]] <- gsub(" and ", ", ", tbl[["author"]])
-  tbl[["author"]] <- gsub("[{}]", "", tbl[["author"]])
-  tbl[["title"]] <- gsub("[{}]", "", tbl[["title"]])
+  zotero_response <- httr2::req_perform(zotero_request)
 
-  if ("shorttitle" %in% names(tbl)) {
-    tbl[["shorttitle"]] <- gsub("[{}]", "", tbl[["shorttitle"]])
-  }
+  bib <- httr2::resp_body_json(
+    zotero_response,
+    simplifyVector = TRUE
+  )
 
+  bib <- bib[["data"]]
 
-  if ("pages" %in% names(tbl)) {
-    tbl[["pages"]] <- gsub("--", "-", tbl[["pages"]])
+  names(bib) <- tolower(names(bib))
+
+  bib[["author"]] <- sapply(
+    bib[["creators"]],
+    \(.x) paste(.x[["firstName"]], .x[["lastName"]], collapse = ", ")
+  )
+
+  bib[["year"]] <- sub(".*(\\d{4}).*", "\\1", bib[["date"]])
+
+  if ("pages" %in% names(bib)) {
+    bib[["pages"]] <- gsub("--", "-", bib[["pages"]])
   }
 
   # parse sets of "key: value" pairs in the note column
   # turn them into a single named vector
-  if ("note" %in% names(tbl)) {
-    tbl[["note"]] <- lapply(
-      strsplit(tbl[["note"]], "\n"),
-      function(x) {
-        if (all(is.na(x))) {
-          return(NA)
-        }
-
-        x <- gsub("\\\\", "", x)
-
-        setNames(sub(".*: ", "", x), sub(":.*", "", x))
+  bib[["extra"]] <- lapply(
+    strsplit(bib[["extra"]], "\n"),
+    function(x) {
+      if (all(is.na(x))) {
+        return(NA)
       }
-    )
-  }
 
-  tbl
+      x <- gsub("\\\\", "", x)
+
+      setNames(sub(".*: ", "", x), sub(":.*", "", x))
+    }
+  )
+
+  attr(bib, "collection") <- x
+  bib
 }
 
 # generate a bibliographic list ------------------------------------------
-bib_list <- function(bib, collection) {
+make_bib_list <- function(bib) {
   # get block function
+  collection <- attr(bib, "collection")
   make_block <- switch(collection,
     "article" = article_block,
-    "fieldwork" = fieldwork_block,
     "funding" = funding_block,
     "manuscript" = manuscript_block,
     "presentation" = presentation_block,
     "report" = report_block,
-    "review" = review_block,
-    "synergy" = synergy_block
+    "review" = article_block
   )
 
   # build entries for each year
@@ -101,16 +131,23 @@ bib_list <- function(bib, collection) {
 article_block <- function(bib) {
   title <- bib[["title"]]
   authors <- bib[["author"]]
-  journal <- bib[["journal"]]
+  journal <- bib[["publicationtitle"]]
 
-  volume <- sub(" NA", "", paste0(" ", bib[["volume"]]))
-  number <- sub(" \\(NA\\):", "", paste0(" (", bib[["number"]], "):"))
-  pages <- sub(" NA.", "", paste0(" ", bib[["pages"]]))
-  year <- paste0(" (", bib[["year"]], ")")
+  details <- sprintf(
+    "%s (%s): %s (%s)",
+    bib[["volume"]],
+    bib[["issue"]],
+    bib[["pages"]],
+    bib[["year"]]
+  )
+
+  details <- gsub(" \\(\\)", "", details)
+  details <- trimws(details)
+
   doi <- paste0(" ", bib[["doi"]])
 
-  github <- bib[["note"]][[1]]["github"]
-  preprint <- bib[["note"]][[1]]["preprint"]
+  github <- bib[["extra"]][[1]]["github"]
+  preprint <- bib[["extra"]][[1]]["preprint"]
   article <- bib[["url"]]
 
   block <- htmltools::div(
@@ -121,7 +158,7 @@ article_block <- function(bib) {
       htmltools::p(
         class = "bib-details",
         htmltools::span(class = "bib-journal", journal),
-        volume, number, pages, year
+        details
       ),
       htmltools::p(class = "bib-authors", icon_bi_people, authors),
       htmltools::p(
@@ -151,18 +188,19 @@ article_block <- function(bib) {
 funding_block <- function(bib) {
   title <- bib[["title"]]
   authors <- bib[["pi"]]
-  fot <- bib[["fot"]]
-  organization <- bib[["organization"]]
+
+  details <- sprintf(
+    "%s, %s.",
+    bib[["fot"]],
+    bib[["organization"]]
+  )
 
   htmltools::div(
     class = "bib-block",
     htmltools::div(
       class = "bib-ref",
       htmltools::p(class = "bib-title", title),
-      htmltools::p(
-        class = "bib-details",
-        paste0(fot, ", ", organization, ".")
-      ),
+      htmltools::p(class = "bib-details", details),
       htmltools::p(class = "bib-authors", icon_bi_people, authors)
     )
   )
@@ -171,11 +209,11 @@ funding_block <- function(bib) {
 manuscript_block <- function(bib) {
   title <- bib[["title"]]
   authors <- bib[["author"]]
-  journal <- bib[["journal"]]
+  journal <- bib[["publicationtitle"]]
 
-  github <- bib[["note"]][[1]]["github"]
-  preprint <- bib[["note"]][[1]]["preprint"]
-  status <- sub("\\(NA\\)", "", paste0("(", bib[["note"]][[1]]["status"], ")"))
+  github <- bib[["extra"]][[1]]["github"]
+  preprint <- bib[["extra"]][[1]]["preprint"]
+  status <- sprintf("(%s)", bib[["extra"]][[1]]["status"])
 
   block <- htmltools::div(
     class = "bib-block",
@@ -208,11 +246,15 @@ manuscript_block <- function(bib) {
 presentation_block <- function(bib) {
   title <- bib[["title"]]
   authors <- bib[["author"]]
-  type <- bib[["type"]]
-  shorttitle <- bib[["shorttitle"]]
-  address <- bib[["address"]]
 
-  github <- bib[["note"]][[1]]["github"]
+  details <- sprintf(
+    "%s at the %s, %s.",
+    bib[["presentationtype"]],
+    bib[["meetingname"]],
+    bib[["place"]]
+  )
+
+  github <- bib[["extra"]][[1]]["github"]
   slides <- bib[["url"]]
 
   block <- htmltools::div(
@@ -220,10 +262,7 @@ presentation_block <- function(bib) {
     htmltools::div(
       class = "bib-ref",
       htmltools::p(class = "bib-title", title),
-      htmltools::p(
-        class = "bib-details",
-        paste0(type, " at the ", shorttitle, ", ", address, ".")
-      ),
+      htmltools::p(class = "bib-details", details),
       htmltools::p(class = "bib-authors", icon_bi_people, authors)
     )
   )
@@ -245,53 +284,22 @@ presentation_block <- function(bib) {
 report_block <- function(bib) {
   title <- bib[["title"]]
   authors <- bib[["author"]]
-  institution <- bib[["institution"]]
-  note <- bib[["note"]]
+
+  details <- sprintf(
+    "Report submitted to the %s. %s",
+    bib[["institution"]],
+    bib[["extra"]]
+  )
+
+  details <- trimws(details)
 
   htmltools::div(
     class = "bib-block",
     htmltools::div(
       class = "bib-ref",
       htmltools::p(class = "bib-title", title),
-      htmltools::p(
-        class = "bib-details",
-        paste0("Report submitted to the ", institution, ". ", note)
-      ),
+      htmltools::p(class = "bib-details", details),
       htmltools::p(class = "bib-authors", icon_bi_people, authors)
-    )
-  )
-}
-
-review_block <- function(bib) {
-  article_block(bib)
-}
-
-synergy_block <- function(bib) {
-  title <- bib[["title"]]
-
-  if (!is.na(bib[["url"]])) {
-    title <- htmltools::a(href = bib[["url"]], title)
-  }
-
-  authors <- bib[["author"]]
-  description <- bib[["description"]]
-  status <- bib[["status"]]
-
-  position <- htmltools::span(
-    class = "bib-position",
-    bib[["position"]]
-  )
-
-  htmltools::div(
-    class = "bib-block",
-    htmltools::div(
-      class = "bib-ref",
-      htmltools::p(class = "bib-title", position, title),
-      htmltools::p(class = "bib-authors", authors),
-      htmltools::p(
-        class = "bib-details",
-        paste0(description, " Status: ", status)
-      )
     )
   )
 }

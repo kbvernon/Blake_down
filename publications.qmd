@@ -11,50 +11,26 @@ source("utils.R")
 
 ```{r}
 #| label: articles
-articles <- get_collection(
-  user = Sys.getenv("ZOTERO_ID"),
-  key = Sys.getenv("ZOTERO_KEY"),
-  collection = Sys.getenv("ZOTERO_ARTICLE")
-)
-
-bib_list(articles, "article")
+get_zotero_collection("article") |> make_bib_list()
 ```
 
 ## Manuscripts
 
 ```{r}
 #| label: manuscripts
-manuscripts <- get_collection(
-  user = Sys.getenv("ZOTERO_ID"),
-  key = Sys.getenv("ZOTERO_KEY"),
-  collection = Sys.getenv("ZOTERO_MANUSCRIPT")
-)
-
-bib_list(manuscripts, "manuscript")
+get_zotero_collection("manuscript") |> make_bib_list()
 ``` 
 
 ## Book reviews
 
 ```{r}
 #| label: reviews
-reviews <- get_collection(
-  user = Sys.getenv("ZOTERO_ID"),
-  key = Sys.getenv("ZOTERO_KEY"),
-  collection = Sys.getenv("ZOTERO_REVIEW")
-)
-
-bib_list(reviews, "review")
+get_zotero_collection("review") |> make_bib_list()
 ```
 
 ## Technical reports
 
 ```{r}
 #| label: reports
-reports <- get_collection(
-  user = Sys.getenv("ZOTERO_ID"),
-  key = Sys.getenv("ZOTERO_KEY"),
-  collection = Sys.getenv("ZOTERO_REPORT")
-)
-
-bib_list(reports, "report")
+get_zotero_collection("report") |> make_bib_list()
 ```

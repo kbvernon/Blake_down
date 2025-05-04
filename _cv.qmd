@@ -18,7 +18,6 @@ execute:
 
 ```{r}
 #| include: false
-library(googlesheets4, include.only = "read_sheet")
 source("utils.R")
 ```
 
@@ -166,76 +165,42 @@ Salt Lake City, Utah 84112
 
 ```{r}
 #| label: articles
-articles <- get_collection(
-  user = Sys.getenv("ZOTERO_ID"),
-  key = Sys.getenv("ZOTERO_KEY"),
-  collection = Sys.getenv("ZOTERO_ARTICLE")
-)
-
-bib_list(articles, "article")
+get_zotero_collection("article") |> make_bib_list()
 ```
 
 ### Manuscripts
 
 ```{r}
 #| label: manuscripts
-manuscripts <- get_collection(
-  user = Sys.getenv("ZOTERO_ID"),
-  key = Sys.getenv("ZOTERO_KEY"),
-  collection = Sys.getenv("ZOTERO_MANUSCRIPT")
-)
-
-bib_list(manuscripts, "manuscript")
+get_zotero_collection("manuscript") |> make_bib_list()
 ``` 
 
 ### Book reviews
 
 ```{r}
 #| label: reviews
-reviews <- get_collection(
-  user = Sys.getenv("ZOTERO_ID"),
-  key = Sys.getenv("ZOTERO_KEY"),
-  collection = Sys.getenv("ZOTERO_REVIEW")
-)
-
-bib_list(reviews, "review")
+get_zotero_collection("review") |> make_bib_list()
 ```
 
 ### Technical reports
 
 ```{r}
 #| label: reports
-reports <- get_collection(
-  user = Sys.getenv("ZOTERO_ID"),
-  key = Sys.getenv("ZOTERO_KEY"),
-  collection = Sys.getenv("ZOTERO_REPORT")
-)
-
-bib_list(reports, "report")
+get_zotero_collection("report") |> make_bib_list()
 ```
 
 ## {{< iconify fa6-solid:hand-holding-dollar >}} Grants, Fellowships, and Awards
 
 ```{r}
 #| label: funding
-funding <- read_sheet(Sys.getenv("GOOGLE_PAGE_ID"), sheet = "funding") |>
-  subset(result == "Awarded") |>
-  transform(collection = "Funding")
-
-bib_list(funding, "funding")
+get_google_collection("funding") |> make_bib_list()
 ```
 
 ## {{< iconify fa6-solid:desktop >}} Presentations
 
 ```{r}
 #| label: presentations
-presentations <- get_collection(
-  user = Sys.getenv("ZOTERO_ID"),
-  key = Sys.getenv("ZOTERO_KEY"),
-  collection = Sys.getenv("ZOTERO_PRESENTATION")
-)
-
-bib_list(presentations, "presentation")
+get_zotero_collection("presentation") |> make_bib_list()
 ```
 
 ## {{< iconify fa-solid:chalkboard-teacher >}} Teaching {#teaching}

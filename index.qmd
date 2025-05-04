@@ -63,7 +63,7 @@ quarto::quarto_render(
   quiet = TRUE
 )
 pagedown::chrome_print(
-  "_cv.html",
+  temp_html,
   output = "cv-vernon.pdf",
   options = list(preferCSSPageSize = TRUE)
 )

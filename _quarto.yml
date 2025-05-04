@@ -26,7 +26,7 @@ website:
         href: presentations.qmd
     right:
       - icon: envelope
-        href: mailto:Kenneth.Vernon@colorado.edu
+        href: mailto:k.vernon@sci.utah.edu
       - icon: github
         href: https://github.com/kbvernon/
       - text: "{{< iconify fa6-brands:orcid size=lg >}}"

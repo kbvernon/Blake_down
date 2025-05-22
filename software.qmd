@@ -1,0 +1,84 @@
+## Software
+
+```{r}
+#| eval: false
+pkgs <- c(
+  "arcgis",
+  "awdb",
+  "rextendr"
+)
+
+pkgs <- subset(
+  tools::CRAN_package_db(),
+  Package %in% pkgs,
+  select = c(Package, Title, Description, URL)
+)
+```
+
+<hr class="mt-4 mb-4">
+
+::: {.pkg}
+**arcgis: ArcGIS Location Services Meta-Package**
+
+[{{< iconify mdi:information-outline >}} Description:]{.pkg-detail} Provides easy installation and loading of core ArcGIS location services packages 'arcgislayers', 'arcgisutils', 'arcgisgeocode', and 'arcgisplaces'. Enabling developers to interact with spatial data and services from 'ArcGIS Online', 'ArcGIS Enterprise', and 'ArcGIS Platform'. Learn more about the 'arcgis' meta-package at <https://developers.arcgis.com/r-bridge/>.
+
+[{{< iconify mdi:language >}} Language:]{.pkg-detail} R
+
+[{{< iconify carbon:user-role >}} Role:]{.pkg-detail} Contributor
+
+<a class="btn btn-outline-dark btn-sm" href="https://github.com/R-ArcGIS/arcgis">
+  <i class="bi bi-github"></i>
+  <span>GitHub</span>
+</a>
+:::
+
+<hr class="mt-4 mb-4">
+
+::: {.pkg}
+**awdb: Query the USDA NWCC Air and Water Database REST API**
+
+[{{< iconify mdi:information-outline >}} Description:]{.pkg-detail} Query the four endpoints of the 'Air and Water Database (AWDB) REST API' maintained by the National Water and Climate Center (NWCC) at the United States Department of Agriculture (USDA). Endpoints include data, forecast, reference-data, and metadata. The package is extremely light weight, with 'Rust' via 'extendr' doing most of the heavy lifting to deserialize and flatten deeply nested 'JSON' responses. The AWDB can be found at <https://wcc.sc.egov.usda.gov/awdbRestApi/swagger-ui/index.html>.
+
+[{{< iconify mdi:language >}} Language:]{.pkg-detail} R
+
+[{{< iconify carbon:user-role >}} Role:]{.pkg-detail} Author
+
+<a class="btn btn-outline-dark btn-sm" href="https://github.com/kbvernon/awdb">
+  <i class="bi bi-github"></i>
+  <span>GitHub</span>
+</a>
+:::
+
+<hr class="mt-4 mb-4">
+
+::: {.pkg}
+**extendr: A safe and user friendly R extension interface using Rust**
+
+[{{< iconify mdi:information-outline >}} Description:]{.pkg-detail} The extendr suite of software packages provides a Rust extension mechanism for R, thus bringing the computing power of Rust to the statistical programming environment of R.
+
+[{{< iconify mdi:language >}} Language:]{.pkg-detail} Rust
+
+[{{< iconify carbon:user-role >}} Role:]{.pkg-detail} Contributor
+
+<a class="btn btn-outline-dark btn-sm" href="https://github.com/extendr/extendr">
+  <i class="bi bi-github"></i>
+  <span>GitHub</span>
+</a>
+:::
+
+<hr class="mt-4 mb-4">
+
+::: {.pkg}
+**rextendr: Call Rust Code from R using the 'extendr' Crate**
+
+[{{< iconify mdi:information-outline >}} Description:]{.pkg-detail} Provides functions to compile and load Rust code from R, similar to how 'Rcpp' or 'cpp11' allow easy interfacing with C++ code. Also provides helper functions to create R packages that use Rust code. Under the hood, the Rust crate 'extendr' is used to do all the heavy lifting.
+
+[{{< iconify mdi:language >}} Language:]{.pkg-detail} R
+
+[{{< iconify carbon:user-role >}} Role:]{.pkg-detail} Contributor
+
+<a class="btn btn-outline-dark btn-sm" href="https://github.com/extendr/rextendr">
+  <i class="bi bi-github"></i>
+  <span>GitHub</span>
+</a>
+:::

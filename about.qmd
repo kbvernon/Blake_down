@@ -64,7 +64,7 @@ and questions that really animate me these days:
     for this include Gaussian and Dirichlet Process Mixture Models, as well as 
     their deep learning analogs.
 
-In my spare time, I contribute to several FOSS projects in the R community.
+In my spare time, I contribute to several [FOSS projects](software.qmd) in the R community.
 
 <hr class="mt-5 mb-5">
 

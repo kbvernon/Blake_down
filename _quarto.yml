@@ -24,6 +24,8 @@ website:
         href: publications.qmd
       - text: "Presentations"
         href: presentations.qmd
+      - text: "Software"
+        href: software.qmd
     right:
       - icon: envelope
         href: mailto:k.vernon@sci.utah.edu

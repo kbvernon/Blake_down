@@ -136,8 +136,14 @@ th {
 }
 
 .pkg {
-  p:not(:first-child) {
-    margin: 0.6rem 0 0 0 !important;
+  p {
+    &:first-child {
+      margin-bottom: 0 !important;
+    }
+
+    &:not(:first-child) {
+      margin: 0.6rem 0 0 0 !important;
+    }
   }
 
   .pkg-detail {

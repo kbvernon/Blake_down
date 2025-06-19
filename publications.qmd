@@ -7,19 +7,19 @@ toc: true
 source("utils.R")
 ```
 
-## Peer-reviewed journal articles
-
-```{r}
-#| label: articles
-get_zotero_collection("article") |> make_bib_list()
-```
-
 ## Manuscripts
 
 ```{r}
 #| label: manuscripts
 get_zotero_collection("manuscript") |> make_bib_list()
 ``` 
+
+## Peer-reviewed journal articles
+
+```{r}
+#| label: articles
+get_zotero_collection("article") |> make_bib_list()
+```
 
 ## Book reviews
 

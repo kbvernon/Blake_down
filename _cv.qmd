@@ -17,9 +17,15 @@ execute:
 ---
 
 ```{r}
+#| label: setup
 #| include: false
-source("utils.R")
+library(extera)
+library(yyjsonr)
+
+tera <- ExTera$new("extera-templates/*.html")
+tera$autoescape_off()
 ```
+
 
 ```{css}
 html {
@@ -61,12 +67,10 @@ h5 {
 }
 
 h1 {
-  color: #533B4D;
   margin-top: 0;
 }
 
 h2 {
-  color: #533B4D;
   margin-top: 2rem !important;
 }
 
@@ -89,23 +93,23 @@ section.level1 {
 section.level2:first-child h2:first-child,
 section.level3:first-child h3:first-child,
 section.level4:first-child h4:first-child,
-.bib-list:first-child .bib-year:first-child h3:first-child {
+.bibliography:first-child .year-list:first-child h3:first-child {
   margin-top: 0 !important;
 }
 
-.bib-list .bib-year h3 {
+.bibliography .year-list h3 {
   break-after: avoid;
 }
 
-.bib-list .bib-year .bib-block {
+.bibliography .year-list .reference {
   break-inside: avoid;
 }
 
-.bib-list .bib-year .bib-block:not(:first-of-type){
+.bibliography .year-list .reference:not(:first-of-type){
   margin-top: 1rem;
 }
 
-.bib-list .bib-year .bib-block .bib-buttons {
+.bibliography .year-list .reference .buttons {
   display: none;
 }
 
@@ -168,42 +172,90 @@ Salt Lake City, Utah 84112
 
 ```{r}
 #| label: articles
-get_zotero_collection("article") |> make_bib_list()
+articles <- read_json_file("data/article.json")
+
+string <- tera$render_to_string(
+  "articles.html",
+  id = "articles",
+  bibliography = articles
+)
+
+cat("```{=html}", string, "```", sep = "\n")
 ```
 
 ### Manuscripts
 
 ```{r}
 #| label: manuscripts
-get_zotero_collection("manuscript") |> make_bib_list()
+manuscripts <- read_json_file("data/manuscript.json")
+
+string <- tera$render_to_string(
+  "manuscripts.html",
+  id = "manuscripts",
+  bibliography = manuscripts
+)
+
+cat("```{=html}", string, "```", sep = "\n")
 ``` 
 
 ### Book reviews
 
 ```{r}
 #| label: reviews
-get_zotero_collection("review") |> make_bib_list()
+reviews <- read_json_file("data/review.json")
+
+string <- tera$render_to_string(
+  "articles.html",
+  id = "reviews",
+  bibliography = reviews
+)
+
+cat("```{=html}", string, "```", sep = "\n")
 ```
 
 ### Technical reports
 
 ```{r}
 #| label: reports
-get_zotero_collection("report") |> make_bib_list()
+reports <- read_json_file("data/report.json")
+
+string <- tera$render_to_string(
+  "reports.html",
+  id = "reports",
+  bibliography = reports
+)
+
+cat("```{=html}", string, "```", sep = "\n")
 ```
 
 ## {{< iconify fa6-solid:hand-holding-dollar >}} Grants, Fellowships, and Awards
 
 ```{r}
 #| label: funding
-get_google_collection("funding") |> make_bib_list()
+funding <- read_json_file("data/funding.json")
+
+string <- tera$render_to_string(
+  "funding.html",
+  id = "funding",
+  bibliography = funding
+)
+
+cat("```{=html}", string, "```", sep = "\n")
 ```
 
 ## {{< iconify fa6-solid:desktop >}} Presentations
 
 ```{r}
 #| label: presentations
-get_zotero_collection("presentation") |> make_bib_list()
+presentations <- read_json_file("data/presentation.json")
+
+string <- tera$render_to_string(
+  "presentations.html",
+  id = "presentations",
+  bibliography = presentations
+)
+
+cat("```{=html}", string, "```", sep = "\n")
 ```
 
 ## {{< iconify fa-solid:chalkboard-teacher >}} Teaching {#teaching}

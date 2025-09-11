@@ -1,11 +1,24 @@
 ```{r}
+#| label: setup
 #| include: false
-source("utils.R")
+library(extera)
+library(yyjsonr)
+
+tera <- ExTera$new("extera-templates/*.html")
+tera$autoescape_off()
 ```
 
 ## Presentations
 
 ```{r}
 #| label: presentations
-get_zotero_collection("presentation") |> make_bib_list()
+presentations <- read_json_file("data/presentation.json")
+
+string <- tera$render_to_string(
+  "presentations.html",
+  id = "presentations",
+  bibliography = presentations
+)
+
+cat("```{=html}", string, "```", sep = "\n")
 ```

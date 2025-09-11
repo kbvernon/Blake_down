@@ -1,5 +1,6 @@
 project:
   type: website
+  pre-render: download-data.R
   resources: 
     - "*.pdf"
 

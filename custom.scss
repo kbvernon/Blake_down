@@ -68,19 +68,19 @@ th {
   -webkit-flex-direction: row;
 }
 
-.bib-list {
+.bibliography {
   width: 100%;
   margin: 0;
   padding-left: 0;
 
-  .bib-year {
+  .year-list {
     margin-top: 0;
 
     &:not(:first-child) {
-      margin-top: 1.5rem;
+      margin-top: 2rem;
     }
 
-    h3.bib-year-header {
+    h3.year-list-header {
       font-size: 1rem;
       font-weight: bold;
       margin: 0;
@@ -90,48 +90,62 @@ th {
       border-bottom: 1px solid $gray;
     }
 
-    .bib-block {
+    .reference {
       margin-top: 0;
 
       &:not(:first-of-type) {
-        margin-top: 1.5rem;
+        margin-top: 2rem;
       }
 
-      .bib-ref {
-        p {
-          margin: 0;
-        }
-
-        .bib-title {
-          font-size: 1rem;
-          font-weight: bold;
-          color: $caribbean;
-        }
-
-        .bib-authors,
-        .bib-details {
-          font-size: 0.9rem;
-          margin-top: 0.3rem;
-        }
-
-        .bib-details .bib-journal {
-          font-style: italic;
-        }
+      p {
+        margin: 0;
       }
 
-      .bib-buttons {
-        margin-top: 0.7rem;
-        padding: 0.2rem 0;
+      .title {
+        font-size: 1rem;
+        font-weight: bold;
+        color: $caribbean;
+        margin: 0;
       }
+
+      .authors,
+      .details {
+        font-size: 0.9rem;
+        margin-top: 0.3rem;
+      }
+
+      p.details .publication {
+        font-style: italic;
+      }
+    }
+
+    .buttons {
+      margin-top: 0.5rem;
+      padding: 0;
     }
   }
 
-  .iconify-icon {
+  iconify-icon {
     color: $eggplant;
-    width: 1em;
-    height: 1em;
+  }
+
+  span.icon {
+    color: $eggplant;
+  }
+
+  .icon-doi {
     display: inline-block;
-    vertical-align: -0.125em
+    width: 0.93em;
+    height: 0.95em;
+    background-color: currentColor;
+    --svg: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M5.16%2C4.25v3.11c-.49-.64-1.03-.95-1.77-.95-1.51%2C0-2.39%2C1-2.39%2C2.67s.98%2C2.67%2C2.33%2C2.67c.82%2C0%2C1.38-.28%2C1.8-.92l-.03.72h1.5v-7.3h-1.45ZM3.86%2C10.46c-.82%2C0-1.33-.53-1.33-1.42s.5-1.45%2C1.33-1.45%2C1.33.53%2C1.33%2C1.45-.49%2C1.42-1.33%2C1.42ZM10%2C6.48c-1.71%2C0-2.9%2C1.18-2.9%2C2.63s1.16%2C2.63%2C2.9%2C2.63%2C2.87-1.15%2C2.87-2.63-1.16-2.63-2.87-2.63ZM9.97%2C10.42c-.84%2C0-1.36-.52-1.36-1.31s.52-1.31%2C1.36-1.31%2C1.37.52%2C1.36%2C1.31c0%2C.79-.52%2C1.31-1.36%2C1.31ZM13.25%2C5.08c0%2C.44.38.85.88.85.47%2C0%2C.87-.39.87-.85%2C0-.45-.37-.82-.85-.83%2C0%2C0-.02%2C0-.03%2C0-.49%2C0-.87.39-.88.83M13.37%2C11.57h1.51v-4.88h-1.51v4.88ZM15%2C2H1v-1h14v1ZM15%2C15H1v-1h14v1Z%22%2F%3E%3C%2Fsvg%3E');
+    -webkit-mask-image: var(--svg);
+    mask-image: var(--svg);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    vertical-align: -0.15em;
   }
 }
 

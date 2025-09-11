@@ -78,7 +78,7 @@ of R.
 <hr class="my-4">
 
 ::: pkg
-**h30: H3 Geospatial Indexing System**
+**h3o: H3 Geospatial Indexing System**
 
 [{{< iconify mdi:information-outline >}} Description:]{.pkg-detail} A dependency
 free interface to the H3 geospatial indexing system utilizing the Rust library

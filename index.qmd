@@ -6,7 +6,6 @@ engine: knitr
 ---
 
 ```{css echo = FALSE}
-
 body {
   background: black;
   background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.5)), url("images/green_grass_valley.jpg");
@@ -45,27 +44,4 @@ footer.footer, .btn {
 .title-container p {
   margin-bottom: 0;
 }
-
-```
-
-:::::: {.grid .align-items-end .h-100 .w-100 .title-container}
-::: {.g-col-12 .text-end .text-white .fw-bold .fs-3}
-K. Blake Vernon
-:::
-::::::
-
-```{r}
-#| include: false
-temp_html <- "_cv.html"
-quarto::quarto_render(
-  "_cv.qmd",
-  output_file = temp_html,
-  quiet = TRUE
-)
-pagedown::chrome_print(
-  temp_html,
-  output = "cv-vernon.pdf",
-  options = list(preferCSSPageSize = TRUE)
-)
-file.remove(temp_html)
 ```

@@ -1,0 +1,48 @@
+<div class="bibliography" id="{{ id }}">
+    {%- set references_by_year = bibliography | group_by(attribute="year") -%}
+    {%- set years = [] -%}
+    {%- for year, reference in references_by_year -%}
+    {%- set_global years = years | concat(with=year) -%}
+    {%- endfor -%}
+    {%- for year in years | reverse %}
+    <div class="year-list" id="year-list-{{ year }}">
+        <h3 class="year-list-header">{{ year }}</h3>
+        {%- set references = references_by_year[year] %}
+        {%- for ref in references %}
+        <div class="reference">
+            <div class="metadata">
+                <p class="title">{{ ref.title }}</p>
+                <p class="details">
+                    {%- if ref.publicationtitle %}
+                    <span class="publication">{{ ref.publicationtitle }}</span>
+                    {%- endif -%}
+                    {%- if ref.extra['status'] %} ({{ ref.extra['status'] }}){% endif %}
+                </p>
+                <p class="authors">
+                    <iconify-icon role="img" inline icon="bi:people"></iconify-icon>
+                    {{ ref.author }}
+                </p>
+            </div>
+            {%- if ref.extra['github'] or ref.extra['preprint'] %}
+            <div class="buttons">
+                {%- if ref.extra['github'] %}
+                <a class="btn btn-outline-dark btn-sm" href="{{ ref.extra['github'] }}" rel="noopener noreferrer"
+                    aria_label="github" data-original-href="{{ ref.extra['github'] }}">
+                    <i class="bi bi-github"></i>
+                    <span>GitHub</span>
+                </a>
+                {%- endif %}
+                {%- if ref.extra['preprint'] %}
+                <a class="btn btn-outline-dark btn-sm" href="{{ ref.extra['preprint'] }}" rel="noopener noreferrer"
+                    aria_label="preprint" data-original-href="{{ ref.extra['preprint'] }}">
+                    <i class="bi bi-filetype-pdf"></i>
+                    <span>Preprint</span>
+                </a>
+                {%- endif %}
+            </div>
+            {%- endif %}
+        </div>
+        {%- endfor %}
+    </div>
+    {%- endfor %}
+</div>

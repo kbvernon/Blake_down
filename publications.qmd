@@ -3,34 +3,71 @@ toc: true
 ---
 
 ```{r}
+#| label: setup
 #| include: false
-source("utils.R")
+library(extera)
+library(yyjsonr)
+
+tera <- ExTera$new("extera-templates/*.html")
+tera$autoescape_off()
 ```
 
 ## Manuscripts
 
 ```{r}
 #| label: manuscripts
-get_zotero_collection("manuscript") |> make_bib_list()
+manuscripts <- read_json_file("data/manuscript.json")
+
+string <- tera$render_to_string(
+  "manuscripts.html",
+  id = "manuscripts",
+  bibliography = manuscripts
+)
+
+cat("```{=html}", string, "```", sep = "\n")
 ``` 
 
 ## Peer-reviewed journal articles
 
 ```{r}
 #| label: articles
-get_zotero_collection("article") |> make_bib_list()
+articles <- read_json_file("data/article.json")
+
+string <- tera$render_to_string(
+  "articles.html",
+  id = "articles",
+  bibliography = articles
+)
+
+cat("```{=html}", string, "```", sep = "\n")
 ```
 
 ## Book reviews
 
 ```{r}
 #| label: reviews
-get_zotero_collection("review") |> make_bib_list()
+reviews <- read_json_file("data/review.json")
+
+string <- tera$render_to_string(
+  "articles.html",
+  id = "reviews",
+  bibliography = reviews
+)
+
+cat("```{=html}", string, "```", sep = "\n")
 ```
 
 ## Technical reports
 
 ```{r}
 #| label: reports
-get_zotero_collection("report") |> make_bib_list()
+reports <- read_json_file("data/report.json")
+
+string <- tera$render_to_string(
+  "reports.html",
+  id = "reports",
+  bibliography = reports
+)
+
+cat("```{=html}", string, "```", sep = "\n")
 ```

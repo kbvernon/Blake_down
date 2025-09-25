@@ -49,7 +49,7 @@ most of the heavy lifting to deserialize and flatten deeply nested 'JSON'
 responses. The AWDB can be found at
 <https://wcc.sc.egov.usda.gov/awdbRestApi/swagger-ui/index.html>.
 
-[{{< iconify mdi:language >}} Language:]{.pkg-detail} R
+[{{< iconify mdi:language >}} Language:]{.pkg-detail} R, Rust
 
 [{{< iconify carbon:user-role >}} Role:]{.pkg-detail} Author
 
@@ -78,6 +78,28 @@ of R.
 <hr class="my-4">
 
 ::: pkg
+**extera: Template engine inspired by 'tera'**
+
+[{{< iconify mdi:information-outline >}} Description:]{.pkg-detail} Template 
+engine powered by the 'tera' 'Rust' crate and 'extendr'. Users mainly interact 
+with the ExTera R6 object, which serves as a template library with encapsulated
+methods for rendering. To render a template, users simply provide a context, or 
+a dataset consisting of variable names and values. Template syntax supports 
+additional logic, including built-in filters, tests, and functions, as well as 
+loops, conditions, and inheritance. Documentation for tera's templating syntax 
+can be found at <https://keats.github.io/tera/docs/>.
+
+[{{< iconify mdi:language >}} Language:]{.pkg-detail} R, Rust
+
+[{{< iconify carbon:user-role >}} Role:]{.pkg-detail} Author
+
+<a class="btn btn-outline-dark btn-sm" href="https://github.com/kbvernon/extera">
+<i class="bi bi-github"></i> GitHub </a>
+:::
+
+<hr class="my-4">
+
+::: pkg
 **h3o: H3 Geospatial Indexing System**
 
 [{{< iconify mdi:information-outline >}} Description:]{.pkg-detail} A dependency
@@ -85,7 +107,7 @@ free interface to the H3 geospatial indexing system utilizing the Rust library
 'h3o' <https://github.com/HydroniumLabs/h3o> via the 'extendr' library
 <https://github.com/extendr/extendr>.
 
-[{{< iconify mdi:language >}} Language:]{.pkg-detail} R
+[{{< iconify mdi:language >}} Language:]{.pkg-detail} R, Rust
 
 [{{< iconify carbon:user-role >}} Role:]{.pkg-detail} Contributor, Maintainer
 

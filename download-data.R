@@ -74,6 +74,7 @@ sapply(
 Sys.getenv("GOOGLE_PAGE_ID") |>
   googlesheets4::read_sheet(sheet = "funding") |>
   subset(result == "Awarded") |>
+  transform(year = as.integer(year)) |>
   yyjsonr::write_json_file("data/funding.json", pretty = TRUE)
 
 # render cv --------------------------------------------------------------

@@ -1,23 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.kbvernon.io/software.html</loc>
-    <lastmod>2025-09-25T21:23:42.414Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.kbvernon.io/presentations.html</loc>
-    <lastmod>2025-09-09T01:05:12.724Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.kbvernon.io/about.html</loc>
-    <lastmod>2025-05-22T00:11:35.717Z</lastmod>
+    <loc>https://www.kbvernon.io/publications.html</loc>
+    <lastmod>2025-09-26T15:43:31.296Z</lastmod>
   </url>
   <url>
     <loc>https://www.kbvernon.io/index.html</loc>
     <lastmod>2025-09-11T00:02:04.789Z</lastmod>
   </url>
   <url>
-    <loc>https://www.kbvernon.io/publications.html</loc>
-    <lastmod>2025-09-26T15:43:31.296Z</lastmod>
+    <loc>https://www.kbvernon.io/about.html</loc>
+    <lastmod>2025-11-14T21:44:03.490Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.kbvernon.io/presentations.html</loc>
+    <lastmod>2025-09-09T01:05:12.724Z</lastmod>
   </url>
 </urlset>

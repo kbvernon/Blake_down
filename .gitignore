@@ -12,3 +12,4 @@ _credentials.RData
 /cv-vernon.pdf
 /.luarc.json
 /data/
+**/*.quarto_ipynb

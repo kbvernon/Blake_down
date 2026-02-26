@@ -1,8 +1,5 @@
 project:
   type: website
-  pre-render: 
-    - download-data.R
-    - render-cv.R
   resources: 
     - "*.pdf"
 

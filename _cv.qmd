@@ -14,18 +14,8 @@ execute:
   error: false
   warning: false
   output: asis
+engine: knitr
 ---
-
-```{r}
-#| label: setup
-#| include: false
-library(extera)
-library(yyjsonr)
-
-tera <- ExTera$new("extera-templates/*.html")
-tera$autoescape_off()
-```
-
 
 ```{css}
 html {
@@ -170,92 +160,38 @@ Salt Lake City, Utah 84112
 
 ### Peer-reviewed journal articles
 
-```{r}
-#| label: articles
-articles <- read_json_file("data/article.json")
-
-string <- tera$render_to_string(
-  "articles.html",
-  id = "articles",
-  bibliography = articles
-)
-
-cat("```{=html}", string, "```", sep = "\n")
+```{=html}
+{{< include generated-content/article.html >}}
 ```
 
 ### Manuscripts
 
-```{r}
-#| label: manuscripts
-manuscripts <- read_json_file("data/manuscript.json")
-
-string <- tera$render_to_string(
-  "manuscripts.html",
-  id = "manuscripts",
-  bibliography = manuscripts
-)
-
-cat("```{=html}", string, "```", sep = "\n")
-``` 
+```{=html}
+{{< include generated-content/manuscript.html >}}
+```
 
 ### Book reviews
 
-```{r}
-#| label: reviews
-reviews <- read_json_file("data/review.json")
-
-string <- tera$render_to_string(
-  "articles.html",
-  id = "reviews",
-  bibliography = reviews
-)
-
-cat("```{=html}", string, "```", sep = "\n")
+```{=html}
+{{< include generated-content/review.html >}}
 ```
 
 ### Technical reports
 
-```{r}
-#| label: reports
-reports <- read_json_file("data/report.json")
-
-string <- tera$render_to_string(
-  "reports.html",
-  id = "reports",
-  bibliography = reports
-)
-
-cat("```{=html}", string, "```", sep = "\n")
+```{=html}
+{{< include generated-content/report.html >}}
 ```
 
 ## {{< iconify fa6-solid:hand-holding-dollar >}} Grants, Fellowships, and Awards
 
-```{r}
-#| label: funding
-funding <- read_json_file("data/funding.json")
-
-string <- tera$render_to_string(
-  "funding.html",
-  id = "funding",
-  bibliography = funding
-)
-
-cat("```{=html}", string, "```", sep = "\n")
+```{=html}
+{{< include generated-content/funding.html >}}
 ```
 
 ## {{< iconify fa6-solid:desktop >}} Presentations
 
-```{r}
-#| label: presentations
-presentations <- read_json_file("data/presentation.json")
-
-string <- tera$render_to_string(
-  "presentations.html",
-  id = "presentations",
-  bibliography = presentations
-)
-
-cat("```{=html}", string, "```", sep = "\n")
+```{=html}
+{{< include generated-content/presentation.html >}}
 ```
 
 ## {{< iconify fa-solid:chalkboard-teacher >}} Teaching {#teaching}

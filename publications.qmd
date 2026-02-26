@@ -1,73 +1,11 @@
----
-toc: true
----
-
-```{r}
-#| label: setup
-#| include: false
-library(extera)
-library(yyjsonr)
-
-tera <- ExTera$new("extera-templates/*.html")
-tera$autoescape_off()
-```
-
 ## Manuscripts
 
-```{r}
-#| label: manuscripts
-manuscripts <- read_json_file("data/manuscript.json")
-
-string <- tera$render_to_string(
-  "manuscripts.html",
-  id = "manuscripts",
-  bibliography = manuscripts
-)
-
-cat("```{=html}", string, "```", sep = "\n")
-``` 
+```{=html}
+{{< include generated-content/manuscript.html >}}
+```
 
 ## Peer-reviewed journal articles
 
-```{r}
-#| label: articles
-articles <- read_json_file("data/article.json")
-
-string <- tera$render_to_string(
-  "articles.html",
-  id = "articles",
-  bibliography = articles
-)
-
-cat("```{=html}", string, "```", sep = "\n")
-```
-
-## Book reviews
-
-```{r}
-#| label: reviews
-reviews <- read_json_file("data/review.json")
-
-string <- tera$render_to_string(
-  "articles.html",
-  id = "reviews",
-  bibliography = reviews
-)
-
-cat("```{=html}", string, "```", sep = "\n")
-```
-
-## Technical reports
-
-```{r}
-#| label: reports
-reports <- read_json_file("data/report.json")
-
-string <- tera$render_to_string(
-  "reports.html",
-  id = "reports",
-  bibliography = reports
-)
-
-cat("```{=html}", string, "```", sep = "\n")
+```{=html}
+{{< include generated-content/article.html >}}
 ```

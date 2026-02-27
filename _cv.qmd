@@ -99,15 +99,15 @@ section.level4:first-child h4:first-child,
   break-after: avoid;
 }
 
-.bibliography .year-list .reference {
+.bibliography .reference {
   break-inside: avoid;
 }
 
-.bibliography .year-list .reference:not(:first-of-type){
+.bibliography .reference:not(:first-of-type){
   margin-top: 1rem;
 }
 
-.bibliography .year-list .reference .buttons {
+.bibliography .reference .buttons {
   display: none;
 }
 

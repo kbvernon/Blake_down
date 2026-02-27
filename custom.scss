@@ -80,49 +80,48 @@ th {
       margin-top: 2rem;
     }
 
-    h3.year-list-header {
+    p.year-list-header {
       font-size: 1rem;
       font-weight: bold;
       margin: 0;
       color: $eggplant;
       margin-bottom: 0.5rem;
-      padding-bottom: 0.5rem;
       border-bottom: 1px solid $gray;
     }
+  }
 
-    .reference {
-      margin-top: 0;
+  .reference {
+    margin-top: 0;
 
-      &:not(:first-of-type) {
-        margin-top: 2rem;
-      }
-
-      p {
-        margin: 0;
-      }
-
-      .title {
-        font-size: 1rem;
-        font-weight: bold;
-        color: $caribbean;
-        margin: 0;
-      }
-
-      .authors,
-      .details {
-        font-size: 0.9rem;
-        margin-top: 0.3rem;
-      }
-
-      p.details .publication {
-        font-style: italic;
-      }
+    &:not(:first-of-type) {
+      margin-top: 2rem;
     }
 
-    .buttons {
-      margin-top: 0.5rem;
-      padding: 0;
+    p {
+      margin: 0;
     }
+
+    p.title {
+      font-size: 1rem;
+      font-weight: bold;
+      color: $caribbean;
+      margin: 0;
+    }
+
+    .authors,
+    .details {
+      font-size: 0.9rem;
+      margin-top: 0.3rem;
+    }
+
+    p.details .publication {
+      font-style: italic;
+    }
+  }
+
+  .buttons {
+    margin-top: 0.5rem;
+    padding: 0;
   }
 
   iconify-icon {
@@ -146,22 +145,5 @@ th {
     -webkit-mask-size: 100% 100%;
     mask-size: 100% 100%;
     vertical-align: -0.13em;
-  }
-}
-
-.pkg {
-  p {
-    &:first-child {
-      margin-bottom: 0 !important;
-    }
-
-    &:not(:first-child) {
-      margin: 0.6rem 0 0 0 !important;
-    }
-  }
-
-  .pkg-detail {
-    color: $eggplant;
-    font-weight: bold;
   }
 }

@@ -61,10 +61,10 @@ h1 {
 }
 
 h2 {
-  margin-top: 2rem !important;
+  margin-top: 1.5rem !important;
+  margin-bottom: 0.5rem !important;
 }
 
-h3, 
 h4, 
 h5 {
   margin-top: 1rem !important;
@@ -73,6 +73,14 @@ h5 {
 h3 {
   font-size: 1.2rem;
   font-style: italic;
+}
+
+h2 + section.level3 > h3:first-child {
+  margin-top: 0.5rem !important;
+}
+
+p.year-list-header {
+  break-after: avoid;
 }
 
 section.level1 {

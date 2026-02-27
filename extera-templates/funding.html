@@ -6,7 +6,7 @@
     {%- endfor -%}
     {%- for year in years | reverse %}
     <div class="year-list" id="year-list-{{ year }}">
-        <h3 class="year-list-header">{{ year }}</h3>
+        <p class="year-list-header">{{ year }}</p>
         {%- set references = references_by_year[year] %}
         {%- for ref in references %}
         <div class="reference">

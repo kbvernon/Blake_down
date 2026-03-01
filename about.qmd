@@ -1,9 +1,9 @@
 ## About Me
 
-By training, I'm an archaeologist, but that's not the only thing I am. Here are 
-a few more labels I'm happy to embrace: pragmatist, naturalist, scientist, 
-humanist, anthropologist, behavioral ecologist, geographer, historian, 
-environmental data scientist, programmer, recovering philosopher, and nerd. 
+By training, I'm an archaeologist, but that's not the only thing I am. I'm happy 
+to embrace these other labels, too: pragmatist, naturalist, scientist, humanist, 
+anthropologist, behavioral ecologist, geographer, historian, environmental data 
+scientist, programmer, recovering philosopher, and nerd. 
 
 In case you were wondering, this is me:   
 
@@ -52,19 +52,19 @@ and questions that really animate me these days:
     concentrations of sedentary city dwellers? I'm attracted to this problem 
     mostly because it's a spatial problem, but there's also this other really 
     weird thing about cities that I find deeply fascinating: how it is that they 
-    can exhibit such dramatic scaling effects while still failing utterly to 
-    resolve the problem of collective action.
+    can exhibit such dramatic scaling effects while still failing to resolve the 
+    collective action problem.
 -   **Demographic interpolation**: how do we estimate population size without a 
     census? There is a lot of neat work on this using remote-sensed measures of 
     built area to interpolate modern populations across a grid, but transferring 
     those efforts over to deep time raises an interesting problem, namely, that 
-    built area in that context is a palimpsest (like the many layers of ancient 
-    Troy), which requires that we estimate both a chronology and a population 
-    size at the same time. The current statistical approaches I find interesting 
-    for this include Gaussian and Dirichlet Process Mixture Models, as well as 
-    their deep learning analogs.
+    built area in that context is a palimpsest, which requires that we estimate 
+    both a chronology and a population size at the same time. The current 
+    statistical approaches I find interesting for this include Gaussian and 
+    Dirichlet Process Mixture Models, as well as their deep learning analogs.
 
-In my spare time, I contribute to several [FOSS projects](https://github.com/kbvernon) in the R community.
+In my spare time, I contribute to several [FOSS projects](https://github.com/kbvernon) 
+in the R community.
 
 <hr class="mt-5 mb-5">
 
